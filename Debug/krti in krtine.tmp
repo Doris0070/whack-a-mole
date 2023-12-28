@@ -1,0 +1,99 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.2.8</VERSION>
+ <DEVICE>"ATmega328P"</DEVICE>
+ <WORKING_DIR>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\Debug</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc</DIR>
+  <DIR>C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avrassembler\Include</DIR>
+  <DIR></DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m328Pdef.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\Debug\krti in krtine.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>krti in krtine.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>krti in krtine.map</FILE>
+  <FILE>krti in krtine.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <setup><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>9</LINE></setup>
+  <inicializacija><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>1496</LINE></inicializacija>
+  <load><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>19</LINE></load>
+  <program><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>27</LINE></program>
+  <you_lost_screen><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>251</LINE></you_lost_screen>
+  <loop><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>117</LINE></loop>
+  <pritisk_gumba><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>36</LINE></pritisk_gumba>
+  <krt_to_checker><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>44</LINE></krt_to_checker>
+  <ena_v_ena><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>70</LINE></ena_v_ena>
+  <dva_v_tri><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>73</LINE></dva_v_tri>
+  <tri_v_stiri><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>76</LINE></tri_v_stiri>
+  <stiri_v_osem><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>79</LINE></stiri_v_osem>
+  <checker_krt1><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>54</LINE></checker_krt1>
+  <krt1_ven_pravilno_loopx><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>89</LINE></krt1_ven_pravilno_loopx>
+  <krt1_ven_narobe_loopx><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>104</LINE></krt1_ven_narobe_loopx>
+  <checker_krt2><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>58</LINE></checker_krt2>
+  <krt2_ven_pravilno_loopx><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>92</LINE></krt2_ven_pravilno_loopx>
+  <krt2_ven_narobe_loopx><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>101</LINE></krt2_ven_narobe_loopx>
+  <checker_krt3><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>62</LINE></checker_krt3>
+  <krt3_ven_pravilno_loopx><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>95</LINE></krt3_ven_pravilno_loopx>
+  <krt3_ven_narobe_loopx><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>107</LINE></krt3_ven_narobe_loopx>
+  <checker_krt4><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>66</LINE></checker_krt4>
+  <krt4_ven_pravilno_loopx><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>98</LINE></krt4_ven_pravilno_loopx>
+  <krt4_ven_narobe_loopx><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>110</LINE></krt4_ven_narobe_loopx>
+  <tocke_plus><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>82</LINE></tocke_plus>
+  <tocke_minus><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>84</LINE></tocke_minus>
+  <you_lost_loop><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>114</LINE></you_lost_loop>
+  <krt2_ven_narobe_loop><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>230</LINE></krt2_ven_narobe_loop>
+  <krt1_ven_narobe_loop><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>226</LINE></krt1_ven_narobe_loop>
+  <krt3_ven_narobe_loop><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>234</LINE></krt3_ven_narobe_loop>
+  <krt4_ven_narobe_loop><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>238</LINE></krt4_ven_narobe_loop>
+  <load_tocke><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>120</LINE></load_tocke>
+  <deljenje_r20><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>125</LINE></deljenje_r20>
+  <ascii_converter><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>138</LINE></ascii_converter>
+  <deljenje><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>129</LINE></deljenje>
+  <rezultat><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>134</LINE></rezultat>
+  <read><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>146</LINE></read>
+  <read_r19><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>148</LINE></read_r19>
+  <pick_random_krt><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>158</LINE></pick_random_krt>
+  <set_z_reg><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>154</LINE></set_z_reg>
+  <krt1_ven_loop><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>172</LINE></krt1_ven_loop>
+  <krt2_ven_loop><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>180</LINE></krt2_ven_loop>
+  <krt3_ven_loop><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>188</LINE></krt3_ven_loop>
+  <krt4_ven_loop><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>196</LINE></krt4_ven_loop>
+  <krt1_ven><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>432</LINE></krt1_ven>
+  <delay_seconds><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>1578</LINE></delay_seconds>
+  <krt2_ven><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>536</LINE></krt2_ven>
+  <krt3_ven><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>640</LINE></krt3_ven>
+  <krt4_ven><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>742</LINE></krt4_ven>
+  <krt1_ven_pravilno_loop><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>205</LINE></krt1_ven_pravilno_loop>
+  <krt1_ven_pravilno><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>1171</LINE></krt1_ven_pravilno>
+  <krt2_ven_pravilno_loop><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>210</LINE></krt2_ven_pravilno_loop>
+  <krt2_ven_pravilno><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>1237</LINE></krt2_ven_pravilno>
+  <krt3_ven_pravilno_loop><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>215</LINE></krt3_ven_pravilno_loop>
+  <krt3_ven_pravilno><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>1314</LINE></krt3_ven_pravilno>
+  <krt4_ven_pravilno_loop><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>220</LINE></krt4_ven_pravilno_loop>
+  <krt4_ven_pravilno><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>1400</LINE></krt4_ven_pravilno>
+  <krt1_ven_narobe><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>847</LINE></krt1_ven_narobe>
+  <krt2_ven_narobe><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>913</LINE></krt2_ven_narobe>
+  <krt3_ven_narobe><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>990</LINE></krt3_ven_narobe>
+  <krt4_ven_narobe><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>1076</LINE></krt4_ven_narobe>
+  <lcd_off><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>245</LINE></lcd_off>
+  <komanda><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>1515</LINE></komanda>
+  <delay_ms><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>1570</LINE></delay_ms>
+  <podatki><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>1535</LINE></podatki>
+  <display1><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>328</LINE></display1>
+  <delay_short><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>1557</LINE></delay_short>
+  <delay_us><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>1562</LINE></delay_us>
+  <l3><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>1564</LINE></l3>
+  <l4><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>1572</LINE></l4>
+  <l5><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>1580</LINE></l5>
+  <l6><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>1581</LINE></l6>
+  <l7><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm</FILE><LINE>1582</LINE></l7>
+ </LABELS>
+</ASSEMBLER_INFO>

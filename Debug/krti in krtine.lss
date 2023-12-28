@@ -1,0 +1,2689 @@
+
+AVRASM ver. 2.2.8  C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm Thu Dec 28 17:42:56 2023
+
+[builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m328Pdef.inc'
+C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm(7): warning: Register r26 already defined by the .DEF directive
+[builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m328Pdef.inc'
+                                 
+                                 .def tocke = r20
+                                 
+                                 ;***** Created: 2011-02-09 12:03 ******* Source: ATmega328P.xml **********
+                                 ;*************************************************************************
+                                 ;* A P P L I C A T I O N   N O T E   F O R   T H E   A V R   F A M I L Y
+                                 ;* 
+                                 ;* Number            : AVR000
+                                 ;* File Name         : "m328Pdef.inc"
+                                 ;* Title             : Register/Bit Definitions for the ATmega328P
+                                 ;* Date              : 2011-02-09
+                                 ;* Version           : 2.35
+                                 ;* Support E-mail    : avr@atmel.com
+                                 ;* Target MCU        : ATmega328P
+                                 ;* 
+                                 ;* DESCRIPTION
+                                 ;* When including this file in the assembly program file, all I/O register 
+                                 ;* names and I/O register bit names appearing in the data book can be used.
+                                 ;* In addition, the six registers forming the three data pointers X, Y and 
+                                 ;* Z have been assigned names XL - ZH. Highest RAM address for Internal 
+                                 ;* SRAM is also defined 
+                                 ;* 
+                                 ;* The Register names are represented by their hexadecimal address.
+                                 ;* 
+                                 ;* The Register Bit names are represented by their bit number (0-7).
+                                 ;* 
+                                 ;* Please observe the difference in using the bit names with instructions
+                                 ;* such as "sbr"/"cbr" (set/clear bit in register) and "sbrs"/"sbrc"
+                                 ;* (skip if bit in register set/cleared). The following example illustrates
+                                 ;* this:
+                                 ;* 
+                                 ;* in    r16,PORTB             ;read PORTB latch
+                                 ;* sbr   r16,(1<<PB6)+(1<<PB5) ;set PB6 and PB5 (use masks, not bit#)
+                                 ;* out   PORTB,r16             ;output to PORTB
+                                 ;* 
+                                 ;* in    r16,TIFR              ;read the Timer Interrupt Flag Register
+                                 ;* sbrc  r16,TOV0              ;test the overflow flag (use bit#)
+                                 ;* rjmp  TOV0_is_set           ;jump if set
+                                 ;* ...                         ;otherwise do something else
+                                 ;*************************************************************************
+                                 
+                                 #ifndef _M328PDEF_INC_
+                                 #define _M328PDEF_INC_
+                                 
+                                 
+                                 #pragma partinc 0
+                                 
+                                 ; ***** SPECIFY DEVICE ***************************************************
+                                 .device ATmega328P
+                                 #pragma AVRPART ADMIN PART_NAME ATmega328P
+                                 .equ	SIGNATURE_000	= 0x1e
+                                 .equ	SIGNATURE_001	= 0x95
+                                 .equ	SIGNATURE_002	= 0x0f
+                                 
+                                 #pragma AVRPART CORE CORE_VERSION V2E
+                                 
+                                 
+                                 ; ***** I/O REGISTER DEFINITIONS *****************************************
+                                 ; NOTE:
+                                 ; Definitions marked "MEMORY MAPPED"are extended I/O ports
+                                 ; and cannot be used with IN/OUT instructions
+                                 .equ	UDR0	= 0xc6	; MEMORY MAPPED
+                                 .equ	UBRR0L	= 0xc4	; MEMORY MAPPED
+                                 .equ	UBRR0H	= 0xc5	; MEMORY MAPPED
+                                 .equ	UCSR0C	= 0xc2	; MEMORY MAPPED
+                                 .equ	UCSR0B	= 0xc1	; MEMORY MAPPED
+                                 .equ	UCSR0A	= 0xc0	; MEMORY MAPPED
+                                 .equ	TWAMR	= 0xbd	; MEMORY MAPPED
+                                 .equ	TWCR	= 0xbc	; MEMORY MAPPED
+                                 .equ	TWDR	= 0xbb	; MEMORY MAPPED
+                                 .equ	TWAR	= 0xba	; MEMORY MAPPED
+                                 .equ	TWSR	= 0xb9	; MEMORY MAPPED
+                                 .equ	TWBR	= 0xb8	; MEMORY MAPPED
+                                 .equ	ASSR	= 0xb6	; MEMORY MAPPED
+                                 .equ	OCR2B	= 0xb4	; MEMORY MAPPED
+                                 .equ	OCR2A	= 0xb3	; MEMORY MAPPED
+                                 .equ	TCNT2	= 0xb2	; MEMORY MAPPED
+                                 .equ	TCCR2B	= 0xb1	; MEMORY MAPPED
+                                 .equ	TCCR2A	= 0xb0	; MEMORY MAPPED
+                                 .equ	OCR1BL	= 0x8a	; MEMORY MAPPED
+                                 .equ	OCR1BH	= 0x8b	; MEMORY MAPPED
+                                 .equ	OCR1AL	= 0x88	; MEMORY MAPPED
+                                 .equ	OCR1AH	= 0x89	; MEMORY MAPPED
+                                 .equ	ICR1L	= 0x86	; MEMORY MAPPED
+                                 .equ	ICR1H	= 0x87	; MEMORY MAPPED
+                                 .equ	TCNT1L	= 0x84	; MEMORY MAPPED
+                                 .equ	TCNT1H	= 0x85	; MEMORY MAPPED
+                                 .equ	TCCR1C	= 0x82	; MEMORY MAPPED
+                                 .equ	TCCR1B	= 0x81	; MEMORY MAPPED
+                                 .equ	TCCR1A	= 0x80	; MEMORY MAPPED
+                                 .equ	DIDR1	= 0x7f	; MEMORY MAPPED
+                                 .equ	DIDR0	= 0x7e	; MEMORY MAPPED
+                                 .equ	ADMUX	= 0x7c	; MEMORY MAPPED
+                                 .equ	ADCSRB	= 0x7b	; MEMORY MAPPED
+                                 .equ	ADCSRA	= 0x7a	; MEMORY MAPPED
+                                 .equ	ADCH	= 0x79	; MEMORY MAPPED
+                                 .equ	ADCL	= 0x78	; MEMORY MAPPED
+                                 .equ	TIMSK2	= 0x70	; MEMORY MAPPED
+                                 .equ	TIMSK1	= 0x6f	; MEMORY MAPPED
+                                 .equ	TIMSK0	= 0x6e	; MEMORY MAPPED
+                                 .equ	PCMSK1	= 0x6c	; MEMORY MAPPED
+                                 .equ	PCMSK2	= 0x6d	; MEMORY MAPPED
+                                 .equ	PCMSK0	= 0x6b	; MEMORY MAPPED
+                                 .equ	EICRA	= 0x69	; MEMORY MAPPED
+                                 .equ	PCICR	= 0x68	; MEMORY MAPPED
+                                 .equ	OSCCAL	= 0x66	; MEMORY MAPPED
+                                 .equ	PRR	= 0x64	; MEMORY MAPPED
+                                 .equ	CLKPR	= 0x61	; MEMORY MAPPED
+                                 .equ	WDTCSR	= 0x60	; MEMORY MAPPED
+                                 .equ	SREG	= 0x3f
+                                 .equ	SPL	= 0x3d
+                                 .equ	SPH	= 0x3e
+                                 .equ	SPMCSR	= 0x37
+                                 .equ	MCUCR	= 0x35
+                                 .equ	MCUSR	= 0x34
+                                 .equ	SMCR	= 0x33
+                                 .equ	ACSR	= 0x30
+                                 .equ	SPDR	= 0x2e
+                                 .equ	SPSR	= 0x2d
+                                 .equ	SPCR	= 0x2c
+                                 .equ	GPIOR2	= 0x2b
+                                 .equ	GPIOR1	= 0x2a
+                                 .equ	OCR0B	= 0x28
+                                 .equ	OCR0A	= 0x27
+                                 .equ	TCNT0	= 0x26
+                                 .equ	TCCR0B	= 0x25
+                                 .equ	TCCR0A	= 0x24
+                                 .equ	GTCCR	= 0x23
+                                 .equ	EEARH	= 0x22
+                                 .equ	EEARL	= 0x21
+                                 .equ	EEDR	= 0x20
+                                 .equ	EECR	= 0x1f
+                                 .equ	GPIOR0	= 0x1e
+                                 .equ	EIMSK	= 0x1d
+                                 .equ	EIFR	= 0x1c
+                                 .equ	PCIFR	= 0x1b
+                                 .equ	TIFR2	= 0x17
+                                 .equ	TIFR1	= 0x16
+                                 .equ	TIFR0	= 0x15
+                                 .equ	PORTD	= 0x0b
+                                 .equ	DDRD	= 0x0a
+                                 .equ	PIND	= 0x09
+                                 .equ	PORTC	= 0x08
+                                 .equ	DDRC	= 0x07
+                                 .equ	PINC	= 0x06
+                                 .equ	PORTB	= 0x05
+                                 .equ	DDRB	= 0x04
+                                 .equ	PINB	= 0x03
+                                 
+                                 
+                                 ; ***** BIT DEFINITIONS **************************************************
+                                 
+                                 ; ***** USART0 ***********************
+                                 ; UDR0 - USART I/O Data Register
+                                 .equ	UDR0_0	= 0	; USART I/O Data Register bit 0
+                                 .equ	UDR0_1	= 1	; USART I/O Data Register bit 1
+                                 .equ	UDR0_2	= 2	; USART I/O Data Register bit 2
+                                 .equ	UDR0_3	= 3	; USART I/O Data Register bit 3
+                                 .equ	UDR0_4	= 4	; USART I/O Data Register bit 4
+                                 .equ	UDR0_5	= 5	; USART I/O Data Register bit 5
+                                 .equ	UDR0_6	= 6	; USART I/O Data Register bit 6
+                                 .equ	UDR0_7	= 7	; USART I/O Data Register bit 7
+                                 
+                                 ; UCSR0A - USART Control and Status Register A
+                                 .equ	MPCM0	= 0	; Multi-processor Communication Mode
+                                 .equ	U2X0	= 1	; Double the USART transmission speed
+                                 .equ	UPE0	= 2	; Parity Error
+                                 .equ	DOR0	= 3	; Data overRun
+                                 .equ	FE0	= 4	; Framing Error
+                                 .equ	UDRE0	= 5	; USART Data Register Empty
+                                 .equ	TXC0	= 6	; USART Transmitt Complete
+                                 .equ	RXC0	= 7	; USART Receive Complete
+                                 
+                                 ; UCSR0B - USART Control and Status Register B
+                                 .equ	TXB80	= 0	; Transmit Data Bit 8
+                                 .equ	RXB80	= 1	; Receive Data Bit 8
+                                 .equ	UCSZ02	= 2	; Character Size
+                                 .equ	TXEN0	= 3	; Transmitter Enable
+                                 .equ	RXEN0	= 4	; Receiver Enable
+                                 .equ	UDRIE0	= 5	; USART Data register Empty Interrupt Enable
+                                 .equ	TXCIE0	= 6	; TX Complete Interrupt Enable
+                                 .equ	RXCIE0	= 7	; RX Complete Interrupt Enable
+                                 
+                                 ; UCSR0C - USART Control and Status Register C
+                                 .equ	UCPOL0	= 0	; Clock Polarity
+                                 .equ	UCSZ00	= 1	; Character Size
+                                 .equ	UCPHA0	= UCSZ00	; For compatibility
+                                 .equ	UCSZ01	= 2	; Character Size
+                                 .equ	UDORD0	= UCSZ01	; For compatibility
+                                 .equ	USBS0	= 3	; Stop Bit Select
+                                 .equ	UPM00	= 4	; Parity Mode Bit 0
+                                 .equ	UPM01	= 5	; Parity Mode Bit 1
+                                 .equ	UMSEL00	= 6	; USART Mode Select
+                                 .equ	UMSEL0	= UMSEL00	; For compatibility
+                                 .equ	UMSEL01	= 7	; USART Mode Select
+                                 .equ	UMSEL1	= UMSEL01	; For compatibility
+                                 
+                                 ; UBRR0H - USART Baud Rate Register High Byte
+                                 .equ	UBRR8	= 0	; USART Baud Rate Register bit 8
+                                 .equ	UBRR9	= 1	; USART Baud Rate Register bit 9
+                                 .equ	UBRR10	= 2	; USART Baud Rate Register bit 10
+                                 .equ	UBRR11	= 3	; USART Baud Rate Register bit 11
+                                 
+                                 ; UBRR0L - USART Baud Rate Register Low Byte
+                                 .equ	_UBRR0	= 0	; USART Baud Rate Register bit 0
+                                 .equ	_UBRR1	= 1	; USART Baud Rate Register bit 1
+                                 .equ	UBRR2	= 2	; USART Baud Rate Register bit 2
+                                 .equ	UBRR3	= 3	; USART Baud Rate Register bit 3
+                                 .equ	UBRR4	= 4	; USART Baud Rate Register bit 4
+                                 .equ	UBRR5	= 5	; USART Baud Rate Register bit 5
+                                 .equ	UBRR6	= 6	; USART Baud Rate Register bit 6
+                                 .equ	UBRR7	= 7	; USART Baud Rate Register bit 7
+                                 
+                                 
+                                 ; ***** TWI **************************
+                                 ; TWAMR - TWI (Slave) Address Mask Register
+                                 .equ	TWAM0	= 1	; 
+                                 .equ	TWAMR0	= TWAM0	; For compatibility
+                                 .equ	TWAM1	= 2	; 
+                                 .equ	TWAMR1	= TWAM1	; For compatibility
+                                 .equ	TWAM2	= 3	; 
+                                 .equ	TWAMR2	= TWAM2	; For compatibility
+                                 .equ	TWAM3	= 4	; 
+                                 .equ	TWAMR3	= TWAM3	; For compatibility
+                                 .equ	TWAM4	= 5	; 
+                                 .equ	TWAMR4	= TWAM4	; For compatibility
+                                 .equ	TWAM5	= 6	; 
+                                 .equ	TWAMR5	= TWAM5	; For compatibility
+                                 .equ	TWAM6	= 7	; 
+                                 .equ	TWAMR6	= TWAM6	; For compatibility
+                                 
+                                 ; TWBR - TWI Bit Rate register
+                                 .equ	TWBR0	= 0	; 
+                                 .equ	TWBR1	= 1	; 
+                                 .equ	TWBR2	= 2	; 
+                                 .equ	TWBR3	= 3	; 
+                                 .equ	TWBR4	= 4	; 
+                                 .equ	TWBR5	= 5	; 
+                                 .equ	TWBR6	= 6	; 
+                                 .equ	TWBR7	= 7	; 
+                                 
+                                 ; TWCR - TWI Control Register
+                                 .equ	TWIE	= 0	; TWI Interrupt Enable
+                                 .equ	TWEN	= 2	; TWI Enable Bit
+                                 .equ	TWWC	= 3	; TWI Write Collition Flag
+                                 .equ	TWSTO	= 4	; TWI Stop Condition Bit
+                                 .equ	TWSTA	= 5	; TWI Start Condition Bit
+                                 .equ	TWEA	= 6	; TWI Enable Acknowledge Bit
+                                 .equ	TWINT	= 7	; TWI Interrupt Flag
+                                 
+                                 ; TWSR - TWI Status Register
+                                 .equ	TWPS0	= 0	; TWI Prescaler
+                                 .equ	TWPS1	= 1	; TWI Prescaler
+                                 .equ	TWS3	= 3	; TWI Status
+                                 .equ	TWS4	= 4	; TWI Status
+                                 .equ	TWS5	= 5	; TWI Status
+                                 .equ	TWS6	= 6	; TWI Status
+                                 .equ	TWS7	= 7	; TWI Status
+                                 
+                                 ; TWDR - TWI Data register
+                                 .equ	TWD0	= 0	; TWI Data Register Bit 0
+                                 .equ	TWD1	= 1	; TWI Data Register Bit 1
+                                 .equ	TWD2	= 2	; TWI Data Register Bit 2
+                                 .equ	TWD3	= 3	; TWI Data Register Bit 3
+                                 .equ	TWD4	= 4	; TWI Data Register Bit 4
+                                 .equ	TWD5	= 5	; TWI Data Register Bit 5
+                                 .equ	TWD6	= 6	; TWI Data Register Bit 6
+                                 .equ	TWD7	= 7	; TWI Data Register Bit 7
+                                 
+                                 ; TWAR - TWI (Slave) Address register
+                                 .equ	TWGCE	= 0	; TWI General Call Recognition Enable Bit
+                                 .equ	TWA0	= 1	; TWI (Slave) Address register Bit 0
+                                 .equ	TWA1	= 2	; TWI (Slave) Address register Bit 1
+                                 .equ	TWA2	= 3	; TWI (Slave) Address register Bit 2
+                                 .equ	TWA3	= 4	; TWI (Slave) Address register Bit 3
+                                 .equ	TWA4	= 5	; TWI (Slave) Address register Bit 4
+                                 .equ	TWA5	= 6	; TWI (Slave) Address register Bit 5
+                                 .equ	TWA6	= 7	; TWI (Slave) Address register Bit 6
+                                 
+                                 
+                                 ; ***** TIMER_COUNTER_1 **************
+                                 ; TIMSK1 - Timer/Counter Interrupt Mask Register
+                                 .equ	TOIE1	= 0	; Timer/Counter1 Overflow Interrupt Enable
+                                 .equ	OCIE1A	= 1	; Timer/Counter1 Output CompareA Match Interrupt Enable
+                                 .equ	OCIE1B	= 2	; Timer/Counter1 Output CompareB Match Interrupt Enable
+                                 .equ	ICIE1	= 5	; Timer/Counter1 Input Capture Interrupt Enable
+                                 
+                                 ; TIFR1 - Timer/Counter Interrupt Flag register
+                                 .equ	TOV1	= 0	; Timer/Counter1 Overflow Flag
+                                 .equ	OCF1A	= 1	; Output Compare Flag 1A
+                                 .equ	OCF1B	= 2	; Output Compare Flag 1B
+                                 .equ	ICF1	= 5	; Input Capture Flag 1
+                                 
+                                 ; TCCR1A - Timer/Counter1 Control Register A
+                                 .equ	WGM10	= 0	; Waveform Generation Mode
+                                 .equ	WGM11	= 1	; Waveform Generation Mode
+                                 .equ	COM1B0	= 4	; Compare Output Mode 1B, bit 0
+                                 .equ	COM1B1	= 5	; Compare Output Mode 1B, bit 1
+                                 .equ	COM1A0	= 6	; Comparet Ouput Mode 1A, bit 0
+                                 .equ	COM1A1	= 7	; Compare Output Mode 1A, bit 1
+                                 
+                                 ; TCCR1B - Timer/Counter1 Control Register B
+                                 .equ	CS10	= 0	; Prescaler source of Timer/Counter 1
+                                 .equ	CS11	= 1	; Prescaler source of Timer/Counter 1
+                                 .equ	CS12	= 2	; Prescaler source of Timer/Counter 1
+                                 .equ	WGM12	= 3	; Waveform Generation Mode
+                                 .equ	WGM13	= 4	; Waveform Generation Mode
+                                 .equ	ICES1	= 6	; Input Capture 1 Edge Select
+                                 .equ	ICNC1	= 7	; Input Capture 1 Noise Canceler
+                                 
+                                 ; TCCR1C - Timer/Counter1 Control Register C
+                                 .equ	FOC1B	= 6	; 
+                                 .equ	FOC1A	= 7	; 
+                                 
+                                 ; GTCCR - General Timer/Counter Control Register
+                                 .equ	PSRSYNC	= 0	; Prescaler Reset Timer/Counter1 and Timer/Counter0
+                                 .equ	TSM	= 7	; Timer/Counter Synchronization Mode
+                                 
+                                 
+                                 ; ***** TIMER_COUNTER_2 **************
+                                 ; TIMSK2 - Timer/Counter Interrupt Mask register
+                                 .equ	TOIE2	= 0	; Timer/Counter2 Overflow Interrupt Enable
+                                 .equ	TOIE2A	= TOIE2	; For compatibility
+                                 .equ	OCIE2A	= 1	; Timer/Counter2 Output Compare Match A Interrupt Enable
+                                 .equ	OCIE2B	= 2	; Timer/Counter2 Output Compare Match B Interrupt Enable
+                                 
+                                 ; TIFR2 - Timer/Counter Interrupt Flag Register
+                                 .equ	TOV2	= 0	; Timer/Counter2 Overflow Flag
+                                 .equ	OCF2A	= 1	; Output Compare Flag 2A
+                                 .equ	OCF2B	= 2	; Output Compare Flag 2B
+                                 
+                                 ; TCCR2A - Timer/Counter2 Control Register A
+                                 .equ	WGM20	= 0	; Waveform Genration Mode
+                                 .equ	WGM21	= 1	; Waveform Genration Mode
+                                 .equ	COM2B0	= 4	; Compare Output Mode bit 0
+                                 .equ	COM2B1	= 5	; Compare Output Mode bit 1
+                                 .equ	COM2A0	= 6	; Compare Output Mode bit 1
+                                 .equ	COM2A1	= 7	; Compare Output Mode bit 1
+                                 
+                                 ; TCCR2B - Timer/Counter2 Control Register B
+                                 .equ	CS20	= 0	; Clock Select bit 0
+                                 .equ	CS21	= 1	; Clock Select bit 1
+                                 .equ	CS22	= 2	; Clock Select bit 2
+                                 .equ	WGM22	= 3	; Waveform Generation Mode
+                                 .equ	FOC2B	= 6	; Force Output Compare B
+                                 .equ	FOC2A	= 7	; Force Output Compare A
+                                 
+                                 ; TCNT2 - Timer/Counter2
+                                 .equ	TCNT2_0	= 0	; Timer/Counter 2 bit 0
+                                 .equ	TCNT2_1	= 1	; Timer/Counter 2 bit 1
+                                 .equ	TCNT2_2	= 2	; Timer/Counter 2 bit 2
+                                 .equ	TCNT2_3	= 3	; Timer/Counter 2 bit 3
+                                 .equ	TCNT2_4	= 4	; Timer/Counter 2 bit 4
+                                 .equ	TCNT2_5	= 5	; Timer/Counter 2 bit 5
+                                 .equ	TCNT2_6	= 6	; Timer/Counter 2 bit 6
+                                 .equ	TCNT2_7	= 7	; Timer/Counter 2 bit 7
+                                 
+                                 ; OCR2A - Timer/Counter2 Output Compare Register A
+                                 .equ	OCR2A_0	= 0	; Timer/Counter2 Output Compare Register Bit 0
+                                 .equ	OCR2A_1	= 1	; Timer/Counter2 Output Compare Register Bit 1
+                                 .equ	OCR2A_2	= 2	; Timer/Counter2 Output Compare Register Bit 2
+                                 .equ	OCR2A_3	= 3	; Timer/Counter2 Output Compare Register Bit 3
+                                 .equ	OCR2A_4	= 4	; Timer/Counter2 Output Compare Register Bit 4
+                                 .equ	OCR2A_5	= 5	; Timer/Counter2 Output Compare Register Bit 5
+                                 .equ	OCR2A_6	= 6	; Timer/Counter2 Output Compare Register Bit 6
+                                 .equ	OCR2A_7	= 7	; Timer/Counter2 Output Compare Register Bit 7
+                                 
+                                 ; OCR2B - Timer/Counter2 Output Compare Register B
+                                 .equ	OCR2B_0	= 0	; Timer/Counter2 Output Compare Register Bit 0
+                                 .equ	OCR2B_1	= 1	; Timer/Counter2 Output Compare Register Bit 1
+                                 .equ	OCR2B_2	= 2	; Timer/Counter2 Output Compare Register Bit 2
+                                 .equ	OCR2B_3	= 3	; Timer/Counter2 Output Compare Register Bit 3
+                                 .equ	OCR2B_4	= 4	; Timer/Counter2 Output Compare Register Bit 4
+                                 .equ	OCR2B_5	= 5	; Timer/Counter2 Output Compare Register Bit 5
+                                 .equ	OCR2B_6	= 6	; Timer/Counter2 Output Compare Register Bit 6
+                                 .equ	OCR2B_7	= 7	; Timer/Counter2 Output Compare Register Bit 7
+                                 
+                                 ; ASSR - Asynchronous Status Register
+                                 .equ	TCR2BUB	= 0	; Timer/Counter Control Register2 Update Busy
+                                 .equ	TCR2AUB	= 1	; Timer/Counter Control Register2 Update Busy
+                                 .equ	OCR2BUB	= 2	; Output Compare Register 2 Update Busy
+                                 .equ	OCR2AUB	= 3	; Output Compare Register2 Update Busy
+                                 .equ	TCN2UB	= 4	; Timer/Counter2 Update Busy
+                                 .equ	AS2	= 5	; Asynchronous Timer/Counter2
+                                 .equ	EXCLK	= 6	; Enable External Clock Input
+                                 
+                                 ; GTCCR - General Timer Counter Control register
+                                 .equ	PSRASY	= 1	; Prescaler Reset Timer/Counter2
+                                 .equ	PSR2	= PSRASY	; For compatibility
+                                 ;.equ	TSM	= 7	; Timer/Counter Synchronization Mode
+                                 
+                                 
+                                 ; ***** AD_CONVERTER *****************
+                                 ; ADMUX - The ADC multiplexer Selection Register
+                                 .equ	MUX0	= 0	; Analog Channel and Gain Selection Bits
+                                 .equ	MUX1	= 1	; Analog Channel and Gain Selection Bits
+                                 .equ	MUX2	= 2	; Analog Channel and Gain Selection Bits
+                                 .equ	MUX3	= 3	; Analog Channel and Gain Selection Bits
+                                 .equ	ADLAR	= 5	; Left Adjust Result
+                                 .equ	REFS0	= 6	; Reference Selection Bit 0
+                                 .equ	REFS1	= 7	; Reference Selection Bit 1
+                                 
+                                 ; ADCSRA - The ADC Control and Status register A
+                                 .equ	ADPS0	= 0	; ADC  Prescaler Select Bits
+                                 .equ	ADPS1	= 1	; ADC  Prescaler Select Bits
+                                 .equ	ADPS2	= 2	; ADC  Prescaler Select Bits
+                                 .equ	ADIE	= 3	; ADC Interrupt Enable
+                                 .equ	ADIF	= 4	; ADC Interrupt Flag
+                                 .equ	ADATE	= 5	; ADC  Auto Trigger Enable
+                                 .equ	ADSC	= 6	; ADC Start Conversion
+                                 .equ	ADEN	= 7	; ADC Enable
+                                 
+                                 ; ADCSRB - The ADC Control and Status register B
+                                 .equ	ADTS0	= 0	; ADC Auto Trigger Source bit 0
+                                 .equ	ADTS1	= 1	; ADC Auto Trigger Source bit 1
+                                 .equ	ADTS2	= 2	; ADC Auto Trigger Source bit 2
+                                 .equ	ACME	= 6	; 
+                                 
+                                 ; ADCH - ADC Data Register High Byte
+                                 .equ	ADCH0	= 0	; ADC Data Register High Byte Bit 0
+                                 .equ	ADCH1	= 1	; ADC Data Register High Byte Bit 1
+                                 .equ	ADCH2	= 2	; ADC Data Register High Byte Bit 2
+                                 .equ	ADCH3	= 3	; ADC Data Register High Byte Bit 3
+                                 .equ	ADCH4	= 4	; ADC Data Register High Byte Bit 4
+                                 .equ	ADCH5	= 5	; ADC Data Register High Byte Bit 5
+                                 .equ	ADCH6	= 6	; ADC Data Register High Byte Bit 6
+                                 .equ	ADCH7	= 7	; ADC Data Register High Byte Bit 7
+                                 
+                                 ; ADCL - ADC Data Register Low Byte
+                                 .equ	ADCL0	= 0	; ADC Data Register Low Byte Bit 0
+                                 .equ	ADCL1	= 1	; ADC Data Register Low Byte Bit 1
+                                 .equ	ADCL2	= 2	; ADC Data Register Low Byte Bit 2
+                                 .equ	ADCL3	= 3	; ADC Data Register Low Byte Bit 3
+                                 .equ	ADCL4	= 4	; ADC Data Register Low Byte Bit 4
+                                 .equ	ADCL5	= 5	; ADC Data Register Low Byte Bit 5
+                                 .equ	ADCL6	= 6	; ADC Data Register Low Byte Bit 6
+                                 .equ	ADCL7	= 7	; ADC Data Register Low Byte Bit 7
+                                 
+                                 ; DIDR0 - Digital Input Disable Register
+                                 .equ	ADC0D	= 0	; 
+                                 .equ	ADC1D	= 1	; 
+                                 .equ	ADC2D	= 2	; 
+                                 .equ	ADC3D	= 3	; 
+                                 .equ	ADC4D	= 4	; 
+                                 .equ	ADC5D	= 5	; 
+                                 
+                                 
+                                 ; ***** ANALOG_COMPARATOR ************
+                                 ; ACSR - Analog Comparator Control And Status Register
+                                 .equ	ACIS0	= 0	; Analog Comparator Interrupt Mode Select bit 0
+                                 .equ	ACIS1	= 1	; Analog Comparator Interrupt Mode Select bit 1
+                                 .equ	ACIC	= 2	; Analog Comparator Input Capture Enable
+                                 .equ	ACIE	= 3	; Analog Comparator Interrupt Enable
+                                 .equ	ACI	= 4	; Analog Comparator Interrupt Flag
+                                 .equ	ACO	= 5	; Analog Compare Output
+                                 .equ	ACBG	= 6	; Analog Comparator Bandgap Select
+                                 .equ	ACD	= 7	; Analog Comparator Disable
+                                 
+                                 ; DIDR1 - Digital Input Disable Register 1
+                                 .equ	AIN0D	= 0	; AIN0 Digital Input Disable
+                                 .equ	AIN1D	= 1	; AIN1 Digital Input Disable
+                                 
+                                 
+                                 ; ***** PORTB ************************
+                                 ; PORTB - Port B Data Register
+                                 .equ	PORTB0	= 0	; Port B Data Register bit 0
+                                 .equ	PB0	= 0	; For compatibility
+                                 .equ	PORTB1	= 1	; Port B Data Register bit 1
+                                 .equ	PB1	= 1	; For compatibility
+                                 .equ	PORTB2	= 2	; Port B Data Register bit 2
+                                 .equ	PB2	= 2	; For compatibility
+                                 .equ	PORTB3	= 3	; Port B Data Register bit 3
+                                 .equ	PB3	= 3	; For compatibility
+                                 .equ	PORTB4	= 4	; Port B Data Register bit 4
+                                 .equ	PB4	= 4	; For compatibility
+                                 .equ	PORTB5	= 5	; Port B Data Register bit 5
+                                 .equ	PB5	= 5	; For compatibility
+                                 .equ	PORTB6	= 6	; Port B Data Register bit 6
+                                 .equ	PB6	= 6	; For compatibility
+                                 .equ	PORTB7	= 7	; Port B Data Register bit 7
+                                 .equ	PB7	= 7	; For compatibility
+                                 
+                                 ; DDRB - Port B Data Direction Register
+                                 .equ	DDB0	= 0	; Port B Data Direction Register bit 0
+                                 .equ	DDB1	= 1	; Port B Data Direction Register bit 1
+                                 .equ	DDB2	= 2	; Port B Data Direction Register bit 2
+                                 .equ	DDB3	= 3	; Port B Data Direction Register bit 3
+                                 .equ	DDB4	= 4	; Port B Data Direction Register bit 4
+                                 .equ	DDB5	= 5	; Port B Data Direction Register bit 5
+                                 .equ	DDB6	= 6	; Port B Data Direction Register bit 6
+                                 .equ	DDB7	= 7	; Port B Data Direction Register bit 7
+                                 
+                                 ; PINB - Port B Input Pins
+                                 .equ	PINB0	= 0	; Port B Input Pins bit 0
+                                 .equ	PINB1	= 1	; Port B Input Pins bit 1
+                                 .equ	PINB2	= 2	; Port B Input Pins bit 2
+                                 .equ	PINB3	= 3	; Port B Input Pins bit 3
+                                 .equ	PINB4	= 4	; Port B Input Pins bit 4
+                                 .equ	PINB5	= 5	; Port B Input Pins bit 5
+                                 .equ	PINB6	= 6	; Port B Input Pins bit 6
+                                 .equ	PINB7	= 7	; Port B Input Pins bit 7
+                                 
+                                 
+                                 ; ***** PORTC ************************
+                                 ; PORTC - Port C Data Register
+                                 .equ	PORTC0	= 0	; Port C Data Register bit 0
+                                 .equ	PC0	= 0	; For compatibility
+                                 .equ	PORTC1	= 1	; Port C Data Register bit 1
+                                 .equ	PC1	= 1	; For compatibility
+                                 .equ	PORTC2	= 2	; Port C Data Register bit 2
+                                 .equ	PC2	= 2	; For compatibility
+                                 .equ	PORTC3	= 3	; Port C Data Register bit 3
+                                 .equ	PC3	= 3	; For compatibility
+                                 .equ	PORTC4	= 4	; Port C Data Register bit 4
+                                 .equ	PC4	= 4	; For compatibility
+                                 .equ	PORTC5	= 5	; Port C Data Register bit 5
+                                 .equ	PC5	= 5	; For compatibility
+                                 .equ	PORTC6	= 6	; Port C Data Register bit 6
+                                 .equ	PC6	= 6	; For compatibility
+                                 
+                                 ; DDRC - Port C Data Direction Register
+                                 .equ	DDC0	= 0	; Port C Data Direction Register bit 0
+                                 .equ	DDC1	= 1	; Port C Data Direction Register bit 1
+                                 .equ	DDC2	= 2	; Port C Data Direction Register bit 2
+                                 .equ	DDC3	= 3	; Port C Data Direction Register bit 3
+                                 .equ	DDC4	= 4	; Port C Data Direction Register bit 4
+                                 .equ	DDC5	= 5	; Port C Data Direction Register bit 5
+                                 .equ	DDC6	= 6	; Port C Data Direction Register bit 6
+                                 
+                                 ; PINC - Port C Input Pins
+                                 .equ	PINC0	= 0	; Port C Input Pins bit 0
+                                 .equ	PINC1	= 1	; Port C Input Pins bit 1
+                                 .equ	PINC2	= 2	; Port C Input Pins bit 2
+                                 .equ	PINC3	= 3	; Port C Input Pins bit 3
+                                 .equ	PINC4	= 4	; Port C Input Pins bit 4
+                                 .equ	PINC5	= 5	; Port C Input Pins bit 5
+                                 .equ	PINC6	= 6	; Port C Input Pins bit 6
+                                 
+                                 
+                                 ; ***** PORTD ************************
+                                 ; PORTD - Port D Data Register
+                                 .equ	PORTD0	= 0	; Port D Data Register bit 0
+                                 .equ	PD0	= 0	; For compatibility
+                                 .equ	PORTD1	= 1	; Port D Data Register bit 1
+                                 .equ	PD1	= 1	; For compatibility
+                                 .equ	PORTD2	= 2	; Port D Data Register bit 2
+                                 .equ	PD2	= 2	; For compatibility
+                                 .equ	PORTD3	= 3	; Port D Data Register bit 3
+                                 .equ	PD3	= 3	; For compatibility
+                                 .equ	PORTD4	= 4	; Port D Data Register bit 4
+                                 .equ	PD4	= 4	; For compatibility
+                                 .equ	PORTD5	= 5	; Port D Data Register bit 5
+                                 .equ	PD5	= 5	; For compatibility
+                                 .equ	PORTD6	= 6	; Port D Data Register bit 6
+                                 .equ	PD6	= 6	; For compatibility
+                                 .equ	PORTD7	= 7	; Port D Data Register bit 7
+                                 .equ	PD7	= 7	; For compatibility
+                                 
+                                 ; DDRD - Port D Data Direction Register
+                                 .equ	DDD0	= 0	; Port D Data Direction Register bit 0
+                                 .equ	DDD1	= 1	; Port D Data Direction Register bit 1
+                                 .equ	DDD2	= 2	; Port D Data Direction Register bit 2
+                                 .equ	DDD3	= 3	; Port D Data Direction Register bit 3
+                                 .equ	DDD4	= 4	; Port D Data Direction Register bit 4
+                                 .equ	DDD5	= 5	; Port D Data Direction Register bit 5
+                                 .equ	DDD6	= 6	; Port D Data Direction Register bit 6
+                                 .equ	DDD7	= 7	; Port D Data Direction Register bit 7
+                                 
+                                 ; PIND - Port D Input Pins
+                                 .equ	PIND0	= 0	; Port D Input Pins bit 0
+                                 .equ	PIND1	= 1	; Port D Input Pins bit 1
+                                 .equ	PIND2	= 2	; Port D Input Pins bit 2
+                                 .equ	PIND3	= 3	; Port D Input Pins bit 3
+                                 .equ	PIND4	= 4	; Port D Input Pins bit 4
+                                 .equ	PIND5	= 5	; Port D Input Pins bit 5
+                                 .equ	PIND6	= 6	; Port D Input Pins bit 6
+                                 .equ	PIND7	= 7	; Port D Input Pins bit 7
+                                 
+                                 
+                                 ; ***** TIMER_COUNTER_0 **************
+                                 ; TIMSK0 - Timer/Counter0 Interrupt Mask Register
+                                 .equ	TOIE0	= 0	; Timer/Counter0 Overflow Interrupt Enable
+                                 .equ	OCIE0A	= 1	; Timer/Counter0 Output Compare Match A Interrupt Enable
+                                 .equ	OCIE0B	= 2	; Timer/Counter0 Output Compare Match B Interrupt Enable
+                                 
+                                 ; TIFR0 - Timer/Counter0 Interrupt Flag register
+                                 .equ	TOV0	= 0	; Timer/Counter0 Overflow Flag
+                                 .equ	OCF0A	= 1	; Timer/Counter0 Output Compare Flag 0A
+                                 .equ	OCF0B	= 2	; Timer/Counter0 Output Compare Flag 0B
+                                 
+                                 ; TCCR0A - Timer/Counter  Control Register A
+                                 .equ	WGM00	= 0	; Waveform Generation Mode
+                                 .equ	WGM01	= 1	; Waveform Generation Mode
+                                 .equ	COM0B0	= 4	; Compare Output Mode, Fast PWm
+                                 .equ	COM0B1	= 5	; Compare Output Mode, Fast PWm
+                                 .equ	COM0A0	= 6	; Compare Output Mode, Phase Correct PWM Mode
+                                 .equ	COM0A1	= 7	; Compare Output Mode, Phase Correct PWM Mode
+                                 
+                                 ; TCCR0B - Timer/Counter Control Register B
+                                 .equ	CS00	= 0	; Clock Select
+                                 .equ	CS01	= 1	; Clock Select
+                                 .equ	CS02	= 2	; Clock Select
+                                 .equ	WGM02	= 3	; 
+                                 .equ	FOC0B	= 6	; Force Output Compare B
+                                 .equ	FOC0A	= 7	; Force Output Compare A
+                                 
+                                 ; TCNT0 - Timer/Counter0
+                                 .equ	TCNT0_0	= 0	; 
+                                 .equ	TCNT0_1	= 1	; 
+                                 .equ	TCNT0_2	= 2	; 
+                                 .equ	TCNT0_3	= 3	; 
+                                 .equ	TCNT0_4	= 4	; 
+                                 .equ	TCNT0_5	= 5	; 
+                                 .equ	TCNT0_6	= 6	; 
+                                 .equ	TCNT0_7	= 7	; 
+                                 
+                                 ; OCR0A - Timer/Counter0 Output Compare Register
+                                 .equ	OCR0A_0	= 0	; 
+                                 .equ	OCR0A_1	= 1	; 
+                                 .equ	OCR0A_2	= 2	; 
+                                 .equ	OCR0A_3	= 3	; 
+                                 .equ	OCR0A_4	= 4	; 
+                                 .equ	OCR0A_5	= 5	; 
+                                 .equ	OCR0A_6	= 6	; 
+                                 .equ	OCR0A_7	= 7	; 
+                                 
+                                 ; OCR0B - Timer/Counter0 Output Compare Register
+                                 .equ	OCR0B_0	= 0	; 
+                                 .equ	OCR0B_1	= 1	; 
+                                 .equ	OCR0B_2	= 2	; 
+                                 .equ	OCR0B_3	= 3	; 
+                                 .equ	OCR0B_4	= 4	; 
+                                 .equ	OCR0B_5	= 5	; 
+                                 .equ	OCR0B_6	= 6	; 
+                                 .equ	OCR0B_7	= 7	; 
+                                 
+                                 ; GTCCR - General Timer/Counter Control Register
+                                 ;.equ	PSRSYNC	= 0	; Prescaler Reset Timer/Counter1 and Timer/Counter0
+                                 .equ	PSR10	= PSRSYNC	; For compatibility
+                                 ;.equ	TSM	= 7	; Timer/Counter Synchronization Mode
+                                 
+                                 
+                                 ; ***** EXTERNAL_INTERRUPT ***********
+                                 ; EICRA - External Interrupt Control Register
+                                 .equ	ISC00	= 0	; External Interrupt Sense Control 0 Bit 0
+                                 .equ	ISC01	= 1	; External Interrupt Sense Control 0 Bit 1
+                                 .equ	ISC10	= 2	; External Interrupt Sense Control 1 Bit 0
+                                 .equ	ISC11	= 3	; External Interrupt Sense Control 1 Bit 1
+                                 
+                                 ; EIMSK - External Interrupt Mask Register
+                                 .equ	INT0	= 0	; External Interrupt Request 0 Enable
+                                 .equ	INT1	= 1	; External Interrupt Request 1 Enable
+                                 
+                                 ; EIFR - External Interrupt Flag Register
+                                 .equ	INTF0	= 0	; External Interrupt Flag 0
+                                 .equ	INTF1	= 1	; External Interrupt Flag 1
+                                 
+                                 ; PCICR - Pin Change Interrupt Control Register
+                                 .equ	PCIE0	= 0	; Pin Change Interrupt Enable 0
+                                 .equ	PCIE1	= 1	; Pin Change Interrupt Enable 1
+                                 .equ	PCIE2	= 2	; Pin Change Interrupt Enable 2
+                                 
+                                 ; PCMSK2 - Pin Change Mask Register 2
+                                 .equ	PCINT16	= 0	; Pin Change Enable Mask 16
+                                 .equ	PCINT17	= 1	; Pin Change Enable Mask 17
+                                 .equ	PCINT18	= 2	; Pin Change Enable Mask 18
+                                 .equ	PCINT19	= 3	; Pin Change Enable Mask 19
+                                 .equ	PCINT20	= 4	; Pin Change Enable Mask 20
+                                 .equ	PCINT21	= 5	; Pin Change Enable Mask 21
+                                 .equ	PCINT22	= 6	; Pin Change Enable Mask 22
+                                 .equ	PCINT23	= 7	; Pin Change Enable Mask 23
+                                 
+                                 ; PCMSK1 - Pin Change Mask Register 1
+                                 .equ	PCINT8	= 0	; Pin Change Enable Mask 8
+                                 .equ	PCINT9	= 1	; Pin Change Enable Mask 9
+                                 .equ	PCINT10	= 2	; Pin Change Enable Mask 10
+                                 .equ	PCINT11	= 3	; Pin Change Enable Mask 11
+                                 .equ	PCINT12	= 4	; Pin Change Enable Mask 12
+                                 .equ	PCINT13	= 5	; Pin Change Enable Mask 13
+                                 .equ	PCINT14	= 6	; Pin Change Enable Mask 14
+                                 
+                                 ; PCMSK0 - Pin Change Mask Register 0
+                                 .equ	PCINT0	= 0	; Pin Change Enable Mask 0
+                                 .equ	PCINT1	= 1	; Pin Change Enable Mask 1
+                                 .equ	PCINT2	= 2	; Pin Change Enable Mask 2
+                                 .equ	PCINT3	= 3	; Pin Change Enable Mask 3
+                                 .equ	PCINT4	= 4	; Pin Change Enable Mask 4
+                                 .equ	PCINT5	= 5	; Pin Change Enable Mask 5
+                                 .equ	PCINT6	= 6	; Pin Change Enable Mask 6
+                                 .equ	PCINT7	= 7	; Pin Change Enable Mask 7
+                                 
+                                 ; PCIFR - Pin Change Interrupt Flag Register
+                                 .equ	PCIF0	= 0	; Pin Change Interrupt Flag 0
+                                 .equ	PCIF1	= 1	; Pin Change Interrupt Flag 1
+                                 .equ	PCIF2	= 2	; Pin Change Interrupt Flag 2
+                                 
+                                 
+                                 ; ***** SPI **************************
+                                 ; SPDR - SPI Data Register
+                                 .equ	SPDR0	= 0	; SPI Data Register bit 0
+                                 .equ	SPDR1	= 1	; SPI Data Register bit 1
+                                 .equ	SPDR2	= 2	; SPI Data Register bit 2
+                                 .equ	SPDR3	= 3	; SPI Data Register bit 3
+                                 .equ	SPDR4	= 4	; SPI Data Register bit 4
+                                 .equ	SPDR5	= 5	; SPI Data Register bit 5
+                                 .equ	SPDR6	= 6	; SPI Data Register bit 6
+                                 .equ	SPDR7	= 7	; SPI Data Register bit 7
+                                 
+                                 ; SPSR - SPI Status Register
+                                 .equ	SPI2X	= 0	; Double SPI Speed Bit
+                                 .equ	WCOL	= 6	; Write Collision Flag
+                                 .equ	SPIF	= 7	; SPI Interrupt Flag
+                                 
+                                 ; SPCR - SPI Control Register
+                                 .equ	SPR0	= 0	; SPI Clock Rate Select 0
+                                 .equ	SPR1	= 1	; SPI Clock Rate Select 1
+                                 .equ	CPHA	= 2	; Clock Phase
+                                 .equ	CPOL	= 3	; Clock polarity
+                                 .equ	MSTR	= 4	; Master/Slave Select
+                                 .equ	DORD	= 5	; Data Order
+                                 .equ	SPE	= 6	; SPI Enable
+                                 .equ	SPIE	= 7	; SPI Interrupt Enable
+                                 
+                                 
+                                 ; ***** WATCHDOG *********************
+                                 ; WDTCSR - Watchdog Timer Control Register
+                                 .equ	WDP0	= 0	; Watch Dog Timer Prescaler bit 0
+                                 .equ	WDP1	= 1	; Watch Dog Timer Prescaler bit 1
+                                 .equ	WDP2	= 2	; Watch Dog Timer Prescaler bit 2
+                                 .equ	WDE	= 3	; Watch Dog Enable
+                                 .equ	WDCE	= 4	; Watchdog Change Enable
+                                 .equ	WDP3	= 5	; Watchdog Timer Prescaler Bit 3
+                                 .equ	WDIE	= 6	; Watchdog Timeout Interrupt Enable
+                                 .equ	WDIF	= 7	; Watchdog Timeout Interrupt Flag
+                                 
+                                 
+                                 ; ***** CPU **************************
+                                 ; SREG - Status Register
+                                 .equ	SREG_C	= 0	; Carry Flag
+                                 .equ	SREG_Z	= 1	; Zero Flag
+                                 .equ	SREG_N	= 2	; Negative Flag
+                                 .equ	SREG_V	= 3	; Two's Complement Overflow Flag
+                                 .equ	SREG_S	= 4	; Sign Bit
+                                 .equ	SREG_H	= 5	; Half Carry Flag
+                                 .equ	SREG_T	= 6	; Bit Copy Storage
+                                 .equ	SREG_I	= 7	; Global Interrupt Enable
+                                 
+                                 ; OSCCAL - Oscillator Calibration Value
+                                 .equ	CAL0	= 0	; Oscillator Calibration Value Bit0
+                                 .equ	CAL1	= 1	; Oscillator Calibration Value Bit1
+                                 .equ	CAL2	= 2	; Oscillator Calibration Value Bit2
+                                 .equ	CAL3	= 3	; Oscillator Calibration Value Bit3
+                                 .equ	CAL4	= 4	; Oscillator Calibration Value Bit4
+                                 .equ	CAL5	= 5	; Oscillator Calibration Value Bit5
+                                 .equ	CAL6	= 6	; Oscillator Calibration Value Bit6
+                                 .equ	CAL7	= 7	; Oscillator Calibration Value Bit7
+                                 
+                                 ; CLKPR - Clock Prescale Register
+                                 .equ	CLKPS0	= 0	; Clock Prescaler Select Bit 0
+                                 .equ	CLKPS1	= 1	; Clock Prescaler Select Bit 1
+                                 .equ	CLKPS2	= 2	; Clock Prescaler Select Bit 2
+                                 .equ	CLKPS3	= 3	; Clock Prescaler Select Bit 3
+                                 .equ	CLKPCE	= 7	; Clock Prescaler Change Enable
+                                 
+                                 ; SPMCSR - Store Program Memory Control and Status Register
+                                 .equ    SELFPRGEN = 0; Added for backwards compatibility
+                                 .equ	SPMEN	= 0	; Store Program Memory
+                                 .equ	PGERS	= 1	; Page Erase
+                                 .equ	PGWRT	= 2	; Page Write
+                                 .equ	BLBSET	= 3	; Boot Lock Bit Set
+                                 .equ	RWWSRE	= 4	; Read-While-Write section read enable
+                                 .equ    SIGRD   = 5 ; Signature Row Read
+                                 .equ	RWWSB	= 6	; Read-While-Write Section Busy
+                                 .equ	SPMIE	= 7	; SPM Interrupt Enable
+                                 
+                                 ; MCUCR - MCU Control Register
+                                 .equ	IVCE	= 0	; 
+                                 .equ	IVSEL	= 1	; 
+                                 .equ	PUD	= 4	; 
+                                 .equ	BODSE	= 5	; BOD Sleep Enable
+                                 .equ	BODS	= 6	; BOD Sleep
+                                 
+                                 ; MCUSR - MCU Status Register
+                                 .equ	PORF	= 0	; Power-on reset flag
+                                 .equ	EXTRF	= 1	; External Reset Flag
+                                 .equ	EXTREF	= EXTRF	; For compatibility
+                                 .equ	BORF	= 2	; Brown-out Reset Flag
+                                 .equ	WDRF	= 3	; Watchdog Reset Flag
+                                 
+                                 ; SMCR - Sleep Mode Control Register
+                                 .equ	SE	= 0	; Sleep Enable
+                                 .equ	SM0	= 1	; Sleep Mode Select Bit 0
+                                 .equ	SM1	= 2	; Sleep Mode Select Bit 1
+                                 .equ	SM2	= 3	; Sleep Mode Select Bit 2
+                                 
+                                 ; GPIOR2 - General Purpose I/O Register 2
+                                 .equ	GPIOR20	= 0	; 
+                                 .equ	GPIOR21	= 1	; 
+                                 .equ	GPIOR22	= 2	; 
+                                 .equ	GPIOR23	= 3	; 
+                                 .equ	GPIOR24	= 4	; 
+                                 .equ	GPIOR25	= 5	; 
+                                 .equ	GPIOR26	= 6	; 
+                                 .equ	GPIOR27	= 7	; 
+                                 
+                                 ; GPIOR1 - General Purpose I/O Register 1
+                                 .equ	GPIOR10	= 0	; 
+                                 .equ	GPIOR11	= 1	; 
+                                 .equ	GPIOR12	= 2	; 
+                                 .equ	GPIOR13	= 3	; 
+                                 .equ	GPIOR14	= 4	; 
+                                 .equ	GPIOR15	= 5	; 
+                                 .equ	GPIOR16	= 6	; 
+                                 .equ	GPIOR17	= 7	; 
+                                 
+                                 ; GPIOR0 - General Purpose I/O Register 0
+                                 .equ	GPIOR00	= 0	; 
+                                 .equ	GPIOR01	= 1	; 
+                                 .equ	GPIOR02	= 2	; 
+                                 .equ	GPIOR03	= 3	; 
+                                 .equ	GPIOR04	= 4	; 
+                                 .equ	GPIOR05	= 5	; 
+                                 .equ	GPIOR06	= 6	; 
+                                 .equ	GPIOR07	= 7	; 
+                                 
+                                 ; PRR - Power Reduction Register
+                                 .equ	PRADC	= 0	; Power Reduction ADC
+                                 .equ	PRUSART0	= 1	; Power Reduction USART
+                                 .equ	PRSPI	= 2	; Power Reduction Serial Peripheral Interface
+                                 .equ	PRTIM1	= 3	; Power Reduction Timer/Counter1
+                                 .equ	PRTIM0	= 5	; Power Reduction Timer/Counter0
+                                 .equ	PRTIM2	= 6	; Power Reduction Timer/Counter2
+                                 .equ	PRTWI	= 7	; Power Reduction TWI
+                                 
+                                 
+                                 ; ***** EEPROM ***********************
+                                 ; EEARL - EEPROM Address Register Low Byte
+                                 .equ	EEAR0	= 0	; EEPROM Read/Write Access Bit 0
+                                 .equ	EEAR1	= 1	; EEPROM Read/Write Access Bit 1
+                                 .equ	EEAR2	= 2	; EEPROM Read/Write Access Bit 2
+                                 .equ	EEAR3	= 3	; EEPROM Read/Write Access Bit 3
+                                 .equ	EEAR4	= 4	; EEPROM Read/Write Access Bit 4
+                                 .equ	EEAR5	= 5	; EEPROM Read/Write Access Bit 5
+                                 .equ	EEAR6	= 6	; EEPROM Read/Write Access Bit 6
+                                 .equ	EEAR7	= 7	; EEPROM Read/Write Access Bit 7
+                                 
+                                 ; EEARH - EEPROM Address Register High Byte
+                                 .equ	EEAR8	= 0	; EEPROM Read/Write Access Bit 8
+                                 .equ	EEAR9	= 1	; EEPROM Read/Write Access Bit 9
+                                 
+                                 ; EEDR - EEPROM Data Register
+                                 .equ	EEDR0	= 0	; EEPROM Data Register bit 0
+                                 .equ	EEDR1	= 1	; EEPROM Data Register bit 1
+                                 .equ	EEDR2	= 2	; EEPROM Data Register bit 2
+                                 .equ	EEDR3	= 3	; EEPROM Data Register bit 3
+                                 .equ	EEDR4	= 4	; EEPROM Data Register bit 4
+                                 .equ	EEDR5	= 5	; EEPROM Data Register bit 5
+                                 .equ	EEDR6	= 6	; EEPROM Data Register bit 6
+                                 .equ	EEDR7	= 7	; EEPROM Data Register bit 7
+                                 
+                                 ; EECR - EEPROM Control Register
+                                 .equ	EERE	= 0	; EEPROM Read Enable
+                                 .equ	EEPE	= 1	; EEPROM Write Enable
+                                 .equ	EEMPE	= 2	; EEPROM Master Write Enable
+                                 .equ	EERIE	= 3	; EEPROM Ready Interrupt Enable
+                                 .equ	EEPM0	= 4	; EEPROM Programming Mode Bit 0
+                                 .equ	EEPM1	= 5	; EEPROM Programming Mode Bit 1
+                                 
+                                 
+                                 
+                                 ; ***** LOCKSBITS ********************************************************
+                                 .equ	LB1	= 0	; Lock bit
+                                 .equ	LB2	= 1	; Lock bit
+                                 .equ	BLB01	= 2	; Boot Lock bit
+                                 .equ	BLB02	= 3	; Boot Lock bit
+                                 .equ	BLB11	= 4	; Boot lock bit
+                                 .equ	BLB12	= 5	; Boot lock bit
+                                 
+                                 
+                                 ; ***** FUSES ************************************************************
+                                 ; LOW fuse bits
+                                 .equ	CKSEL0	= 0	; Select Clock Source
+                                 .equ	CKSEL1	= 1	; Select Clock Source
+                                 .equ	CKSEL2	= 2	; Select Clock Source
+                                 .equ	CKSEL3	= 3	; Select Clock Source
+                                 .equ	SUT0	= 4	; Select start-up time
+                                 .equ	SUT1	= 5	; Select start-up time
+                                 .equ	CKOUT	= 6	; Clock output
+                                 .equ	CKDIV8	= 7	; Divide clock by 8
+                                 
+                                 ; HIGH fuse bits
+                                 .equ	BOOTRST	= 0	; Select reset vector
+                                 .equ	BOOTSZ0	= 1	; Select boot size
+                                 .equ	BOOTSZ1	= 2	; Select boot size
+                                 .equ	EESAVE	= 3	; EEPROM memory is preserved through chip erase
+                                 .equ	WDTON	= 4	; Watchdog Timer Always On
+                                 .equ	SPIEN	= 5	; Enable Serial programming and Data Downloading
+                                 .equ	DWEN	= 6	; debugWIRE Enable
+                                 .equ	RSTDISBL	= 7	; External reset disable
+                                 
+                                 ; EXTENDED fuse bits
+                                 .equ	BODLEVEL0	= 0	; Brown-out Detector trigger level
+                                 .equ	BODLEVEL1	= 1	; Brown-out Detector trigger level
+                                 .equ	BODLEVEL2	= 2	; Brown-out Detector trigger level
+                                 
+                                 
+                                 
+                                 ; ***** CPU REGISTER DEFINITIONS *****************************************
+                                 .def	XH	= r27
+                                 .def	XL	= r26
+                                 .def	YH	= r29
+                                 .def	YL	= r28
+                                 .def	ZH	= r31
+                                 .def	ZL	= r30
+                                 
+                                 
+                                 
+                                 ; ***** DATA MEMORY DECLARATIONS *****************************************
+                                 .equ	FLASHEND	= 0x3fff	; Note: Word address
+                                 .equ	IOEND	= 0x00ff
+                                 .equ	SRAM_START	= 0x0100
+                                 .equ	SRAM_SIZE	= 2048
+                                 .equ	RAMEND	= 0x08ff
+                                 .equ	XRAMEND	= 0x0000
+                                 .equ	E2END	= 0x03ff
+                                 .equ	EEPROMEND	= 0x03ff
+                                 .equ	EEADRBITS	= 10
+                                 #pragma AVRPART MEMORY PROG_FLASH 32768
+                                 #pragma AVRPART MEMORY EEPROM 1024
+                                 #pragma AVRPART MEMORY INT_SRAM SIZE 2048
+                                 #pragma AVRPART MEMORY INT_SRAM START_ADDR 0x100
+                                 
+                                 
+                                 
+                                 ; ***** BOOTLOADER DECLARATIONS ******************************************
+                                 .equ	NRWW_START_ADDR	= 0x3800
+                                 .equ	NRWW_STOP_ADDR	= 0x3fff
+                                 .equ	RWW_START_ADDR	= 0x0
+                                 .equ	RWW_STOP_ADDR	= 0x37ff
+                                 .equ	PAGESIZE	= 64
+                                 .equ	FIRSTBOOTSTART	= 0x3f00
+                                 .equ	SECONDBOOTSTART	= 0x3e00
+                                 .equ	THIRDBOOTSTART	= 0x3c00
+                                 .equ	FOURTHBOOTSTART	= 0x3800
+                                 .equ	SMALLBOOTSTART	= FIRSTBOOTSTART
+                                 .equ	LARGEBOOTSTART	= FOURTHBOOTSTART
+                                 
+                                 
+                                 
+                                 ; ***** INTERRUPT VECTORS ************************************************
+                                 .equ	INT0addr	= 0x0002	; External Interrupt Request 0
+                                 .equ	INT1addr	= 0x0004	; External Interrupt Request 1
+                                 .equ	PCI0addr	= 0x0006	; Pin Change Interrupt Request 0
+                                 .equ	PCI1addr	= 0x0008	; Pin Change Interrupt Request 0
+                                 .equ	PCI2addr	= 0x000a	; Pin Change Interrupt Request 1
+                                 .equ	WDTaddr	= 0x000c	; Watchdog Time-out Interrupt
+                                 .equ	OC2Aaddr	= 0x000e	; Timer/Counter2 Compare Match A
+                                 .equ	OC2Baddr	= 0x0010	; Timer/Counter2 Compare Match A
+                                 .equ	OVF2addr	= 0x0012	; Timer/Counter2 Overflow
+                                 .equ	ICP1addr	= 0x0014	; Timer/Counter1 Capture Event
+                                 .equ	OC1Aaddr	= 0x0016	; Timer/Counter1 Compare Match A
+                                 .equ	OC1Baddr	= 0x0018	; Timer/Counter1 Compare Match B
+                                 .equ	OVF1addr	= 0x001a	; Timer/Counter1 Overflow
+                                 .equ	OC0Aaddr	= 0x001c	; TimerCounter0 Compare Match A
+                                 .equ	OC0Baddr	= 0x001e	; TimerCounter0 Compare Match B
+                                 .equ	OVF0addr	= 0x0020	; Timer/Couner0 Overflow
+                                 .equ	SPIaddr	= 0x0022	; SPI Serial Transfer Complete
+                                 .equ	URXCaddr	= 0x0024	; USART Rx Complete
+                                 .equ	UDREaddr	= 0x0026	; USART, Data Register Empty
+                                 .equ	UTXCaddr	= 0x0028	; USART Tx Complete
+                                 .equ	ADCCaddr	= 0x002a	; ADC Conversion Complete
+                                 .equ	ERDYaddr	= 0x002c	; EEPROM Ready
+                                 .equ	ACIaddr	= 0x002e	; Analog Comparator
+                                 .equ	TWIaddr	= 0x0030	; Two-wire Serial Interface
+                                 .equ	SPMRaddr	= 0x0032	; Store Program Memory Read
+                                 
+                                 .equ	INT_VECTORS_SIZE	= 52	; size in words
+                                 
+                                 #endif  /* _M328PDEF_INC_ */
+                                 
+                                 ; ***** END OF FILE ******************************************************
+                                 
+                                 .def tocke_to_ascii_enice = r21
+                                 .def tocke_to_ascii_desetice = r22
+                                 .def pinb_stanje = r23
+                                 .def gumb_checker = r24
+                                 .def krt_number = r25
+                                 .def temp_reg = r26
+                                 .org 0x0034
+                                 setup:
+000034 ef0f                      	ldi r16, 0xff
+000035 b904                      	out ddrb, r16
+000036 b90a                      	out ddrd, r16
+000037 9828                      	cbi portb, 0
+000038 d788                      	rcall inicializacija
+000039 e0f4                      	ldi zh, high(load * 2)
+00003a e0e0                      	ldi zl, low(load * 2)
+                                 
+                                 	.org 0x0200
+                                 load:
+000200 0102
+000201 0304
+000202 0201
+000203 0403
+000204 0103
+000205 0402
+000206 0302
+000207 0401
+000208 0104
+000209 0302
+00020a 0402
+00020b 0103
+00020c 0301
+00020d 0204
+00020e 0402
+00020f 0301
+000210 0203
+000211 0401
+000212 0301
+000213 0402
+000214 0104
+000215 0203
+000216 0403
+000217 0201
+000218 0401
+000219 0203
+00021a 0402
+00021b 0301
+00021c 0201
+00021d 0304
+00021e 0304
+00021f 0201
+000220 0401
+000221 0203
+000222 0204
+000223 0103
+000224 0304
+000225 0201
+000226 0201
+000227 0403
+000228 0304
+000229 0201
+00022a 0203
+00022b 0401
+00022c 0104
+00022d 0302
+00022e 0402
+00022f 0301
+000230 0103
+000231 0204
+000232 0201
+000233 0403
+000234 0304
+000235 0201
+000236 0203
+000237 0401
+000238 0104
+000239 0302
+00023a 0402
+00023b 0301
+00023c 0103
+00023d 0204                      	.db 2, 1, 4, 3, 1, 2, 3, 4, 3, 1, 2, 4, 2, 3, 1, 4, 4, 1, 2, 3, 2, 4, 3, 1, 1, 3, 4, 2, 2, 4, 1, 3, 3, 2, 1, 4, 1, 3, 2, 4, 4, 1, 3, 2, 3, 4, 1, 2, 1, 4, 3, 2, 2, 4, 1, 3, 1, 2, 4, 3, 4, 3, 1, 2, 1, 4, 3, 2, 4, 2, 3, 1, 4, 3, 1, 2, 1, 2, 3, 4, 4, 3, 1, 200023e 940c 0240                 , 3, 2, 1, 4, 4, 1, 2, 3, 2, 4, 1, 3, 3, 1, 4, 2, 1, 2, 3, 4, 4, 3, 1, 2, 3, 2, 1, 4, 4, 1, 2, 3, 2, 4, 1, 3, 3, 1, 4, 2
+                                 	jmp program
+                                 
+                                 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                 ///////////////////////////////////////////////////// GLAVNI PROGRAM //////////////////////////////////////////////////////////////////
+                                 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                 
+000240 940e 031e                 program:
+000242 940c 0293                 	call you_lost_screen
+000244 940c 0240                 	jmp loop
+                                 	jmp program
+                                 
+                                 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                 ///////////////////////////////////////////// TUKAJ SO FUNKCIJE ZA PRAVILNE PRITISKE GUMBOV ////////////////////////////////////////////
+                                 
+000246 b173                      pritisk_gumba:
+000247 637c                      	in pinb_stanje, pinb
+000248 9576                      	ori pinb_stanje, 0b0011_1100
+000249 9576                      	lsr pinb_stanje
+00024a 3070                      	lsr pinb_stanje
+00024b f409                      	cpi pinb_stanje, 0
+00024c 9508                      	brne krt_to_checker
+                                 	ret
+00024d 3081                      	krt_to_checker:
+00024e f4c1                      		cpi gumb_checker, 1
+00024f 3082                      		brne ena_v_ena
+000250 f4c9                      		cpi gumb_checker, 2
+000251 3083                      		brne dva_v_tri
+000252 f4d1                      		cpi gumb_checker, 3
+000253 3084                      		brne tri_v_stiri
+000254 f4d9                      		cpi gumb_checker, 4
+000255 940c 024d                 		brne stiri_v_osem
+                                 		jmp krt_to_checker
+000257 1778                      	checker_krt1:
+000258 f0f1                      		cp pinb_stanje, gumb_checker
+000259 940c 0286                 		breq krt1_ven_pravilno_loopx
+                                 		jmp krt1_ven_narobe_loopx
+00025b 1778                      	checker_krt2:
+00025c f0e9                      		cp pinb_stanje, gumb_checker
+00025d 940c 0283                 		breq krt2_ven_pravilno_loopx
+                                 		jmp krt2_ven_narobe_loopx
+00025f 1778                      	checker_krt3:
+000260 f0e1                      		cp pinb_stanje, gumb_checker
+000261 940c 0289                 		breq krt3_ven_pravilno_loopx
+                                 		jmp krt3_ven_narobe_loopx
+000263 1778                      	checker_krt4:
+000264 f0d9                      		cp pinb_stanje, gumb_checker
+000265 940c 028c                 		breq krt4_ven_pravilno_loopx
+                                 		jmp krt4_ven_narobe_loopx
+000267 e081                      	ena_v_ena:
+000268 940c 0257                 		ldi gumb_checker, 1
+                                 		jmp checker_krt1
+00026a e082                      	dva_v_tri:
+00026b 940c 025b                 		ldi gumb_checker, 2
+                                 		jmp checker_krt2
+00026d e084                      	tri_v_stiri:
+00026e 940c 025f                 		ldi gumb_checker, 4
+                                 		jmp checker_krt3
+000270 e088                      	stiri_v_osem:
+000271 940c 0263                 		ldi gumb_checker, 8
+                                 		jmp checker_krt4
+000273 9543                      	tocke_plus:
+                                 		inc tocke
+000274 954a                      	tocke_minus:
+000275 f0c8                      		dec r20
+000276 954a                      		brcs you_lost_loop
+                                 		dec r20 
+                                 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+000277 940e 0277                 krt1_ven_pravilno_loopx:
+000279 9508                      	call krt1_ven_pravilno_loopx 
+                                 	ret
+00027a 940e 027a                 krt2_ven_pravilno_loopx:
+00027c 9508                      	call krt2_ven_pravilno_loopx 
+                                 	ret
+00027d 940e 027d                 krt3_ven_pravilno_loopx:
+00027f 9508                      	call krt3_ven_pravilno_loopx 
+                                 	ret
+000280 940e 0280                 krt4_ven_pravilno_loopx:
+000282 9508                      	call krt4_ven_pravilno_loopx 
+                                 	ret
+000283 940e 030b                 krt2_ven_narobe_loopx:
+000285 9508                      	call krt2_ven_narobe_loop
+                                 	ret
+000286 940e 0306                 krt1_ven_narobe_loopx:
+000288 9508                      	call krt1_ven_narobe_loop
+                                 	ret
+000289 940e 0310                 krt3_ven_narobe_loopx:
+00028b 9508                      	call krt3_ven_narobe_loop
+                                 	ret
+00028c 940e 0315                 krt4_ven_narobe_loopx:
+00028e 9508                      	call krt4_ven_narobe_loop
+                                 	ret
+                                 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+00028f 940c 031e                 you_lost_loop:
+000291 940e 0293                 	jmp you_lost_screen
+                                 	call loop
+000293 cfff                      	loop:
+                                 		rjmp loop
+                                 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+000294 e24e                      load_tocke:
+000295 940e 029a                 	ldi r20, 46
+000297 940e 02a5                 	call deljenje_r20
+000299 9508                      	call ascii_converter
+                                 	ret
+00029a 2f54                      	deljenje_r20:
+00029b e0aa                      		mov tocke_to_ascii_enice, r20
+00029c c000                      		ldi temp_reg, 10
+                                 		rjmp deljenje
+00029d 9563                      	deljenje:
+00029e 1b5a                      		inc tocke_to_ascii_desetice
+00029f f010                      		sub tocke_to_ascii_enice, temp_reg
+0002a0 940c 029d                 		brcs rezultat
+                                 		jmp deljenje
+0002a2 0f5a                      	rezultat:
+0002a3 956a                      		add tocke_to_ascii_enice, temp_reg
+0002a4 9508                      		dec tocke_to_ascii_desetice
+                                 		ret
+0002a5 e3a0                      	ascii_converter:
+0002a6 0f5a                      		ldi temp_reg, '0'
+0002a7 0f6a                      		add tocke_to_ascii_enice, temp_reg
+0002a8 9508                      		add tocke_to_ascii_desetice, temp_reg
+                                 		ret
+                                 
+                                 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                 
+0002a9 940c 02ab                 read:
+                                 	jmp read_r19
+0002ab 9135                      	read_r19:
+0002ac 3030                      		lpm r19, z+
+0002ad f439                      		cpi r19, 0
+0002ae 940c 02b1                 		brne pick_random_krt
+0002b0 9508                      		jmp set_z_reg
+                                 		ret
+0002b1 e0f4                      	set_z_reg:
+0002b2 e0e0                      		ldi zh, high(load * 2)
+0002b3 940c 02ab                 		ldi zl, low(load * 2)
+                                 		jmp read_r19
+0002b5 3031                      	pick_random_krt:
+0002b6 f039                      		cpi r19, 1
+0002b7 3032                      		breq krt1_ven_loop
+0002b8 f081                      		cpi r19, 2
+0002b9 3033                      		breq krt2_ven_loop
+0002ba f0c9                      		cpi r19, 3
+0002bb 3034                      		breq krt3_ven_loop
+0002bc f111                      		cpi r19, 4
+0002bd 9508                      		breq krt4_ven_loop
+                                 		ret
+                                 		
+                                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                 /////////////////////////////////////////////// FUNKCIJE ZA PRIKLIC ZASLONOV /////////////////////////////////////////////////////////	
+                                 
+0002be 2f83                      krt1_ven_loop:
+0002bf 940c 03cb                 	mov gumb_checker, r19
+0002c1 940e 0805                 	jmp krt1_ven
+0002c3 940e 0805                 	call delay_seconds
+0002c5 940e 0805                 	call delay_seconds
+0002c7 2788                      	call delay_seconds
+0002c8 9508                      	clr gumb_checker
+                                 	ret
+0002c9 2f83                      krt2_ven_loop:
+0002ca 940c 042f                 	mov gumb_checker, r19
+0002cc 940e 0805                 	jmp krt2_ven
+0002ce 940e 0805                 	call delay_seconds
+0002d0 940e 0805                 	call delay_seconds
+0002d2 2788                      	call delay_seconds
+0002d3 9508                      	clr gumb_checker
+                                 	ret
+0002d4 2f83                      krt3_ven_loop:
+0002d5 940c 0493                 	mov gumb_checker, r19
+0002d7 940e 0805                 	jmp krt3_ven
+0002d9 940e 0805                 	call delay_seconds
+0002db 940e 0805                 	call delay_seconds
+0002dd 2788                      	call delay_seconds
+0002de 9508                      	clr gumb_checker
+                                 	ret
+0002df 2f83                      krt4_ven_loop:
+0002e0 940c 04f5                 	mov gumb_checker, r19
+0002e2 940e 0805                 	jmp krt4_ven
+0002e4 940e 0805                 	call delay_seconds
+0002e6 940e 0805                 	call delay_seconds
+0002e8 2788                      	call delay_seconds
+0002e9 9508                      	clr gumb_checker
+                                 	ret
+                                 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+0002ea 940e 0294                 krt1_ven_pravilno_loop:
+0002ec 940c 068d                 	call load_tocke
+0002ee 940e 0805                 	jmp krt1_ven_pravilno
+0002f0 9508                      	call delay_seconds
+                                 	ret
+0002f1 940e 0294                 krt2_ven_pravilno_loop:
+0002f3 940c 06cb                 	call load_tocke
+0002f5 940e 0805                 	jmp krt2_ven_pravilno
+0002f7 9508                      	call delay_seconds
+                                 	ret
+0002f8 940e 0294                 krt3_ven_pravilno_loop:
+0002fa 940c 0714                 	call load_tocke
+0002fc 940e 0805                 	jmp krt3_ven_pravilno
+0002fe 9508                      	call delay_seconds
+                                 	ret
+0002ff 940e 0294                 krt4_ven_pravilno_loop:
+000301 940c 0766                 	call load_tocke
+000303 940e 0805                 	jmp krt4_ven_pravilno
+000305 9508                      	call delay_seconds
+                                 	ret
+                                 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+000306 940c 0559                 krt1_ven_narobe_loop:
+000308 940e 0294                 	jmp krt1_ven_narobe
+00030a 9508                      	call load_tocke
+                                 	ret
+00030b 940c 0597                 krt2_ven_narobe_loop:
+00030d 940e 0294                 	jmp krt2_ven_narobe
+00030f 9508                      	call load_tocke
+                                 	ret
+000310 940c 05e0                 krt3_ven_narobe_loop:
+000312 940e 0294                 	jmp krt3_ven_narobe
+000314 9508                      	call load_tocke
+                                 	ret
+000315 940c 0632                 krt4_ven_narobe_loop:
+000317 940e 0294                 	jmp krt4_ven_narobe
+000319 9508                      	call load_tocke
+                                 	ret
+                                 
+                                 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                 /////////////////////////////////////// TUKAJ SO SLIKE KRTOV IN NJIHOVE FUNKCIJE ////////////////////////////////////////////////
+00031a e001                      lcd_off:
+00031b d4b6                      	ldi   R16, 0x01         ;zbrišemo LCD
+00031c d4e1                          rcall komanda           ;pošlemo komando
+00031d 9508                          rcall delay_ms
+                                 	ret
+                                 
+00031e e200                      you_lost_screen:
+00031f d4c3                      	LDI   R16, ' '
+000320 d4dd                      	RCALL podatki          
+000321 e200                          RCALL delay_ms
+000322 d4c0                      	LDI   R16, ' '
+000323 d4da                      	RCALL podatki          
+000324 e200                          RCALL delay_ms
+000325 d4bd                      	LDI   R16, ' '
+000326 d4d7                      	RCALL podatki          
+000327 e200                          RCALL delay_ms
+000328 d4ba                      	LDI   R16, ' '
+000329 d4d4                      	RCALL podatki          
+00032a e509                          RCALL delay_ms
+00032b d4b7                      	LDI   R16, 'Y'
+00032c d4d1                      	RCALL podatki          
+00032d e40f                          RCALL delay_ms
+00032e d4b4                      	LDI   R16, 'O'
+00032f d4ce                      	RCALL podatki          
+000330 e505                          RCALL delay_ms
+000331 d4b1                      	LDI   R16, 'U'
+000332 d4cb                      	RCALL podatki          
+000333 e200                          RCALL delay_ms
+000334 d4ae                      	LDI   R16, ' '
+000335 d4c8                      	RCALL podatki          
+000336 e40c                          RCALL delay_ms
+000337 d4ab                      	LDI   R16, 'L'
+000338 d4c5                      	RCALL podatki          
+000339 e40f                          RCALL delay_ms
+00033a d4a8                      	LDI   R16, 'O'
+00033b d4c2                      	RCALL podatki          
+00033c e503                          RCALL delay_ms
+00033d d4a5                      	LDI   R16, 'S'
+00033e d4bf                      	RCALL podatki          
+00033f e504                          RCALL delay_ms
+000340 d4a2                      	LDI   R16, 'T'
+000341 d4bc                      	RCALL podatki          
+                                     RCALL delay_ms
+000342 ec00                      	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+000343 d48e                      	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
+000344 d4b9                          RCALL komanda
+                                     RCALL delay_ms
+000345 e200                      	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+000346 d49c                      	LDI   R16, ' '
+000347 d4b6                      	RCALL podatki          
+000348 e200                          RCALL delay_ms
+000349 d499                      	LDI   R16, ' '
+00034a d4b3                      	RCALL podatki          
+00034b e200                          RCALL delay_ms
+00034c d496                      	LDI   R16, ' '
+00034d d4b0                      	RCALL podatki          
+00034e e200                          RCALL delay_ms
+00034f d493                      	LDI   R16, ' '
+000350 d4ad                      	RCALL podatki          
+000351 e200                          RCALL delay_ms
+000352 d490                      	LDI   R16, ' '
+000353 d4aa                      	RCALL podatki          
+000354 e40c                          RCALL delay_ms
+000355 d48d                      	LDI   R16, 'L'
+000356 d4a7                      	RCALL podatki          
+000357 e40f                          RCALL delay_ms
+000358 d48a                      	LDI   R16, 'O'
+000359 d4a4                      	RCALL podatki          
+00035a e40f                          RCALL delay_ms
+00035b d487                      	LDI   R16, 'O'
+00035c d4a1                      	RCALL podatki          
+00035d e503                          RCALL delay_ms
+00035e d484                      	LDI   R16, 'S'
+00035f d49e                      	RCALL podatki          
+000360 e405                          RCALL delay_ms
+000361 d481                      	LDI   R16, 'E'
+000362 d49b                      	RCALL podatki          
+000363 e502                          RCALL delay_ms
+000364 d47e                      	LDI   R16, 'R'
+000365 d498                      	RCALL podatki          
+000366 9508                          RCALL delay_ms
+                                 	ret
+                                 
+000367 e200                      display1:
+000368 d47a                      	LDI   R16, ' '
+000369 d494                      	RCALL podatki          
+00036a e200                          RCALL delay_ms
+00036b d477                      	LDI   R16, ' '
+00036c d491                      	RCALL podatki          
+00036d e200                          RCALL delay_ms
+00036e d474                      	LDI   R16, ' '
+00036f d48e                      	RCALL podatki          
+000370 e200                          RCALL delay_ms
+000371 d471                      	LDI   R16, ' '
+000372 d48b                      	RCALL podatki          
+000373 e200                          RCALL delay_ms
+000374 d46e                      	LDI   R16, ' '
+000375 d488                      	RCALL podatki          
+000376 e200                          RCALL delay_ms
+000377 d46b                      	LDI   R16, ' '
+000378 d485                      	RCALL podatki          
+000379 e200                          RCALL delay_ms
+00037a d468                      	LDI   R16, ' '
+00037b d482                      	RCALL podatki          
+00037c e200                          RCALL delay_ms
+00037d d465                      	LDI   R16, ' '
+00037e d47f                      	RCALL podatki          
+00037f e200                          RCALL delay_ms
+000380 d462                      	LDI   R16, ' '
+000381 d47c                      	RCALL podatki          
+000382 e200                          RCALL delay_ms
+000383 d45f                      	LDI   R16, ' '
+000384 d479                      	RCALL podatki          
+000385 e200                          RCALL delay_ms
+000386 d45c                      	LDI   R16, ' '
+000387 d476                      	RCALL podatki          
+000388 e200                          RCALL delay_ms
+000389 d459                      	LDI   R16, ' '
+00038a d473                      	RCALL podatki          
+00038b e200                          RCALL delay_ms
+00038c d456                      	LDI   R16, ' '
+00038d d470                      	RCALL podatki          
+00038e e200                          RCALL delay_ms
+00038f d453                      	LDI   R16, ' '
+000390 d46d                      	RCALL podatki          
+000391 e200                          RCALL delay_ms
+000392 d450                      	LDI   R16, ' '
+000393 d46a                      	RCALL podatki          
+000394 e200                          RCALL delay_ms
+000395 d44d                      	LDI   R16, ' '
+000396 d467                      	RCALL podatki          
+                                     RCALL delay_ms
+000397 ec00                      	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+000398 d439                      	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
+000399 d464                          RCALL komanda
+                                     RCALL delay_ms
+00039a e505                      	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+00039b d447                      	LDI   R16, 'U'
+00039c d461                      	RCALL podatki          
+00039d e200                          RCALL delay_ms
+00039e d444                      	LDI   R16, ' '
+00039f d45e                      	RCALL podatki          
+0003a0 e200                          RCALL delay_ms
+0003a1 d441                      	LDI   R16, ' '
+0003a2 d45b                      	RCALL podatki          
+0003a3 e505                          RCALL delay_ms
+0003a4 d43e                      	LDI   R16, 'U'
+0003a5 d458                      	RCALL podatki          
+0003a6 e200                          RCALL delay_ms
+0003a7 d43b                      	LDI   R16, ' '
+0003a8 d455                      	RCALL podatki          
+0003a9 e200                          RCALL delay_ms
+0003aa d438                      	LDI   R16, ' '
+0003ab d452                      	RCALL podatki          
+0003ac e505                          RCALL delay_ms
+0003ad d435                      	LDI   R16, 'U'
+0003ae d44f                      	RCALL podatki          
+0003af e200                          RCALL delay_ms
+0003b0 d432                      	LDI   R16, ' '
+0003b1 d44c                      	RCALL podatki          
+0003b2 e200                          RCALL delay_ms
+0003b3 d42f                      	LDI   R16, ' '
+0003b4 d449                      	RCALL podatki          
+0003b5 e505                          RCALL delay_ms
+0003b6 d42c                      	LDI   R16, 'U'
+0003b7 d446                      	RCALL podatki          
+0003b8 e200                          RCALL delay_ms
+0003b9 d429                      	LDI   R16, ' '
+0003ba d443                      	RCALL podatki          
+0003bb e200                          RCALL delay_ms
+0003bc d426                      	LDI   R16, ' '
+0003bd d440                      	RCALL podatki          
+0003be e200                          RCALL delay_ms
+0003bf d423                      	LDI   R16, ' '
+0003c0 d43d                      	RCALL podatki          
+0003c1 e200                          RCALL delay_ms
+0003c2 d420                      	LDI   R16, ' '
+0003c3 d43a                      	RCALL podatki          
+0003c4 2f06                          RCALL delay_ms
+0003c5 d41d                      	mov   R16, tocke_to_ascii_desetice
+0003c6 d437                      	RCALL podatki          
+0003c7 2f05                          RCALL delay_ms
+0003c8 d41a                      	mov   R16, tocke_to_ascii_enice
+0003c9 d434                      	RCALL podatki          
+0003ca 9508                          RCALL delay_ms
+                                 	ret
+                                 
+0003cb e40f                      krt1_ven:
+0003cc d416                      	LDI   R16, 'O'
+0003cd d430                      	RCALL podatki          
+0003ce e200                          RCALL delay_ms
+0003cf d413                      	LDI   R16, ' '
+0003d0 d42d                      	RCALL podatki          
+0003d1 e200                          RCALL delay_ms
+0003d2 d410                      	LDI   R16, ' '
+0003d3 d42a                      	RCALL podatki          
+0003d4 e200                          RCALL delay_ms
+0003d5 d40d                      	LDI   R16, ' '
+0003d6 d427                      	RCALL podatki          
+0003d7 e200                          RCALL delay_ms
+0003d8 d40a                      	LDI   R16, ' '
+0003d9 d424                      	RCALL podatki          
+0003da e200                          RCALL delay_ms
+0003db d407                      	LDI   R16, ' '
+0003dc d421                      	RCALL podatki          
+0003dd e200                          RCALL delay_ms
+0003de d404                      	LDI   R16, ' '
+0003df d41e                      	RCALL podatki          
+0003e0 e200                          RCALL delay_ms
+0003e1 d401                      	LDI   R16, ' '
+0003e2 d41b                      	RCALL podatki          
+0003e3 e200                          RCALL delay_ms
+0003e4 d3fe                      	LDI   R16, ' '
+0003e5 d418                      	RCALL podatki          
+0003e6 e200                          RCALL delay_ms
+0003e7 d3fb                      	LDI   R16, ' '
+0003e8 d415                      	RCALL podatki          
+0003e9 e200                          RCALL delay_ms
+0003ea d3f8                      	LDI   R16, ' '
+0003eb d412                      	RCALL podatki          
+0003ec e200                          RCALL delay_ms
+0003ed d3f5                      	LDI   R16, ' '
+0003ee d40f                      	RCALL podatki          
+0003ef e200                          RCALL delay_ms
+0003f0 d3f2                      	LDI   R16, ' '
+0003f1 d40c                      	RCALL podatki          
+0003f2 e200                          RCALL delay_ms
+0003f3 d3ef                      	LDI   R16, ' '
+0003f4 d409                      	RCALL podatki          
+0003f5 e200                          RCALL delay_ms
+0003f6 d3ec                      	LDI   R16, ' '
+0003f7 d406                      	RCALL podatki          
+0003f8 e200                          RCALL delay_ms
+0003f9 d3e9                      	LDI   R16, ' '
+0003fa d403                      	RCALL podatki          
+                                     RCALL delay_ms
+0003fb ec00                      	////////////////////////////////////
+0003fc d3d5                      	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
+0003fd d400                          RCALL komanda
+                                     RCALL delay_ms
+0003fe e505                      	///////////////////////////////////
+0003ff d3e3                      	LDI   R16, 'U'
+000400 d3fd                      	RCALL podatki          
+000401 e200                          RCALL delay_ms
+000402 d3e0                      	LDI   R16, ' '
+000403 d3fa                      	RCALL podatki          
+000404 e200                          RCALL delay_ms
+000405 d3dd                      	LDI   R16, ' '
+000406 d3f7                      	RCALL podatki          
+000407 e505                          RCALL delay_ms
+000408 d3da                      	LDI   R16, 'U'
+000409 d3f4                      	RCALL podatki          
+00040a e200                          RCALL delay_ms
+00040b d3d7                      	LDI   R16, ' '
+00040c d3f1                      	RCALL podatki          
+00040d e200                          RCALL delay_ms
+00040e d3d4                      	LDI   R16, ' '
+00040f d3ee                      	RCALL podatki          
+000410 e505                          RCALL delay_ms
+000411 d3d1                      	LDI   R16, 'U'
+000412 d3eb                      	RCALL podatki          
+000413 e200                          RCALL delay_ms
+000414 d3ce                      	LDI   R16, ' '
+000415 d3e8                      	RCALL podatki          
+000416 e200                          RCALL delay_ms
+000417 d3cb                      	LDI   R16, ' '
+000418 d3e5                      	RCALL podatki          
+000419 e505                          RCALL delay_ms
+00041a d3c8                      	LDI   R16, 'U'
+00041b d3e2                      	RCALL podatki          
+00041c e200                          RCALL delay_ms
+00041d d3c5                      	LDI   R16, ' '
+00041e d3df                      	RCALL podatki          
+00041f e200                          RCALL delay_ms
+000420 d3c2                      	LDI   R16, ' '
+000421 d3dc                      	RCALL podatki          
+000422 e200                          RCALL delay_ms
+000423 d3bf                      	LDI   R16, ' '
+000424 d3d9                      	RCALL podatki          
+000425 e200                          RCALL delay_ms
+000426 d3bc                      	LDI   R16, ' '
+000427 d3d6                      	RCALL podatki          
+000428 2f06                          RCALL delay_ms
+000429 d3b9                      	mov   R16, tocke_to_ascii_desetice
+00042a d3d3                      	RCALL podatki          
+00042b 2f05                          RCALL delay_ms
+00042c d3b6                      	mov   R16, tocke_to_ascii_enice
+00042d d3d0                      	RCALL podatki          
+00042e 9508                          RCALL delay_ms
+                                 	ret
+                                 
+00042f e200                      krt2_ven:
+000430 d3b2                      	LDI   R16, ' '
+000431 d3cc                      	RCALL podatki          
+000432 e200                          RCALL delay_ms
+000433 d3af                      	LDI   R16, ' '
+000434 d3c9                      	RCALL podatki          
+000435 e200                          RCALL delay_ms
+000436 d3ac                      	LDI   R16, ' '
+000437 d3c6                      	RCALL podatki          
+000438 e40f                          RCALL delay_ms
+000439 d3a9                      	LDI   R16, 'O'
+00043a d3c3                      	RCALL podatki          
+00043b e200                          RCALL delay_ms
+00043c d3a6                      	LDI   R16, ' '
+00043d d3c0                      	RCALL podatki          
+00043e e200                          RCALL delay_ms
+00043f d3a3                      	LDI   R16, ' '
+000440 d3bd                      	RCALL podatki          
+000441 e200                          RCALL delay_ms
+000442 d3a0                      	LDI   R16, ' '
+000443 d3ba                      	RCALL podatki          
+000444 e200                          RCALL delay_ms
+000445 d39d                      	LDI   R16, ' '
+000446 d3b7                      	RCALL podatki          
+000447 e200                          RCALL delay_ms
+000448 d39a                      	LDI   R16, ' '
+000449 d3b4                      	RCALL podatki          
+00044a e200                          RCALL delay_ms
+00044b d397                      	LDI   R16, ' '
+00044c d3b1                      	RCALL podatki          
+00044d e200                          RCALL delay_ms
+00044e d394                      	LDI   R16, ' '
+00044f d3ae                      	RCALL podatki          
+000450 e200                          RCALL delay_ms
+000451 d391                      	LDI   R16, ' '
+000452 d3ab                      	RCALL podatki          
+000453 e200                          RCALL delay_ms
+000454 d38e                      	LDI   R16, ' '
+000455 d3a8                      	RCALL podatki          
+000456 e200                          RCALL delay_ms
+000457 d38b                      	LDI   R16, ' '
+000458 d3a5                      	RCALL podatki          
+000459 e200                          RCALL delay_ms
+00045a d388                      	LDI   R16, ' '
+00045b d3a2                      	RCALL podatki          
+00045c e200                          RCALL delay_ms
+00045d d385                      	LDI   R16, ' '
+00045e d39f                      	RCALL podatki          
+                                     RCALL delay_ms
+00045f ec00                      	////////////////////////////////////
+000460 d371                      	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
+000461 d39c                          RCALL komanda
+                                     RCALL delay_ms
+000462 e505                      	///////////////////////////////////
+000463 d37f                      	LDI   R16, 'U'
+000464 d399                      	RCALL podatki          
+000465 e200                          RCALL delay_ms
+000466 d37c                      	LDI   R16, ' '
+000467 d396                      	RCALL podatki          
+000468 e200                          RCALL delay_ms
+000469 d379                      	LDI   R16, ' '
+00046a d393                      	RCALL podatki          
+00046b e505                          RCALL delay_ms
+00046c d376                      	LDI   R16, 'U'
+00046d d390                      	RCALL podatki          
+00046e e200                          RCALL delay_ms
+00046f d373                      	LDI   R16, ' '
+000470 d38d                      	RCALL podatki          
+000471 e200                          RCALL delay_ms
+000472 d370                      	LDI   R16, ' '
+000473 d38a                      	RCALL podatki          
+000474 e505                          RCALL delay_ms
+000475 d36d                      	LDI   R16, 'U'
+000476 d387                      	RCALL podatki          
+000477 e200                          RCALL delay_ms
+000478 d36a                      	LDI   R16, ' '
+000479 d384                      	RCALL podatki          
+00047a e200                          RCALL delay_ms
+00047b d367                      	LDI   R16, ' '
+00047c d381                      	RCALL podatki          
+00047d e505                          RCALL delay_ms
+00047e d364                      	LDI   R16, 'U'
+00047f d37e                      	RCALL podatki          
+000480 e200                          RCALL delay_ms
+000481 d361                      	LDI   R16, ' '
+000482 d37b                      	RCALL podatki          
+000483 e200                          RCALL delay_ms
+000484 d35e                      	LDI   R16, ' '
+000485 d378                      	RCALL podatki          
+000486 e200                          RCALL delay_ms
+000487 d35b                      	LDI   R16, ' '
+000488 d375                      	RCALL podatki          
+000489 e200                          RCALL delay_ms
+00048a d358                      	LDI   R16, ' '
+00048b d372                      	RCALL podatki          
+00048c 2f06                          RCALL delay_ms
+00048d d355                      	mov   R16, tocke_to_ascii_desetice
+00048e d36f                      	RCALL podatki          
+00048f 2f05                          RCALL delay_ms
+000490 d352                      	mov   R16, tocke_to_ascii_enice
+000491 d36c                      	RCALL podatki          
+000492 9508                          RCALL delay_ms
+                                 	ret
+                                 
+000493 e200                      krt3_ven:
+000494 d34e                      	LDI   R16, ' '
+000495 d368                      	RCALL podatki          
+000496 e200                          RCALL delay_ms
+000497 d34b                      	LDI   R16, ' '
+000498 d365                      	RCALL podatki          
+000499 e200                          RCALL delay_ms
+00049a d348                      	LDI   R16, ' '
+00049b d362                      	RCALL podatki          
+00049c e200                          RCALL delay_ms
+00049d d345                      	LDI   R16, ' '
+00049e d35f                      	RCALL podatki          
+00049f e200                          RCALL delay_ms
+0004a0 d342                      	LDI   R16, ' '
+0004a1 d35c                      	RCALL podatki          
+0004a2 e200                          RCALL delay_ms
+0004a3 d33f                      	LDI   R16, ' '
+0004a4 d359                      	RCALL podatki          
+0004a5 e40f                          RCALL delay_ms
+0004a6 d33c                      	LDI   R16, 'O'
+0004a7 d356                      	RCALL podatki          
+0004a8 e200                          RCALL delay_ms
+0004a9 d339                      	LDI   R16, ' '
+0004aa d353                      	RCALL podatki          
+0004ab e200                          RCALL delay_ms
+0004ac d336                      	LDI   R16, ' '
+0004ad d350                      	RCALL podatki          
+0004ae e200                          RCALL delay_ms
+0004af d333                      	LDI   R16, ' '
+0004b0 d34d                      	RCALL podatki          
+0004b1 e200                          RCALL delay_ms
+0004b2 d330                      	LDI   R16, ' '
+0004b3 d34a                      	RCALL podatki          
+0004b4 e200                          RCALL delay_ms
+0004b5 d32d                      	LDI   R16, ' '
+0004b6 d347                      	RCALL podatki          
+0004b7 e200                          RCALL delay_ms
+0004b8 d32a                      	LDI   R16, ' '
+0004b9 d344                      	RCALL podatki          
+0004ba e200                          RCALL delay_ms
+0004bb d327                      	LDI   R16, ' '
+0004bc d341                      	RCALL podatki          
+0004bd e200                          RCALL delay_ms
+0004be d324                      	LDI   R16, ' '
+0004bf d33e                      	RCALL podatki          
+0004c0 e200                          RCALL delay_ms
+0004c1 d321                      	LDI   R16, ' '
+0004c2 d33b                      	RCALL podatki          
+                                     RCALL delay_ms
+0004c3 ec00                      	////////////////////////////////////
+0004c4 d30d                      	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
+0004c5 d338                          RCALL komanda
+                                     RCALL delay_ms
+0004c6 e505                      	///////////////////////////////////
+0004c7 d31b                      	LDI   R16, 'U'
+0004c8 d335                      	RCALL podatki          
+0004c9 e200                          RCALL delay_ms
+0004ca d318                      	LDI   R16, ' '
+0004cb d332                      	RCALL podatki          
+0004cc e200                          RCALL delay_ms
+0004cd d315                      	LDI   R16, ' '
+0004ce d32f                      	RCALL podatki          
+0004cf e505                          RCALL delay_ms
+0004d0 d312                      	LDI   R16, 'U'
+0004d1 d32c                      	RCALL podatki          
+0004d2 e200                          RCALL delay_ms
+0004d3 d30f                      	LDI   R16, ' '
+0004d4 d329                      	RCALL podatki          
+0004d5 e200                          RCALL delay_ms
+0004d6 d30c                      	LDI   R16, ' '
+0004d7 d326                      	RCALL podatki          
+0004d8 e505                          RCALL delay_ms
+0004d9 d309                      	LDI   R16, 'U'
+0004da d323                      	RCALL podatki          
+0004db e200                          RCALL delay_ms
+0004dc d306                      	LDI   R16, ' '
+0004dd d320                      	RCALL podatki          
+0004de e200                          RCALL delay_ms
+0004df d303                      	LDI   R16, ' '
+0004e0 d31d                      	RCALL podatki          
+0004e1 e505                          RCALL delay_ms
+0004e2 e200                      	LDI   R16, 'U'
+0004e3 d2ff                      	LDI   R16, ' '
+0004e4 d319                      	RCALL podatki          
+0004e5 e200                          RCALL delay_ms
+0004e6 d2fc                      	LDI   R16, ' '
+0004e7 d316                      	RCALL podatki          
+0004e8 e200                          RCALL delay_ms
+0004e9 d2f9                      	LDI   R16, ' '
+0004ea d313                      	RCALL podatki          
+0004eb e200                          RCALL delay_ms
+0004ec d2f6                      	LDI   R16, ' '
+0004ed d310                      	RCALL podatki          
+0004ee 2f06                          RCALL delay_ms
+0004ef d2f3                      	mov   R16, tocke_to_ascii_desetice
+0004f0 d30d                      	RCALL podatki          
+0004f1 2f05                          RCALL delay_ms
+0004f2 d2f0                      	mov   R16, tocke_to_ascii_enice
+0004f3 d30a                      	RCALL podatki          
+0004f4 9508                          RCALL delay_ms
+                                 	ret
+                                 
+0004f5 e200                      krt4_ven:
+0004f6 d2ec                      	LDI   R16, ' '
+0004f7 d306                      	RCALL podatki          
+0004f8 e200                          RCALL delay_ms
+0004f9 d2e9                      	LDI   R16, ' '
+0004fa d303                      	RCALL podatki          
+0004fb e200                          RCALL delay_ms
+0004fc d2e6                      	LDI   R16, ' '
+0004fd d300                      	RCALL podatki          
+0004fe e200                          RCALL delay_ms
+0004ff d2e3                      	LDI   R16, ' '
+000500 d2fd                      	RCALL podatki          
+000501 e200                          RCALL delay_ms
+000502 d2e0                      	LDI   R16, ' '
+000503 d2fa                      	RCALL podatki          
+000504 e200                          RCALL delay_ms
+000505 d2dd                      	LDI   R16, ' '
+000506 d2f7                      	RCALL podatki          
+000507 e200                          RCALL delay_ms
+000508 d2da                      	LDI   R16, ' '
+000509 d2f4                      	RCALL podatki          
+00050a e200                          RCALL delay_ms
+00050b d2d7                      	LDI   R16, ' '
+00050c d2f1                      	RCALL podatki          
+00050d e200                          RCALL delay_ms
+00050e d2d4                      	LDI   R16, ' '
+00050f d2ee                      	RCALL podatki          
+000510 e40f                          RCALL delay_ms
+000511 d2d1                      	LDI   R16, 'O'
+000512 d2eb                      	RCALL podatki          
+000513 e200                          RCALL delay_ms
+000514 d2ce                      	LDI   R16, ' '
+000515 d2e8                      	RCALL podatki          
+000516 e200                          RCALL delay_ms
+000517 d2cb                      	LDI   R16, ' '
+000518 d2e5                      	RCALL podatki          
+000519 e200                          RCALL delay_ms
+00051a d2c8                      	LDI   R16, ' '
+00051b d2e2                      	RCALL podatki          
+00051c e200                          RCALL delay_ms
+00051d d2c5                      	LDI   R16, ' '
+00051e d2df                      	RCALL podatki          
+00051f e200                          RCALL delay_ms
+000520 d2c2                      	LDI   R16, ' '
+000521 d2dc                      	RCALL podatki          
+000522 e200                          RCALL delay_ms
+000523 d2bf                      	LDI   R16, ' '
+000524 d2d9                      	RCALL podatki          
+                                     RCALL delay_ms
+000525 ec00                      	////////////////////////////////////
+000526 d2ab                      	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
+000527 d2d6                          RCALL komanda
+                                     RCALL delay_ms
+000528 e505                      	///////////////////////////////////
+000529 d2b9                      	LDI   R16, 'U'
+00052a d2d3                      	RCALL podatki          
+00052b e200                          RCALL delay_ms
+00052c d2b6                      	LDI   R16, ' '
+00052d d2d0                      	RCALL podatki          
+00052e e200                          RCALL delay_ms
+00052f d2b3                      	LDI   R16, ' '
+000530 d2cd                      	RCALL podatki          
+000531 e505                          RCALL delay_ms
+000532 d2b0                      	LDI   R16, 'U'
+000533 d2ca                      	RCALL podatki          
+000534 e200                          RCALL delay_ms
+000535 d2ad                      	LDI   R16, ' '
+000536 d2c7                      	RCALL podatki          
+000537 e200                          RCALL delay_ms
+000538 d2aa                      	LDI   R16, ' '
+000539 d2c4                      	RCALL podatki          
+00053a e505                          RCALL delay_ms
+00053b d2a7                      	LDI   R16, 'U'
+00053c d2c1                      	RCALL podatki          
+00053d e200                          RCALL delay_ms
+00053e d2a4                      	LDI   R16, ' '
+00053f d2be                      	RCALL podatki          
+000540 e200                          RCALL delay_ms
+000541 d2a1                      	LDI   R16, ' '
+000542 d2bb                      	RCALL podatki          
+000543 e505                          RCALL delay_ms
+000544 d29e                      	LDI   R16, 'U'
+000545 d2b8                      	RCALL podatki          
+000546 e200                          RCALL delay_ms
+000547 d29b                      	LDI   R16, ' '
+000548 d2b5                      	RCALL podatki          
+000549 e200                          RCALL delay_ms
+00054a d298                      	LDI   R16, ' '
+00054b d2b2                      	RCALL podatki          
+00054c e200                          RCALL delay_ms
+00054d d295                      	LDI   R16, ' '
+00054e d2af                      	RCALL podatki          
+00054f e200                          RCALL delay_ms
+000550 d292                      	LDI   R16, ' '
+000551 d2ac                      	RCALL podatki          
+000552 2f06                          RCALL delay_ms
+000553 d28f                      	mov   R16, tocke_to_ascii_desetice
+000554 d2a9                      	RCALL podatki          
+000555 2f05                          RCALL delay_ms
+000556 d28c                      	mov   R16, tocke_to_ascii_enice
+000557 d2a6                      	RCALL podatki          
+000558 9508                          RCALL delay_ms
+                                 	ret
+                                 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                 //////////////////////////////////////// TUKAJ SO VSE SLIKE ZA PRAVILNE IN NAPA?NE PRITISKE GUMBOV //////////////////////////////////////////////////////
+000559 e508                      	krt1_ven_narobe:
+                                 	LDI   R16, 'X'
+00055a ec00                      	////////////////////////////////////
+00055b d276                      	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
+00055c d2a1                          RCALL komanda
+                                     RCALL delay_ms
+00055d e505                      	///////////////////////////////////
+00055e d284                      	LDI   R16, 'U'
+00055f d29e                      	RCALL podatki          
+000560 e200                          RCALL delay_ms
+000561 d281                      	LDI   R16, ' '
+000562 d29b                      	RCALL podatki          
+000563 e200                          RCALL delay_ms
+000564 d27e                      	LDI   R16, ' '
+000565 d298                      	RCALL podatki          
+000566 e505                          RCALL delay_ms
+000567 d27b                      	LDI   R16, 'U'
+000568 d295                      	RCALL podatki          
+000569 e200                          RCALL delay_ms
+00056a d278                      	LDI   R16, ' '
+00056b d292                      	RCALL podatki          
+00056c e200                          RCALL delay_ms
+00056d d275                      	LDI   R16, ' '
+00056e d28f                      	RCALL podatki          
+00056f e505                          RCALL delay_ms
+000570 d272                      	LDI   R16, 'U'
+000571 d28c                      	RCALL podatki          
+000572 e200                          RCALL delay_ms
+000573 d26f                      	LDI   R16, ' '
+000574 d289                      	RCALL podatki          
+000575 e200                          RCALL delay_ms
+000576 d26c                      	LDI   R16, ' '
+000577 d286                      	RCALL podatki          
+000578 e505                          RCALL delay_ms
+000579 d269                      	LDI   R16, 'U'
+00057a d283                      	RCALL podatki          
+00057b e200                          RCALL delay_ms
+00057c d266                      	LDI   R16, ' '
+00057d d280                      	RCALL podatki          
+00057e e200                          RCALL delay_ms
+00057f d263                      	LDI   R16, ' '
+000580 d27d                      	RCALL podatki          
+000581 e505                          RCALL delay_ms
+000582 d260                      	LDI   R16, 'U'
+000583 d27a                      	RCALL podatki          
+000584 e200                          RCALL delay_ms
+000585 d25d                      	LDI   R16, ' '
+000586 d277                      	RCALL podatki          
+000587 e200                          RCALL delay_ms
+000588 d25a                      	LDI   R16, ' '
+000589 d274                      	RCALL podatki          
+00058a e200                          RCALL delay_ms
+00058b d257                      	LDI   R16, ' '
+00058c d271                      	RCALL podatki          
+00058d e200                          RCALL delay_ms
+00058e d254                      	LDI   R16, ' '
+00058f d26e                      	RCALL podatki          
+000590 2f06                          RCALL delay_ms
+000591 d251                      	mov   R16, tocke_to_ascii_desetice
+000592 d26b                      	RCALL podatki          
+000593 2f05                          RCALL delay_ms
+000594 d24e                      	mov   R16, tocke_to_ascii_enice
+000595 d268                      	RCALL podatki          
+000596 9508                          RCALL delay_ms
+                                 	ret
+                                 
+000597 e200                      krt2_ven_narobe:
+000598 d24a                      	LDI   R16, ' '
+000599 d264                      	RCALL podatki          
+00059a e200                          RCALL delay_ms
+00059b d247                      	LDI   R16, ' '
+00059c d261                      	RCALL podatki          
+00059d e200                          RCALL delay_ms
+00059e d244                      	LDI   R16, ' '
+00059f d25e                      	RCALL podatki          
+0005a0 e508                          RCALL delay_ms
+0005a1 d241                      	LDI   R16, 'X'
+0005a2 d25b                      	RCALL podatki          
+                                     RCALL delay_ms
+0005a3 ec00                      	////////////////////////////////////
+0005a4 d22d                      	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
+0005a5 d258                          RCALL komanda
+                                     RCALL delay_ms
+0005a6 e505                      	///////////////////////////////////
+0005a7 d23b                      	LDI   R16, 'U'
+0005a8 d255                      	RCALL podatki          
+0005a9 e200                          RCALL delay_ms
+0005aa d238                      	LDI   R16, ' '
+0005ab d252                      	RCALL podatki          
+0005ac e200                          RCALL delay_ms
+0005ad d235                      	LDI   R16, ' '
+0005ae d24f                      	RCALL podatki          
+0005af e505                          RCALL delay_ms
+0005b0 d232                      	LDI   R16, 'U'
+0005b1 d24c                      	RCALL podatki          
+0005b2 e200                          RCALL delay_ms
+0005b3 d22f                      	LDI   R16, ' '
+0005b4 d249                      	RCALL podatki          
+0005b5 e200                          RCALL delay_ms
+0005b6 d22c                      	LDI   R16, ' '
+0005b7 d246                      	RCALL podatki          
+0005b8 e505                          RCALL delay_ms
+0005b9 d229                      	LDI   R16, 'U'
+0005ba d243                      	RCALL podatki          
+0005bb e200                          RCALL delay_ms
+0005bc d226                      	LDI   R16, ' '
+0005bd d240                      	RCALL podatki          
+0005be e200                          RCALL delay_ms
+0005bf d223                      	LDI   R16, ' '
+0005c0 d23d                      	RCALL podatki          
+0005c1 e505                          RCALL delay_ms
+0005c2 d220                      	LDI   R16, 'U'
+0005c3 d23a                      	RCALL podatki          
+0005c4 e200                          RCALL delay_ms
+0005c5 d21d                      	LDI   R16, ' '
+0005c6 d237                      	RCALL podatki          
+0005c7 e200                          RCALL delay_ms
+0005c8 d21a                      	LDI   R16, ' '
+0005c9 d234                      	RCALL podatki          
+0005ca e505                          RCALL delay_ms
+0005cb d217                      	LDI   R16, 'U'
+0005cc d231                      	RCALL podatki          
+0005cd e200                          RCALL delay_ms
+0005ce d214                      	LDI   R16, ' '
+0005cf d22e                      	RCALL podatki          
+0005d0 e200                          RCALL delay_ms
+0005d1 d211                      	LDI   R16, ' '
+0005d2 d22b                      	RCALL podatki          
+0005d3 e200                          RCALL delay_ms
+0005d4 d20e                      	LDI   R16, ' '
+0005d5 d228                      	RCALL podatki          
+0005d6 e200                          RCALL delay_ms
+0005d7 d20b                      	LDI   R16, ' '
+0005d8 d225                      	RCALL podatki          
+0005d9 2f06                          RCALL delay_ms
+0005da d208                      	mov   R16, tocke_to_ascii_desetice
+0005db d222                      	RCALL podatki          
+0005dc 2f05                          RCALL delay_ms
+0005dd d205                      	mov   R16, tocke_to_ascii_enice
+0005de d21f                      	RCALL podatki          
+0005df 9508                          RCALL delay_ms
+                                 	ret
+                                 
+0005e0 e200                      krt3_ven_narobe:
+0005e1 d201                      	LDI   R16, ' '
+0005e2 d21b                      	RCALL podatki          
+0005e3 e200                          RCALL delay_ms
+0005e4 d1fe                      	LDI   R16, ' '
+0005e5 d218                      	RCALL podatki          
+0005e6 e200                          RCALL delay_ms
+0005e7 d1fb                      	LDI   R16, ' '
+0005e8 d215                      	RCALL podatki          
+0005e9 e200                          RCALL delay_ms
+0005ea d1f8                      	LDI   R16, ' '
+0005eb d212                      	RCALL podatki          
+0005ec e200                          RCALL delay_ms
+0005ed d1f5                      	LDI   R16, ' '
+0005ee d20f                      	RCALL podatki          
+0005ef e200                          RCALL delay_ms
+0005f0 d1f2                      	LDI   R16, ' '
+0005f1 d20c                      	RCALL podatki          
+0005f2 e508                          RCALL delay_ms
+0005f3 d1ef                      	LDI   R16, 'X'
+0005f4 d209                      	RCALL podatki          
+                                     RCALL delay_ms
+0005f5 ec00                      	////////////////////////////////////
+0005f6 d1db                      	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
+0005f7 d206                          RCALL komanda
+                                     RCALL delay_ms
+0005f8 e505                      	///////////////////////////////////
+0005f9 d1e9                      	LDI   R16, 'U'
+0005fa d203                      	RCALL podatki          
+0005fb e200                          RCALL delay_ms
+0005fc d1e6                      	LDI   R16, ' '
+0005fd d200                      	RCALL podatki          
+0005fe e200                          RCALL delay_ms
+0005ff d1e3                      	LDI   R16, ' '
+000600 d1fd                      	RCALL podatki          
+000601 e505                          RCALL delay_ms
+000602 d1e0                      	LDI   R16, 'U'
+000603 d1fa                      	RCALL podatki          
+000604 e200                          RCALL delay_ms
+000605 d1dd                      	LDI   R16, ' '
+000606 d1f7                      	RCALL podatki          
+000607 e200                          RCALL delay_ms
+000608 d1da                      	LDI   R16, ' '
+000609 d1f4                      	RCALL podatki          
+00060a e505                          RCALL delay_ms
+00060b d1d7                      	LDI   R16, 'U'
+00060c d1f1                      	RCALL podatki          
+00060d e200                          RCALL delay_ms
+00060e d1d4                      	LDI   R16, ' '
+00060f d1ee                      	RCALL podatki          
+000610 e200                          RCALL delay_ms
+000611 d1d1                      	LDI   R16, ' '
+000612 d1eb                      	RCALL podatki          
+000613 e505                          RCALL delay_ms
+000614 d1ce                      	LDI   R16, 'U'
+000615 d1e8                      	RCALL podatki          
+000616 e200                          RCALL delay_ms
+000617 d1cb                      	LDI   R16, ' '
+000618 d1e5                      	RCALL podatki          
+000619 e200                          RCALL delay_ms
+00061a d1c8                      	LDI   R16, ' '
+00061b d1e2                      	RCALL podatki          
+00061c e505                          RCALL delay_ms
+00061d d1c5                      	LDI   R16, 'U'
+00061e d1df                      	RCALL podatki          
+00061f e200                          RCALL delay_ms
+000620 d1c2                      	LDI   R16, ' '
+000621 d1dc                      	RCALL podatki          
+000622 e200                          RCALL delay_ms
+000623 d1bf                      	LDI   R16, ' '
+000624 d1d9                      	RCALL podatki          
+000625 e200                          RCALL delay_ms
+000626 d1bc                      	LDI   R16, ' '
+000627 d1d6                      	RCALL podatki          
+000628 e200                          RCALL delay_ms
+000629 d1b9                      	LDI   R16, ' '
+00062a d1d3                      	RCALL podatki          
+00062b 2f06                          RCALL delay_ms
+00062c d1b6                      	mov   R16, tocke_to_ascii_desetice
+00062d d1d0                      	RCALL podatki          
+00062e 2f05                          RCALL delay_ms
+00062f d1b3                      	mov   R16, tocke_to_ascii_enice
+000630 d1cd                      	RCALL podatki          
+000631 9508                          RCALL delay_ms
+                                 	ret
+                                 
+000632 e200                      krt4_ven_narobe:
+000633 d1af                      	LDI   R16, ' '
+000634 d1c9                      	RCALL podatki          
+000635 e200                          RCALL delay_ms
+000636 d1ac                      	LDI   R16, ' '
+000637 d1c6                      	RCALL podatki          
+000638 e200                          RCALL delay_ms
+000639 d1a9                      	LDI   R16, ' '
+00063a d1c3                      	RCALL podatki          
+00063b e200                          RCALL delay_ms
+00063c d1a6                      	LDI   R16, ' '
+00063d d1c0                      	RCALL podatki          
+00063e e200                          RCALL delay_ms
+00063f d1a3                      	LDI   R16, ' '
+000640 d1bd                      	RCALL podatki          
+000641 e200                          RCALL delay_ms
+000642 d1a0                      	LDI   R16, ' '
+000643 d1ba                      	RCALL podatki          
+000644 e200                          RCALL delay_ms
+000645 d19d                      	LDI   R16, ' '
+000646 d1b7                      	RCALL podatki          
+000647 e200                          RCALL delay_ms
+000648 d19a                      	LDI   R16, ' '
+000649 d1b4                      	RCALL podatki          
+00064a e200                          RCALL delay_ms
+00064b d197                      	LDI   R16, ' '
+00064c d1b1                      	RCALL podatki          
+00064d e508                          RCALL delay_ms
+00064e d194                      	LDI   R16, 'X'
+00064f d1ae                      	RCALL podatki          
+                                     RCALL delay_ms
+000650 ec00                      	////////////////////////////////////
+000651 d180                      	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
+000652 d1ab                          RCALL komanda
+                                     RCALL delay_ms
+000653 e505                      	///////////////////////////////////
+000654 d18e                      	LDI   R16, 'U'
+000655 d1a8                      	RCALL podatki          
+000656 e200                          RCALL delay_ms
+000657 d18b                      	LDI   R16, ' '
+000658 d1a5                      	RCALL podatki          
+000659 e200                          RCALL delay_ms
+00065a d188                      	LDI   R16, ' '
+00065b d1a2                      	RCALL podatki          
+00065c e505                          RCALL delay_ms
+00065d d185                      	LDI   R16, 'U'
+00065e d19f                      	RCALL podatki          
+00065f e200                          RCALL delay_ms
+000660 d182                      	LDI   R16, ' '
+000661 d19c                      	RCALL podatki          
+000662 e200                          RCALL delay_ms
+000663 d17f                      	LDI   R16, ' '
+000664 d199                      	RCALL podatki          
+000665 e505                          RCALL delay_ms
+000666 d17c                      	LDI   R16, 'U'
+000667 d196                      	RCALL podatki          
+000668 e200                          RCALL delay_ms
+000669 d179                      	LDI   R16, ' '
+00066a d193                      	RCALL podatki          
+00066b e200                          RCALL delay_ms
+00066c d176                      	LDI   R16, ' '
+00066d d190                      	RCALL podatki          
+00066e e505                          RCALL delay_ms
+00066f d173                      	LDI   R16, 'U'
+000670 d18d                      	RCALL podatki          
+000671 e200                          RCALL delay_ms
+000672 d170                      	LDI   R16, ' '
+000673 d18a                      	RCALL podatki          
+000674 e200                          RCALL delay_ms
+000675 d16d                      	LDI   R16, ' '
+000676 d187                      	RCALL podatki          
+000677 e505                          RCALL delay_ms
+000678 d16a                      	LDI   R16, 'U'
+000679 d184                      	RCALL podatki          
+00067a e200                          RCALL delay_ms
+00067b d167                      	LDI   R16, ' '
+00067c d181                      	RCALL podatki          
+00067d e200                          RCALL delay_ms
+00067e d164                      	LDI   R16, ' '
+00067f d17e                      	RCALL podatki          
+000680 e200                          RCALL delay_ms
+000681 d161                      	LDI   R16, ' '
+000682 d17b                      	RCALL podatki          
+000683 e200                          RCALL delay_ms
+000684 d15e                      	LDI   R16, ' '
+000685 d178                      	RCALL podatki          
+000686 2f06                          RCALL delay_ms
+000687 d15b                      	mov   R16, tocke_to_ascii_desetice
+000688 d175                      	RCALL podatki          
+000689 2f05                          RCALL delay_ms
+00068a d158                      	mov   R16, tocke_to_ascii_enice
+00068b d172                      	RCALL podatki          
+00068c 9508                          RCALL delay_ms
+                                 	ret
+                                 
+00068d ef0f                      krt1_ven_pravilno:
+                                 	LDI   R16, 0b1111_1111
+00068e ec00                      	////////////////////////////////////
+00068f d142                      	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
+000690 d16d                          RCALL komanda
+                                     RCALL delay_ms
+000691 e505                      	///////////////////////////////////
+000692 d150                      	LDI   R16, 'U'
+000693 d16a                      	RCALL podatki          
+000694 e200                          RCALL delay_ms
+000695 d14d                      	LDI   R16, ' '
+000696 d167                      	RCALL podatki          
+000697 e200                          RCALL delay_ms
+000698 d14a                      	LDI   R16, ' '
+000699 d164                      	RCALL podatki          
+00069a e505                          RCALL delay_ms
+00069b d147                      	LDI   R16, 'U'
+00069c d161                      	RCALL podatki          
+00069d e200                          RCALL delay_ms
+00069e d144                      	LDI   R16, ' '
+00069f d15e                      	RCALL podatki          
+0006a0 e200                          RCALL delay_ms
+0006a1 d141                      	LDI   R16, ' '
+0006a2 d15b                      	RCALL podatki          
+0006a3 e505                          RCALL delay_ms
+0006a4 d13e                      	LDI   R16, 'U'
+0006a5 d158                      	RCALL podatki          
+0006a6 e200                          RCALL delay_ms
+0006a7 d13b                      	LDI   R16, ' '
+0006a8 d155                      	RCALL podatki          
+0006a9 e200                          RCALL delay_ms
+0006aa d138                      	LDI   R16, ' '
+0006ab d152                      	RCALL podatki          
+0006ac e505                          RCALL delay_ms
+0006ad d135                      	LDI   R16, 'U'
+0006ae d14f                      	RCALL podatki          
+0006af e200                          RCALL delay_ms
+0006b0 d132                      	LDI   R16, ' '
+0006b1 d14c                      	RCALL podatki          
+0006b2 e200                          RCALL delay_ms
+0006b3 d12f                      	LDI   R16, ' '
+0006b4 d149                      	RCALL podatki          
+0006b5 e505                          RCALL delay_ms
+0006b6 d12c                      	LDI   R16, 'U'
+0006b7 d146                      	RCALL podatki          
+0006b8 e200                          RCALL delay_ms
+0006b9 d129                      	LDI   R16, ' '
+0006ba d143                      	RCALL podatki          
+0006bb e200                          RCALL delay_ms
+0006bc d126                      	LDI   R16, ' '
+0006bd d140                      	RCALL podatki          
+0006be e200                          RCALL delay_ms
+0006bf d123                      	LDI   R16, ' '
+0006c0 d13d                      	RCALL podatki          
+0006c1 e200                          RCALL delay_ms
+0006c2 d120                      	LDI   R16, ' '
+0006c3 d13a                      	RCALL podatki          
+0006c4 2f06                          RCALL delay_ms
+0006c5 d11d                      	mov   R16, tocke_to_ascii_desetice
+0006c6 d137                      	RCALL podatki          
+0006c7 2f05                          RCALL delay_ms
+0006c8 d11a                      	mov   R16, tocke_to_ascii_enice
+0006c9 d134                      	RCALL podatki          
+0006ca 9508                          RCALL delay_ms
+                                 	ret
+                                 
+0006cb e200                      krt2_ven_pravilno:
+0006cc d116                      	LDI   R16, ' '
+0006cd d130                      	RCALL podatki          
+0006ce e200                          RCALL delay_ms
+0006cf d113                      	LDI   R16, ' '
+0006d0 d12d                      	RCALL podatki          
+0006d1 e200                          RCALL delay_ms
+0006d2 d110                      	LDI   R16, ' '
+0006d3 d12a                      	RCALL podatki          
+0006d4 ef0f                          RCALL delay_ms
+0006d5 d10d                      	LDI   R16, 0b1111_1111
+0006d6 d127                      	RCALL podatki          
+                                     RCALL delay_ms
+0006d7 ec00                      	////////////////////////////////////
+0006d8 d0f9                      	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
+0006d9 d124                          RCALL komanda
+                                     RCALL delay_ms
+0006da e505                      	///////////////////////////////////
+0006db d107                      	LDI   R16, 'U'
+0006dc d121                      	RCALL podatki          
+0006dd e200                          RCALL delay_ms
+0006de d104                      	LDI   R16, ' '
+0006df d11e                      	RCALL podatki          
+0006e0 e200                          RCALL delay_ms
+0006e1 d101                      	LDI   R16, ' '
+0006e2 d11b                      	RCALL podatki          
+0006e3 e505                          RCALL delay_ms
+0006e4 d0fe                      	LDI   R16, 'U'
+0006e5 d118                      	RCALL podatki          
+0006e6 e200                          RCALL delay_ms
+0006e7 d0fb                      	LDI   R16, ' '
+0006e8 d115                      	RCALL podatki          
+0006e9 e200                          RCALL delay_ms
+0006ea d0f8                      	LDI   R16, ' '
+0006eb d112                      	RCALL podatki          
+0006ec e505                          RCALL delay_ms
+0006ed d0f5                      	LDI   R16, 'U'
+0006ee d10f                      	RCALL podatki          
+0006ef e200                          RCALL delay_ms
+0006f0 d0f2                      	LDI   R16, ' '
+0006f1 d10c                      	RCALL podatki          
+0006f2 e200                          RCALL delay_ms
+0006f3 d0ef                      	LDI   R16, ' '
+0006f4 d109                      	RCALL podatki          
+0006f5 e505                          RCALL delay_ms
+0006f6 d0ec                      	LDI   R16, 'U'
+0006f7 d106                      	RCALL podatki          
+0006f8 e200                          RCALL delay_ms
+0006f9 d0e9                      	LDI   R16, ' '
+0006fa d103                      	RCALL podatki          
+0006fb e200                          RCALL delay_ms
+0006fc d0e6                      	LDI   R16, ' '
+0006fd d100                      	RCALL podatki          
+0006fe e505                          RCALL delay_ms
+0006ff d0e3                      	LDI   R16, 'U'
+000700 d0fd                      	RCALL podatki          
+000701 e200                          RCALL delay_ms
+000702 d0e0                      	LDI   R16, ' '
+000703 d0fa                      	RCALL podatki          
+000704 e200                          RCALL delay_ms
+000705 d0dd                      	LDI   R16, ' '
+000706 d0f7                      	RCALL podatki          
+000707 e200                          RCALL delay_ms
+000708 d0da                      	LDI   R16, ' '
+000709 d0f4                      	RCALL podatki          
+00070a e200                          RCALL delay_ms
+00070b d0d7                      	LDI   R16, ' '
+00070c d0f1                      	RCALL podatki          
+00070d 2f06                          RCALL delay_ms
+00070e d0d4                      	mov   R16, tocke_to_ascii_desetice
+00070f d0ee                      	RCALL podatki          
+000710 2f05                          RCALL delay_ms
+000711 d0d1                      	mov   R16, tocke_to_ascii_enice
+000712 d0eb                      	RCALL podatki          
+000713 9508                          RCALL delay_ms
+                                 	ret
+                                 
+000714 e200                      krt3_ven_pravilno:
+000715 d0cd                      	LDI   R16, ' '
+000716 d0e7                      	RCALL podatki          
+000717 e200                          RCALL delay_ms
+000718 d0ca                      	LDI   R16, ' '
+000719 d0e4                      	RCALL podatki          
+00071a e200                          RCALL delay_ms
+00071b d0c7                      	LDI   R16, ' '
+00071c d0e1                      	RCALL podatki          
+00071d e200                          RCALL delay_ms
+00071e d0c4                      	LDI   R16, ' '
+00071f d0de                      	RCALL podatki          
+000720 e200                          RCALL delay_ms
+000721 d0c1                      	LDI   R16, ' '
+000722 d0db                      	RCALL podatki          
+000723 e200                          RCALL delay_ms
+000724 d0be                      	LDI   R16, ' '
+000725 d0d8                      	RCALL podatki          
+000726 ef0f                          RCALL delay_ms
+000727 d0bb                      	LDI   R16, 0b1111_1111
+000728 d0d5                      	RCALL podatki          
+                                     RCALL delay_ms
+000729 ec00                      	////////////////////////////////////
+00072a d0a7                      	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
+00072b d0d2                          RCALL komanda
+                                     RCALL delay_ms
+00072c e505                      	///////////////////////////////////
+00072d d0b5                      	LDI   R16, 'U'
+00072e d0cf                      	RCALL podatki          
+00072f e200                          RCALL delay_ms
+000730 d0b2                      	LDI   R16, ' '
+000731 d0cc                      	RCALL podatki          
+000732 e200                          RCALL delay_ms
+000733 d0af                      	LDI   R16, ' '
+000734 d0c9                      	RCALL podatki          
+000735 e505                          RCALL delay_ms
+000736 d0ac                      	LDI   R16, 'U'
+000737 d0c6                      	RCALL podatki          
+000738 e200                          RCALL delay_ms
+000739 d0a9                      	LDI   R16, ' '
+00073a d0c3                      	RCALL podatki          
+00073b e200                          RCALL delay_ms
+00073c d0a6                      	LDI   R16, ' '
+00073d d0c0                      	RCALL podatki          
+00073e e505                          RCALL delay_ms
+00073f d0a3                      	LDI   R16, 'U'
+000740 d0bd                      	RCALL podatki          
+000741 e200                          RCALL delay_ms
+000742 d0a0                      	LDI   R16, ' '
+000743 d0ba                      	RCALL podatki          
+000744 e200                          RCALL delay_ms
+000745 d09d                      	LDI   R16, ' '
+000746 d0b7                      	RCALL podatki          
+000747 e505                          RCALL delay_ms
+000748 d09a                      	LDI   R16, 'U'
+000749 d0b4                      	RCALL podatki          
+00074a e200                          RCALL delay_ms
+00074b d097                      	LDI   R16, ' '
+00074c d0b1                      	RCALL podatki          
+00074d e200                          RCALL delay_ms
+00074e d094                      	LDI   R16, ' '
+00074f d0ae                      	RCALL podatki          
+000750 e505                          RCALL delay_ms
+000751 d091                      	LDI   R16, 'U'
+000752 d0ab                      	RCALL podatki          
+000753 e200                          RCALL delay_ms
+000754 d08e                      	LDI   R16, ' '
+000755 d0a8                      	RCALL podatki          
+000756 e200                          RCALL delay_ms
+000757 d08b                      	LDI   R16, ' '
+000758 d0a5                      	RCALL podatki          
+000759 e200                          RCALL delay_ms
+00075a d088                      	LDI   R16, ' '
+00075b d0a2                      	RCALL podatki          
+00075c e200                          RCALL delay_ms
+00075d d085                      	LDI   R16, ' '
+00075e d09f                      	RCALL podatki          
+00075f 2f06                          RCALL delay_ms
+000760 d082                      	mov   R16, tocke_to_ascii_desetice
+000761 d09c                      	RCALL podatki          
+000762 2f05                          RCALL delay_ms
+000763 d07f                      	mov   R16, tocke_to_ascii_enice
+000764 d099                      	RCALL podatki          
+000765 9508                          RCALL delay_ms
+                                 	ret
+                                 
+000766 e200                      krt4_ven_pravilno:
+000767 d07b                      	LDI   R16, ' '
+000768 d095                      	RCALL podatki          
+000769 e200                          RCALL delay_ms
+00076a d078                      	LDI   R16, ' '
+00076b d092                      	RCALL podatki          
+00076c e200                          RCALL delay_ms
+00076d d075                      	LDI   R16, ' '
+00076e d08f                      	RCALL podatki          
+00076f e200                          RCALL delay_ms
+000770 d072                      	LDI   R16, ' '
+000771 d08c                      	RCALL podatki          
+000772 e200                          RCALL delay_ms
+000773 d06f                      	LDI   R16, ' '
+000774 d089                      	RCALL podatki          
+000775 e200                          RCALL delay_ms
+000776 d06c                      	LDI   R16, ' '
+000777 d086                      	RCALL podatki          
+000778 e200                          RCALL delay_ms
+000779 d069                      	LDI   R16, ' '
+00077a d083                      	RCALL podatki          
+00077b e200                          RCALL delay_ms
+00077c d066                      	LDI   R16, ' '
+00077d d080                      	RCALL podatki          
+00077e e200                          RCALL delay_ms
+00077f d063                      	LDI   R16, ' '
+000780 d07d                      	RCALL podatki          
+000781 ef0f                          RCALL delay_ms
+000782 d060                      	LDI   R16, 0b1111_1111
+000783 d07a                      	RCALL podatki          
+                                     RCALL delay_ms
+000784 ec00                      	////////////////////////////////////
+000785 d04c                      	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
+000786 d077                          RCALL komanda
+                                     RCALL delay_ms
+000787 e505                      	///////////////////////////////////
+000788 d05a                      	LDI   R16, 'U'
+000789 d074                      	RCALL podatki          
+00078a e200                          RCALL delay_ms
+00078b d057                      	LDI   R16, ' '
+00078c d071                      	RCALL podatki          
+00078d e200                          RCALL delay_ms
+00078e d054                      	LDI   R16, ' '
+00078f d06e                      	RCALL podatki          
+000790 e505                          RCALL delay_ms
+000791 d051                      	LDI   R16, 'U'
+000792 d06b                      	RCALL podatki          
+000793 e200                          RCALL delay_ms
+000794 d04e                      	LDI   R16, ' '
+000795 d068                      	RCALL podatki          
+000796 e200                          RCALL delay_ms
+000797 d04b                      	LDI   R16, ' '
+000798 d065                      	RCALL podatki          
+000799 e505                          RCALL delay_ms
+00079a d048                      	LDI   R16, 'U'
+00079b d062                      	RCALL podatki          
+00079c e200                          RCALL delay_ms
+00079d d045                      	LDI   R16, ' '
+00079e d05f                      	RCALL podatki          
+00079f e200                          RCALL delay_ms
+0007a0 d042                      	LDI   R16, ' '
+0007a1 d05c                      	RCALL podatki          
+0007a2 e505                          RCALL delay_ms
+0007a3 d03f                      	LDI   R16, 'U'
+0007a4 d059                      	RCALL podatki          
+0007a5 e200                          RCALL delay_ms
+0007a6 d03c                      	LDI   R16, ' '
+0007a7 d056                      	RCALL podatki          
+0007a8 e200                          RCALL delay_ms
+0007a9 d039                      	LDI   R16, ' '
+0007aa d053                      	RCALL podatki          
+0007ab e505                          RCALL delay_ms
+0007ac d036                      	LDI   R16, 'U'
+0007ad d050                      	RCALL podatki          
+0007ae e200                          RCALL delay_ms
+0007af d033                      	LDI   R16, ' '
+0007b0 d04d                      	RCALL podatki          
+0007b1 e200                          RCALL delay_ms
+0007b2 d030                      	LDI   R16, ' '
+0007b3 d04a                      	RCALL podatki          
+0007b4 e200                          RCALL delay_ms
+0007b5 d02d                      	LDI   R16, ' '
+0007b6 d047                      	RCALL podatki          
+0007b7 e200                          RCALL delay_ms
+0007b8 d02a                      	LDI   R16, ' '
+0007b9 d044                      	RCALL podatki          
+0007ba 2f06                          RCALL delay_ms
+0007bb d027                      	mov   R16, tocke_to_ascii_desetice
+0007bc d041                      	RCALL podatki          
+0007bd 2f05                          RCALL delay_ms
+0007be d024                      	mov   R16, tocke_to_ascii_enice
+0007bf d03e                      	RCALL podatki          
+0007c0 9508                          RCALL delay_ms
+                                 	ret
+                                 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                 /////////////////////////////////////////////// FUNKCIJE PODATEK, INICIALIZACIJA IN KOMANDA /////////////////////////////////////////////////////////////
+0007c1 e303                      inicializacija:
+0007c2 d00f                      	LDI   R16, 0x33         ;inicializiramo lcd za 4bitno pošiljanje podatkov
+0007c3 d03a                          RCALL komanda       ;pošljemo v komandni register
+0007c4 e302                          RCALL delay_ms
+0007c5 d00c                          LDI   R16, 0x32         ;inicializiramo lcd za 4bitno pošiljanje podatkov
+0007c6 d037                          RCALL komanda
+0007c7 e208                          RCALL delay_ms
+0007c8 d009                          LDI   R16, 0x28         ;povemo, da ima zaslon 2 liniji, 5x7 matrix
+0007c9 d034                          RCALL komanda
+0007ca e00c                          RCALL delay_ms
+0007cb d006                          LDI   R16, 0x0C         ;disp ON, cursor OFF
+0007cc e001                          RCALL komanda
+0007cd d004                          LDI   R16, 0x01         ;zbrišemo lcd
+0007ce d02f                          RCALL komanda
+0007cf e006                          RCALL delay_ms
+0007d0 d001                          LDI   R16, 0x06         ;premaknemo kursor desno
+0007d1 9508                          RCALL komanda
+                                     RET  
+                                 
+0007d2 2fb0                      komanda:
+0007d3 7fb0                      	MOV   R27, R16
+0007d4 b9bb                          ANDI  R27, 0xF0         ;zbrišemo spodnje 4 bite
+0007d5 9829                          OUT   PORTD, R27        ;pošljemo zgornje 4bite zaslonu
+0007d6 9a28                          CBI   PORTB, 1          ;pin rs=0 za komando
+0007d7 d01c                          SBI   PORTB, 0          ;en = 1
+0007d8 9828                          RCALL delay_short       ;podaljšamo pulz
+0007d9 d01d                          CBI   PORTB, 0          
+                                     RCALL delay_us          ;delajamo
+0007da 2fb0                          ;----------------------------------------------------
+0007db 95b2                          MOV   R27, R16
+0007dc 7fb0                          SWAP  R27               ;zamenjamo zgornje 4 bite za spodnje
+0007dd b9bb                          ANDI  R27, 0xF0         ;ponovimo masko
+0007de 9a28                          OUT   PORTD, R27        ;ponovno pošljemo 4 bitne podatke
+0007df d014                          SBI   PORTB, 0          ;EN = 1
+0007e0 9828                          RCALL delay_short       
+0007e1 d015                          CBI   PORTB, 0          
+0007e2 9508                          RCALL delay_us          
+                                     RET
+                                 
+0007e3 2fb0                      podatki:              //isto kot komanda
+0007e4 7fb0                          MOV   R27, R16
+0007e5 b9bb                          ANDI  R27, 0xF0         
+0007e6 9a29                          OUT   PORTD, R27        
+0007e7 9a28                          SBI   PORTB, 1          
+0007e8 d00b                          SBI   PORTB, 0          
+0007e9 9828                          RCALL delay_short      
+0007ea d00c                          CBI   PORTB, 0          
+                                     RCALL delay_us          
+0007eb 2fb0                          ;----------------------------------------------------
+0007ec 95b2                          MOV   R27, R16
+0007ed 7fb0                          SWAP  R27              
+0007ee b9bb                          ANDI  R27, 0xF0        
+0007ef 9a28                          OUT   PORTD, R27       
+0007f0 d003                          SBI   PORTB, 0         
+0007f1 9828                          RCALL delay_short       
+0007f2 d004                          CBI   PORTB, 0          
+0007f3 9508                          RCALL delay_us          
+                                     RET
+                                 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                 //////////////////////////////////////////////////////// DELAJI ///////////////////////////////////////////////////////////////////
+                                 
+0007f4 0000                      delay_short:
+0007f5 0000                            NOP
+0007f6 9508                            NOP
+                                       RET
+                                 
+0007f7 e5ca                      delay_us:
+0007f8 dffb                            LDI   R28, 90
+0007f9 940e 0246                 l3:   RCALL delay_short
+0007fb 95ca                      	  call pritisk_gumba
+0007fc f7d9                            DEC   R28
+0007fd 9508                            BRNE  l3
+                                       RET
+                                 
+0007fe e2c8                      delay_ms:
+0007ff dff7                            LDI   R28, 40
+000800 940e 0246                 l4:   RCALL delay_us
+000802 95ca                      	  call pritisk_gumba
+000803 f7d9                            DEC   R28
+000804 9508                            BRNE  l4
+                                       RET
+                                 
+000805 efcf                      delay_seconds:        ;nested loop subroutine (max delay 3.11s)
+000806 efdf                          LDI   R28, 255    ;outer loop counter 
+000807 e124                      l5: LDI   R29, 255    ;mid loop counter
+000808 952a                      l6: LDI   R18, 20     ;inner loop counter to give 0.25s delay
+000809 940e 0246                 l7: DEC   R18 
+00080b f7e1                      	CALL pritisk_gumba        
+00080c 95da                          BRNE  l7          ;loop if not zero
+00080d f7c9                          DEC   R29         ;decrement mid loop
+00080e 95ca                          BRNE  l6          ;loop if not zero
+00080f f7b1                          DEC   R28         ;decrement outer loop
+
+
+RESOURCE USE INFORMATION
+------------------------
+
+Notice:
+The register and instruction counts are symbol table hit counts,
+and hence implicitly used resources are not counted, eg, the
+'lpm' instruction without operands implicitly uses r0 and z,
+none of which are counted.
+
+x,y,z are separate entities in the symbol table and are
+counted separately from r26..r31 here.
+
+.dseg memory usage only counts static data declared with .byte
+
+"ATmega328P" register use summary:
+x  :   0 y  :   0 z  :   1 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
+r5 :   0 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
+r13:   0 r14:   0 r15:   0 r16: 407 r17:   0 r18:   2 r19:  10 r20:   5 
+r21:  17 r22:  16 r23:   9 r24:  20 r25:   0 r26:   6 r27:  14 r28:   6 
+r29:   2 r30:   2 r31:   2 
+Registers used: 15 out of 35 (42.9%)
+
+"ATmega328P" instruction use summary:
+.lds  :   0 .sts  :   0 adc   :   0 add   :   3 adiw  :   0 and   :   0 
+andi  :   4 asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0 
+brcc  :   0 brcs  :   2 break :   0 breq  :   8 brge  :   0 brhc  :   0 
+brhs  :   0 brid  :   0 brie  :   0 brlo  :   0 brlt  :   0 brmi  :   0 
+brne  :  11 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
+brvs  :   0 bset  :   0 bst   :   0 call  :  39 cbi   :   6 cbr   :   0 
+clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   4 cls   :   0 
+clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :   4 cpc   :   0 
+cpi   :  10 cpse  :   0 dec   :   8 eor   :   0 fmul  :   0 fmuls :   0 
+fmulsu:   0 icall :   0 ijmp  :   0 in    :   1 inc   :   2 jmp   :  29 
+ld    :   0 ldd   :   0 ldi   : 391 lds   :   0 lpm   :   1 lsl   :   0 
+lsr   :   2 mov   :  35 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
+neg   :   0 nop   :   2 or    :   0 ori   :   1 out   :   6 pop   :   0 
+push  :   0 rcall : 803 ret   :  48 reti  :   0 rjmp  :   2 rol   :   0 
+ror   :   0 sbc   :   0 sbci  :   0 sbi   :   5 sbic  :   0 sbis  :   0 
+sbiw  :   0 sbr   :   0 sbrc  :   0 sbrs  :   0 sec   :   0 seh   :   0 
+sei   :   0 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 
+sez   :   0 sleep :   0 spm   :   0 st    :   0 std   :   0 sts   :   0 
+sub   :   1 subi  :   0 swap  :   2 tst   :   0 wdr   :   0 
+Instructions used: 27 out of 113 (23.9%)
+
+"ATmega328P" memory use summary [bytes]:
+Segment   Begin    End      Code   Data   Used    Size   Use%
+---------------------------------------------------------------
+[.cseg] 0x000068 0x001022   2996    124   3120   32768   9.5%
+[.dseg] 0x000100 0x000100      0      0      0    2048   0.0%
+[.eseg] 0x000000 0x000000      0      0      0    1024   0.0%
+
+Assembly complete, 0 errors, 1 warnings
