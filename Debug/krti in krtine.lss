@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.8  C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm Thu Dec 28 17:42:56 2023
+AVRASM ver. 2.2.8  C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm Thu Dec 28 18:26:06 2023
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m328Pdef.inc'
 C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm(7): warning: Register r26 already defined by the .DEF directive
@@ -998,7 +998,7 @@ C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\
 000035 b904                      	out ddrb, r16
 000036 b90a                      	out ddrd, r16
 000037 9828                      	cbi portb, 0
-000038 d788                      	rcall inicializacija
+000038 d789                      	rcall inicializacija
 000039 e0f4                      	ldi zh, high(load * 2)
 00003a e0e0                      	ldi zl, low(load * 2)
                                  
@@ -1063,1576 +1063,1578 @@ C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\
 000238 0104
 000239 0302
 00023a 0402
-00023b 0301
-00023c 0103
-00023d 0204                      	.db 2, 1, 4, 3, 1, 2, 3, 4, 3, 1, 2, 4, 2, 3, 1, 4, 4, 1, 2, 3, 2, 4, 3, 1, 1, 3, 4, 2, 2, 4, 1, 3, 3, 2, 1, 4, 1, 3, 2, 4, 4, 1, 3, 2, 3, 4, 1, 2, 1, 4, 3, 2, 2, 4, 1, 3, 1, 2, 4, 3, 4, 3, 1, 2, 1, 4, 3, 2, 4, 2, 3, 1, 4, 3, 1, 2, 1, 2, 3, 4, 4, 3, 1, 200023e 940c 0240                 , 3, 2, 1, 4, 4, 1, 2, 3, 2, 4, 1, 3, 3, 1, 4, 2, 1, 2, 3, 4, 4, 3, 1, 2, 3, 2, 1, 4, 4, 1, 2, 3, 2, 4, 1, 3, 3, 1, 4, 2
+00023b 0201
+00023c 0303
+00023d 0401
+C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm(20): warning: .cseg .db misalignment - padding zero byte
+00023e 0002                      	.db 2, 1, 4, 3, 1, 2, 3, 4, 3, 1, 2, 4, 2, 3, 1, 4, 4, 1, 2, 3, 2, 4, 3, 1, 1, 3, 4, 2, 2, 4, 1, 3, 3, 2, 1, 4, 1, 3, 2, 4, 4, 1, 3, 2, 3, 4, 1, 2, 1, 4, 3, 2, 2, 4, 1, 3, 1, 2, 4, 3, 4, 3, 1, 2, 1, 4, 3, 2, 4, 2, 3, 1, 4, 3, 1, 2, 1, 2, 3, 4, 4, 3, 1, 200023f 940c 0241                 , 3, 2, 1, 4, 4, 1, 2, 3, 2, 4, 1, 3, 3, 1, 4, 2, 1, 2, 3, 4, 4, 3, 1, 2, 3, 2, 1, 4, 4, 1, 2, 3, 2, 4, 1, 2, 3, 3, 1, 4, 2
                                  	jmp program
                                  
                                  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                  ///////////////////////////////////////////////////// GLAVNI PROGRAM //////////////////////////////////////////////////////////////////
                                  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                  
-000240 940e 031e                 program:
-000242 940c 0293                 	call you_lost_screen
-000244 940c 0240                 	jmp loop
+000241 940e 031f                 program:
+000243 940c 0294                 	call you_lost_screen
+000245 940c 0241                 	jmp loop
                                  	jmp program
                                  
                                  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                  ///////////////////////////////////////////// TUKAJ SO FUNKCIJE ZA PRAVILNE PRITISKE GUMBOV ////////////////////////////////////////////
                                  
-000246 b173                      pritisk_gumba:
-000247 637c                      	in pinb_stanje, pinb
-000248 9576                      	ori pinb_stanje, 0b0011_1100
-000249 9576                      	lsr pinb_stanje
-00024a 3070                      	lsr pinb_stanje
-00024b f409                      	cpi pinb_stanje, 0
-00024c 9508                      	brne krt_to_checker
+000247 b173                      pritisk_gumba:
+000248 637c                      	in pinb_stanje, pinb
+000249 9576                      	ori pinb_stanje, 0b0011_1100
+00024a 9576                      	lsr pinb_stanje
+00024b 3070                      	lsr pinb_stanje
+00024c f409                      	cpi pinb_stanje, 0
+00024d 9508                      	brne krt_to_checker
                                  	ret
-00024d 3081                      	krt_to_checker:
-00024e f4c1                      		cpi gumb_checker, 1
-00024f 3082                      		brne ena_v_ena
-000250 f4c9                      		cpi gumb_checker, 2
-000251 3083                      		brne dva_v_tri
-000252 f4d1                      		cpi gumb_checker, 3
-000253 3084                      		brne tri_v_stiri
-000254 f4d9                      		cpi gumb_checker, 4
-000255 940c 024d                 		brne stiri_v_osem
+00024e 3081                      	krt_to_checker:
+00024f f4c1                      		cpi gumb_checker, 1
+000250 3082                      		brne ena_v_ena
+000251 f4c9                      		cpi gumb_checker, 2
+000252 3083                      		brne dva_v_tri
+000253 f4d1                      		cpi gumb_checker, 3
+000254 3084                      		brne tri_v_stiri
+000255 f4d9                      		cpi gumb_checker, 4
+000256 940c 024e                 		brne stiri_v_osem
                                  		jmp krt_to_checker
-000257 1778                      	checker_krt1:
-000258 f0f1                      		cp pinb_stanje, gumb_checker
-000259 940c 0286                 		breq krt1_ven_pravilno_loopx
+000258 1778                      	checker_krt1:
+000259 f0f1                      		cp pinb_stanje, gumb_checker
+00025a 940c 0287                 		breq krt1_ven_pravilno_loopx
                                  		jmp krt1_ven_narobe_loopx
-00025b 1778                      	checker_krt2:
-00025c f0e9                      		cp pinb_stanje, gumb_checker
-00025d 940c 0283                 		breq krt2_ven_pravilno_loopx
+00025c 1778                      	checker_krt2:
+00025d f0e9                      		cp pinb_stanje, gumb_checker
+00025e 940c 0284                 		breq krt2_ven_pravilno_loopx
                                  		jmp krt2_ven_narobe_loopx
-00025f 1778                      	checker_krt3:
-000260 f0e1                      		cp pinb_stanje, gumb_checker
-000261 940c 0289                 		breq krt3_ven_pravilno_loopx
+000260 1778                      	checker_krt3:
+000261 f0e1                      		cp pinb_stanje, gumb_checker
+000262 940c 028a                 		breq krt3_ven_pravilno_loopx
                                  		jmp krt3_ven_narobe_loopx
-000263 1778                      	checker_krt4:
-000264 f0d9                      		cp pinb_stanje, gumb_checker
-000265 940c 028c                 		breq krt4_ven_pravilno_loopx
+000264 1778                      	checker_krt4:
+000265 f0d9                      		cp pinb_stanje, gumb_checker
+000266 940c 028d                 		breq krt4_ven_pravilno_loopx
                                  		jmp krt4_ven_narobe_loopx
-000267 e081                      	ena_v_ena:
-000268 940c 0257                 		ldi gumb_checker, 1
+000268 e081                      	ena_v_ena:
+000269 940c 0258                 		ldi gumb_checker, 1
                                  		jmp checker_krt1
-00026a e082                      	dva_v_tri:
-00026b 940c 025b                 		ldi gumb_checker, 2
+00026b e082                      	dva_v_tri:
+00026c 940c 025c                 		ldi gumb_checker, 2
                                  		jmp checker_krt2
-00026d e084                      	tri_v_stiri:
-00026e 940c 025f                 		ldi gumb_checker, 4
+00026e e084                      	tri_v_stiri:
+00026f 940c 0260                 		ldi gumb_checker, 4
                                  		jmp checker_krt3
-000270 e088                      	stiri_v_osem:
-000271 940c 0263                 		ldi gumb_checker, 8
+000271 e088                      	stiri_v_osem:
+000272 940c 0264                 		ldi gumb_checker, 8
                                  		jmp checker_krt4
-000273 9543                      	tocke_plus:
+000274 9543                      	tocke_plus:
                                  		inc tocke
-000274 954a                      	tocke_minus:
-000275 f0c8                      		dec r20
-000276 954a                      		brcs you_lost_loop
+000275 954a                      	tocke_minus:
+000276 f0c8                      		dec r20
+000277 954a                      		brcs you_lost_loop
                                  		dec r20 
                                  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-000277 940e 0277                 krt1_ven_pravilno_loopx:
-000279 9508                      	call krt1_ven_pravilno_loopx 
+000278 940e 0278                 krt1_ven_pravilno_loopx:
+00027a 9508                      	call krt1_ven_pravilno_loopx 
                                  	ret
-00027a 940e 027a                 krt2_ven_pravilno_loopx:
-00027c 9508                      	call krt2_ven_pravilno_loopx 
+00027b 940e 027b                 krt2_ven_pravilno_loopx:
+00027d 9508                      	call krt2_ven_pravilno_loopx 
                                  	ret
-00027d 940e 027d                 krt3_ven_pravilno_loopx:
-00027f 9508                      	call krt3_ven_pravilno_loopx 
+00027e 940e 027e                 krt3_ven_pravilno_loopx:
+000280 9508                      	call krt3_ven_pravilno_loopx 
                                  	ret
-000280 940e 0280                 krt4_ven_pravilno_loopx:
-000282 9508                      	call krt4_ven_pravilno_loopx 
+000281 940e 0281                 krt4_ven_pravilno_loopx:
+000283 9508                      	call krt4_ven_pravilno_loopx 
                                  	ret
-000283 940e 030b                 krt2_ven_narobe_loopx:
-000285 9508                      	call krt2_ven_narobe_loop
+000284 940e 030c                 krt2_ven_narobe_loopx:
+000286 9508                      	call krt2_ven_narobe_loop
                                  	ret
-000286 940e 0306                 krt1_ven_narobe_loopx:
-000288 9508                      	call krt1_ven_narobe_loop
+000287 940e 0307                 krt1_ven_narobe_loopx:
+000289 9508                      	call krt1_ven_narobe_loop
                                  	ret
-000289 940e 0310                 krt3_ven_narobe_loopx:
-00028b 9508                      	call krt3_ven_narobe_loop
+00028a 940e 0311                 krt3_ven_narobe_loopx:
+00028c 9508                      	call krt3_ven_narobe_loop
                                  	ret
-00028c 940e 0315                 krt4_ven_narobe_loopx:
-00028e 9508                      	call krt4_ven_narobe_loop
+00028d 940e 0316                 krt4_ven_narobe_loopx:
+00028f 9508                      	call krt4_ven_narobe_loop
                                  	ret
                                  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-00028f 940c 031e                 you_lost_loop:
-000291 940e 0293                 	jmp you_lost_screen
+000290 940c 031f                 you_lost_loop:
+000292 940e 0294                 	jmp you_lost_screen
                                  	call loop
-000293 cfff                      	loop:
+000294 cfff                      	loop:
                                  		rjmp loop
                                  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-000294 e24e                      load_tocke:
-000295 940e 029a                 	ldi r20, 46
-000297 940e 02a5                 	call deljenje_r20
-000299 9508                      	call ascii_converter
+000295 e24e                      load_tocke:
+000296 940e 029b                 	ldi r20, 46
+000298 940e 02a6                 	call deljenje_r20
+00029a 9508                      	call ascii_converter
                                  	ret
-00029a 2f54                      	deljenje_r20:
-00029b e0aa                      		mov tocke_to_ascii_enice, r20
-00029c c000                      		ldi temp_reg, 10
+00029b 2f54                      	deljenje_r20:
+00029c e0aa                      		mov tocke_to_ascii_enice, r20
+00029d c000                      		ldi temp_reg, 10
                                  		rjmp deljenje
-00029d 9563                      	deljenje:
-00029e 1b5a                      		inc tocke_to_ascii_desetice
-00029f f010                      		sub tocke_to_ascii_enice, temp_reg
-0002a0 940c 029d                 		brcs rezultat
+00029e 9563                      	deljenje:
+00029f 1b5a                      		inc tocke_to_ascii_desetice
+0002a0 f010                      		sub tocke_to_ascii_enice, temp_reg
+0002a1 940c 029e                 		brcs rezultat
                                  		jmp deljenje
-0002a2 0f5a                      	rezultat:
-0002a3 956a                      		add tocke_to_ascii_enice, temp_reg
-0002a4 9508                      		dec tocke_to_ascii_desetice
+0002a3 0f5a                      	rezultat:
+0002a4 956a                      		add tocke_to_ascii_enice, temp_reg
+0002a5 9508                      		dec tocke_to_ascii_desetice
                                  		ret
-0002a5 e3a0                      	ascii_converter:
-0002a6 0f5a                      		ldi temp_reg, '0'
-0002a7 0f6a                      		add tocke_to_ascii_enice, temp_reg
-0002a8 9508                      		add tocke_to_ascii_desetice, temp_reg
+0002a6 e3a0                      	ascii_converter:
+0002a7 0f5a                      		ldi temp_reg, '0'
+0002a8 0f6a                      		add tocke_to_ascii_enice, temp_reg
+0002a9 9508                      		add tocke_to_ascii_desetice, temp_reg
                                  		ret
                                  
                                  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                  
-0002a9 940c 02ab                 read:
+0002aa 940c 02ac                 read:
                                  	jmp read_r19
-0002ab 9135                      	read_r19:
-0002ac 3030                      		lpm r19, z+
-0002ad f439                      		cpi r19, 0
-0002ae 940c 02b1                 		brne pick_random_krt
-0002b0 9508                      		jmp set_z_reg
+0002ac 9135                      	read_r19:
+0002ad 3030                      		lpm r19, z+
+0002ae f439                      		cpi r19, 0
+0002af 940c 02b2                 		brne pick_random_krt
+0002b1 9508                      		jmp set_z_reg
                                  		ret
-0002b1 e0f4                      	set_z_reg:
-0002b2 e0e0                      		ldi zh, high(load * 2)
-0002b3 940c 02ab                 		ldi zl, low(load * 2)
+0002b2 e0f4                      	set_z_reg:
+0002b3 e0e0                      		ldi zh, high(load * 2)
+0002b4 940c 02ac                 		ldi zl, low(load * 2)
                                  		jmp read_r19
-0002b5 3031                      	pick_random_krt:
-0002b6 f039                      		cpi r19, 1
-0002b7 3032                      		breq krt1_ven_loop
-0002b8 f081                      		cpi r19, 2
-0002b9 3033                      		breq krt2_ven_loop
-0002ba f0c9                      		cpi r19, 3
-0002bb 3034                      		breq krt3_ven_loop
-0002bc f111                      		cpi r19, 4
-0002bd 9508                      		breq krt4_ven_loop
+0002b6 3031                      	pick_random_krt:
+0002b7 f039                      		cpi r19, 1
+0002b8 3032                      		breq krt1_ven_loop
+0002b9 f081                      		cpi r19, 2
+0002ba 3033                      		breq krt2_ven_loop
+0002bb f0c9                      		cpi r19, 3
+0002bc 3034                      		breq krt3_ven_loop
+0002bd f111                      		cpi r19, 4
+0002be 9508                      		breq krt4_ven_loop
                                  		ret
                                  		
                                  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                  /////////////////////////////////////////////// FUNKCIJE ZA PRIKLIC ZASLONOV /////////////////////////////////////////////////////////	
                                  
-0002be 2f83                      krt1_ven_loop:
-0002bf 940c 03cb                 	mov gumb_checker, r19
-0002c1 940e 0805                 	jmp krt1_ven
-0002c3 940e 0805                 	call delay_seconds
-0002c5 940e 0805                 	call delay_seconds
-0002c7 2788                      	call delay_seconds
-0002c8 9508                      	clr gumb_checker
+0002bf 2f83                      krt1_ven_loop:
+0002c0 940c 03cc                 	mov gumb_checker, r19
+0002c2 940e 0806                 	jmp krt1_ven
+0002c4 940e 0806                 	call delay_seconds
+0002c6 940e 0806                 	call delay_seconds
+0002c8 2788                      	call delay_seconds
+0002c9 9508                      	clr gumb_checker
+                                 	ret 
+0002ca 2f83                      krt2_ven_loop:
+0002cb 940c 0430                 	mov gumb_checker, r19
+0002cd 940e 0806                 	jmp krt2_ven
+0002cf 940e 0806                 	call delay_seconds
+0002d1 940e 0806                 	call delay_seconds
+0002d3 2788                      	call delay_seconds
+0002d4 9508                      	clr gumb_checker
                                  	ret
-0002c9 2f83                      krt2_ven_loop:
-0002ca 940c 042f                 	mov gumb_checker, r19
-0002cc 940e 0805                 	jmp krt2_ven
-0002ce 940e 0805                 	call delay_seconds
-0002d0 940e 0805                 	call delay_seconds
-0002d2 2788                      	call delay_seconds
-0002d3 9508                      	clr gumb_checker
+0002d5 2f83                      krt3_ven_loop:
+0002d6 940c 0494                 	mov gumb_checker, r19
+0002d8 940e 0806                 	jmp krt3_ven
+0002da 940e 0806                 	call delay_seconds
+0002dc 940e 0806                 	call delay_seconds
+0002de 2788                      	call delay_seconds
+0002df 9508                      	clr gumb_checker
                                  	ret
-0002d4 2f83                      krt3_ven_loop:
-0002d5 940c 0493                 	mov gumb_checker, r19
-0002d7 940e 0805                 	jmp krt3_ven
-0002d9 940e 0805                 	call delay_seconds
-0002db 940e 0805                 	call delay_seconds
-0002dd 2788                      	call delay_seconds
-0002de 9508                      	clr gumb_checker
-                                 	ret
-0002df 2f83                      krt4_ven_loop:
-0002e0 940c 04f5                 	mov gumb_checker, r19
-0002e2 940e 0805                 	jmp krt4_ven
-0002e4 940e 0805                 	call delay_seconds
-0002e6 940e 0805                 	call delay_seconds
-0002e8 2788                      	call delay_seconds
-0002e9 9508                      	clr gumb_checker
+0002e0 2f83                      krt4_ven_loop:
+0002e1 940c 04f6                 	mov gumb_checker, r19
+0002e3 940e 0806                 	jmp krt4_ven
+0002e5 940e 0806                 	call delay_seconds
+0002e7 940e 0806                 	call delay_seconds
+0002e9 2788                      	call delay_seconds
+0002ea 9508                      	clr gumb_checker
                                  	ret
                                  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-0002ea 940e 0294                 krt1_ven_pravilno_loop:
-0002ec 940c 068d                 	call load_tocke
-0002ee 940e 0805                 	jmp krt1_ven_pravilno
-0002f0 9508                      	call delay_seconds
+0002eb 940e 0295                 krt1_ven_pravilno_loop:
+0002ed 940c 068e                 	call load_tocke
+0002ef 940e 0806                 	jmp krt1_ven_pravilno
+0002f1 9508                      	call delay_seconds
                                  	ret
-0002f1 940e 0294                 krt2_ven_pravilno_loop:
-0002f3 940c 06cb                 	call load_tocke
-0002f5 940e 0805                 	jmp krt2_ven_pravilno
-0002f7 9508                      	call delay_seconds
+0002f2 940e 0295                 krt2_ven_pravilno_loop:
+0002f4 940c 06cc                 	call load_tocke
+0002f6 940e 0806                 	jmp krt2_ven_pravilno
+0002f8 9508                      	call delay_seconds
                                  	ret
-0002f8 940e 0294                 krt3_ven_pravilno_loop:
-0002fa 940c 0714                 	call load_tocke
-0002fc 940e 0805                 	jmp krt3_ven_pravilno
-0002fe 9508                      	call delay_seconds
+0002f9 940e 0295                 krt3_ven_pravilno_loop:
+0002fb 940c 0715                 	call load_tocke
+0002fd 940e 0806                 	jmp krt3_ven_pravilno
+0002ff 9508                      	call delay_seconds
                                  	ret
-0002ff 940e 0294                 krt4_ven_pravilno_loop:
-000301 940c 0766                 	call load_tocke
-000303 940e 0805                 	jmp krt4_ven_pravilno
-000305 9508                      	call delay_seconds
+000300 940e 0295                 krt4_ven_pravilno_loop:
+000302 940c 0767                 	call load_tocke
+000304 940e 0806                 	jmp krt4_ven_pravilno
+000306 9508                      	call delay_seconds
                                  	ret
                                  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-000306 940c 0559                 krt1_ven_narobe_loop:
-000308 940e 0294                 	jmp krt1_ven_narobe
-00030a 9508                      	call load_tocke
+000307 940c 055a                 krt1_ven_narobe_loop:
+000309 940e 0295                 	jmp krt1_ven_narobe
+00030b 9508                      	call load_tocke
                                  	ret
-00030b 940c 0597                 krt2_ven_narobe_loop:
-00030d 940e 0294                 	jmp krt2_ven_narobe
-00030f 9508                      	call load_tocke
+00030c 940c 0598                 krt2_ven_narobe_loop:
+00030e 940e 0295                 	jmp krt2_ven_narobe
+000310 9508                      	call load_tocke
                                  	ret
-000310 940c 05e0                 krt3_ven_narobe_loop:
-000312 940e 0294                 	jmp krt3_ven_narobe
-000314 9508                      	call load_tocke
+000311 940c 05e1                 krt3_ven_narobe_loop:
+000313 940e 0295                 	jmp krt3_ven_narobe
+000315 9508                      	call load_tocke
                                  	ret
-000315 940c 0632                 krt4_ven_narobe_loop:
-000317 940e 0294                 	jmp krt4_ven_narobe
-000319 9508                      	call load_tocke
+000316 940c 0633                 krt4_ven_narobe_loop:
+000318 940e 0295                 	jmp krt4_ven_narobe
+00031a 9508                      	call load_tocke
                                  	ret
                                  
                                  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                  /////////////////////////////////////// TUKAJ SO SLIKE KRTOV IN NJIHOVE FUNKCIJE ////////////////////////////////////////////////
-00031a e001                      lcd_off:
-00031b d4b6                      	ldi   R16, 0x01         ;zbrišemo LCD
-00031c d4e1                          rcall komanda           ;pošlemo komando
-00031d 9508                          rcall delay_ms
+00031b e001                      lcd_off:
+00031c d4b6                      	ldi   R16, 0x01         ;zbrišemo LCD
+00031d d4e1                          rcall komanda           ;pošlemo komando
+00031e 9508                          rcall delay_ms
                                  	ret
                                  
-00031e e200                      you_lost_screen:
-00031f d4c3                      	LDI   R16, ' '
-000320 d4dd                      	RCALL podatki          
-000321 e200                          RCALL delay_ms
-000322 d4c0                      	LDI   R16, ' '
-000323 d4da                      	RCALL podatki          
-000324 e200                          RCALL delay_ms
-000325 d4bd                      	LDI   R16, ' '
-000326 d4d7                      	RCALL podatki          
-000327 e200                          RCALL delay_ms
-000328 d4ba                      	LDI   R16, ' '
-000329 d4d4                      	RCALL podatki          
-00032a e509                          RCALL delay_ms
-00032b d4b7                      	LDI   R16, 'Y'
-00032c d4d1                      	RCALL podatki          
-00032d e40f                          RCALL delay_ms
-00032e d4b4                      	LDI   R16, 'O'
-00032f d4ce                      	RCALL podatki          
-000330 e505                          RCALL delay_ms
-000331 d4b1                      	LDI   R16, 'U'
-000332 d4cb                      	RCALL podatki          
-000333 e200                          RCALL delay_ms
-000334 d4ae                      	LDI   R16, ' '
-000335 d4c8                      	RCALL podatki          
-000336 e40c                          RCALL delay_ms
-000337 d4ab                      	LDI   R16, 'L'
-000338 d4c5                      	RCALL podatki          
-000339 e40f                          RCALL delay_ms
-00033a d4a8                      	LDI   R16, 'O'
-00033b d4c2                      	RCALL podatki          
-00033c e503                          RCALL delay_ms
-00033d d4a5                      	LDI   R16, 'S'
-00033e d4bf                      	RCALL podatki          
-00033f e504                          RCALL delay_ms
-000340 d4a2                      	LDI   R16, 'T'
-000341 d4bc                      	RCALL podatki          
+00031f e200                      you_lost_screen:
+000320 d4c3                      	LDI   R16, ' '
+000321 d4dd                      	RCALL podatki          
+000322 e200                          RCALL delay_ms
+000323 d4c0                      	LDI   R16, ' '
+000324 d4da                      	RCALL podatki          
+000325 e200                          RCALL delay_ms
+000326 d4bd                      	LDI   R16, ' '
+000327 d4d7                      	RCALL podatki          
+000328 e200                          RCALL delay_ms
+000329 d4ba                      	LDI   R16, ' '
+00032a d4d4                      	RCALL podatki          
+00032b e509                          RCALL delay_ms
+00032c d4b7                      	LDI   R16, 'Y'
+00032d d4d1                      	RCALL podatki          
+00032e e40f                          RCALL delay_ms
+00032f d4b4                      	LDI   R16, 'O'
+000330 d4ce                      	RCALL podatki          
+000331 e505                          RCALL delay_ms
+000332 d4b1                      	LDI   R16, 'U'
+000333 d4cb                      	RCALL podatki          
+000334 e200                          RCALL delay_ms
+000335 d4ae                      	LDI   R16, ' '
+000336 d4c8                      	RCALL podatki          
+000337 e40c                          RCALL delay_ms
+000338 d4ab                      	LDI   R16, 'L'
+000339 d4c5                      	RCALL podatki          
+00033a e40f                          RCALL delay_ms
+00033b d4a8                      	LDI   R16, 'O'
+00033c d4c2                      	RCALL podatki          
+00033d e503                          RCALL delay_ms
+00033e d4a5                      	LDI   R16, 'S'
+00033f d4bf                      	RCALL podatki          
+000340 e504                          RCALL delay_ms
+000341 d4a2                      	LDI   R16, 'T'
+000342 d4bc                      	RCALL podatki          
                                      RCALL delay_ms
-000342 ec00                      	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-000343 d48e                      	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
-000344 d4b9                          RCALL komanda
+000343 ec00                      	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+000344 d48e                      	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
+000345 d4b9                          RCALL komanda
                                      RCALL delay_ms
-000345 e200                      	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-000346 d49c                      	LDI   R16, ' '
-000347 d4b6                      	RCALL podatki          
-000348 e200                          RCALL delay_ms
-000349 d499                      	LDI   R16, ' '
-00034a d4b3                      	RCALL podatki          
-00034b e200                          RCALL delay_ms
-00034c d496                      	LDI   R16, ' '
-00034d d4b0                      	RCALL podatki          
-00034e e200                          RCALL delay_ms
-00034f d493                      	LDI   R16, ' '
-000350 d4ad                      	RCALL podatki          
-000351 e200                          RCALL delay_ms
-000352 d490                      	LDI   R16, ' '
-000353 d4aa                      	RCALL podatki          
-000354 e40c                          RCALL delay_ms
-000355 d48d                      	LDI   R16, 'L'
-000356 d4a7                      	RCALL podatki          
-000357 e40f                          RCALL delay_ms
-000358 d48a                      	LDI   R16, 'O'
-000359 d4a4                      	RCALL podatki          
-00035a e40f                          RCALL delay_ms
-00035b d487                      	LDI   R16, 'O'
-00035c d4a1                      	RCALL podatki          
-00035d e503                          RCALL delay_ms
-00035e d484                      	LDI   R16, 'S'
-00035f d49e                      	RCALL podatki          
-000360 e405                          RCALL delay_ms
-000361 d481                      	LDI   R16, 'E'
-000362 d49b                      	RCALL podatki          
-000363 e502                          RCALL delay_ms
-000364 d47e                      	LDI   R16, 'R'
-000365 d498                      	RCALL podatki          
-000366 9508                          RCALL delay_ms
+000346 e200                      	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+000347 d49c                      	LDI   R16, ' '
+000348 d4b6                      	RCALL podatki          
+000349 e200                          RCALL delay_ms
+00034a d499                      	LDI   R16, ' '
+00034b d4b3                      	RCALL podatki          
+00034c e200                          RCALL delay_ms
+00034d d496                      	LDI   R16, ' '
+00034e d4b0                      	RCALL podatki          
+00034f e200                          RCALL delay_ms
+000350 d493                      	LDI   R16, ' '
+000351 d4ad                      	RCALL podatki          
+000352 e200                          RCALL delay_ms
+000353 d490                      	LDI   R16, ' '
+000354 d4aa                      	RCALL podatki          
+000355 e40c                          RCALL delay_ms
+000356 d48d                      	LDI   R16, 'L'
+000357 d4a7                      	RCALL podatki          
+000358 e40f                          RCALL delay_ms
+000359 d48a                      	LDI   R16, 'O'
+00035a d4a4                      	RCALL podatki          
+00035b e40f                          RCALL delay_ms
+00035c d487                      	LDI   R16, 'O'
+00035d d4a1                      	RCALL podatki          
+00035e e503                          RCALL delay_ms
+00035f d484                      	LDI   R16, 'S'
+000360 d49e                      	RCALL podatki          
+000361 e405                          RCALL delay_ms
+000362 d481                      	LDI   R16, 'E'
+000363 d49b                      	RCALL podatki          
+000364 e502                          RCALL delay_ms
+000365 d47e                      	LDI   R16, 'R'
+000366 d498                      	RCALL podatki          
+000367 9508                          RCALL delay_ms
                                  	ret
                                  
-000367 e200                      display1:
-000368 d47a                      	LDI   R16, ' '
-000369 d494                      	RCALL podatki          
-00036a e200                          RCALL delay_ms
-00036b d477                      	LDI   R16, ' '
-00036c d491                      	RCALL podatki          
-00036d e200                          RCALL delay_ms
-00036e d474                      	LDI   R16, ' '
-00036f d48e                      	RCALL podatki          
-000370 e200                          RCALL delay_ms
-000371 d471                      	LDI   R16, ' '
-000372 d48b                      	RCALL podatki          
-000373 e200                          RCALL delay_ms
-000374 d46e                      	LDI   R16, ' '
-000375 d488                      	RCALL podatki          
-000376 e200                          RCALL delay_ms
-000377 d46b                      	LDI   R16, ' '
-000378 d485                      	RCALL podatki          
-000379 e200                          RCALL delay_ms
-00037a d468                      	LDI   R16, ' '
-00037b d482                      	RCALL podatki          
-00037c e200                          RCALL delay_ms
-00037d d465                      	LDI   R16, ' '
-00037e d47f                      	RCALL podatki          
-00037f e200                          RCALL delay_ms
-000380 d462                      	LDI   R16, ' '
-000381 d47c                      	RCALL podatki          
-000382 e200                          RCALL delay_ms
-000383 d45f                      	LDI   R16, ' '
-000384 d479                      	RCALL podatki          
-000385 e200                          RCALL delay_ms
-000386 d45c                      	LDI   R16, ' '
-000387 d476                      	RCALL podatki          
-000388 e200                          RCALL delay_ms
-000389 d459                      	LDI   R16, ' '
-00038a d473                      	RCALL podatki          
-00038b e200                          RCALL delay_ms
-00038c d456                      	LDI   R16, ' '
-00038d d470                      	RCALL podatki          
-00038e e200                          RCALL delay_ms
-00038f d453                      	LDI   R16, ' '
-000390 d46d                      	RCALL podatki          
-000391 e200                          RCALL delay_ms
-000392 d450                      	LDI   R16, ' '
-000393 d46a                      	RCALL podatki          
-000394 e200                          RCALL delay_ms
-000395 d44d                      	LDI   R16, ' '
-000396 d467                      	RCALL podatki          
+000368 e200                      display1:
+000369 d47a                      	LDI   R16, ' '
+00036a d494                      	RCALL podatki          
+00036b e200                          RCALL delay_ms
+00036c d477                      	LDI   R16, ' '
+00036d d491                      	RCALL podatki          
+00036e e200                          RCALL delay_ms
+00036f d474                      	LDI   R16, ' '
+000370 d48e                      	RCALL podatki          
+000371 e200                          RCALL delay_ms
+000372 d471                      	LDI   R16, ' '
+000373 d48b                      	RCALL podatki          
+000374 e200                          RCALL delay_ms
+000375 d46e                      	LDI   R16, ' '
+000376 d488                      	RCALL podatki          
+000377 e200                          RCALL delay_ms
+000378 d46b                      	LDI   R16, ' '
+000379 d485                      	RCALL podatki          
+00037a e200                          RCALL delay_ms
+00037b d468                      	LDI   R16, ' '
+00037c d482                      	RCALL podatki          
+00037d e200                          RCALL delay_ms
+00037e d465                      	LDI   R16, ' '
+00037f d47f                      	RCALL podatki          
+000380 e200                          RCALL delay_ms
+000381 d462                      	LDI   R16, ' '
+000382 d47c                      	RCALL podatki          
+000383 e200                          RCALL delay_ms
+000384 d45f                      	LDI   R16, ' '
+000385 d479                      	RCALL podatki          
+000386 e200                          RCALL delay_ms
+000387 d45c                      	LDI   R16, ' '
+000388 d476                      	RCALL podatki          
+000389 e200                          RCALL delay_ms
+00038a d459                      	LDI   R16, ' '
+00038b d473                      	RCALL podatki          
+00038c e200                          RCALL delay_ms
+00038d d456                      	LDI   R16, ' '
+00038e d470                      	RCALL podatki          
+00038f e200                          RCALL delay_ms
+000390 d453                      	LDI   R16, ' '
+000391 d46d                      	RCALL podatki          
+000392 e200                          RCALL delay_ms
+000393 d450                      	LDI   R16, ' '
+000394 d46a                      	RCALL podatki          
+000395 e200                          RCALL delay_ms
+000396 d44d                      	LDI   R16, ' '
+000397 d467                      	RCALL podatki          
                                      RCALL delay_ms
-000397 ec00                      	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-000398 d439                      	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
-000399 d464                          RCALL komanda
+000398 ec00                      	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+000399 d439                      	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
+00039a d464                          RCALL komanda
                                      RCALL delay_ms
-00039a e505                      	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-00039b d447                      	LDI   R16, 'U'
-00039c d461                      	RCALL podatki          
-00039d e200                          RCALL delay_ms
-00039e d444                      	LDI   R16, ' '
-00039f d45e                      	RCALL podatki          
-0003a0 e200                          RCALL delay_ms
-0003a1 d441                      	LDI   R16, ' '
-0003a2 d45b                      	RCALL podatki          
-0003a3 e505                          RCALL delay_ms
-0003a4 d43e                      	LDI   R16, 'U'
-0003a5 d458                      	RCALL podatki          
-0003a6 e200                          RCALL delay_ms
-0003a7 d43b                      	LDI   R16, ' '
-0003a8 d455                      	RCALL podatki          
-0003a9 e200                          RCALL delay_ms
-0003aa d438                      	LDI   R16, ' '
-0003ab d452                      	RCALL podatki          
-0003ac e505                          RCALL delay_ms
-0003ad d435                      	LDI   R16, 'U'
-0003ae d44f                      	RCALL podatki          
-0003af e200                          RCALL delay_ms
-0003b0 d432                      	LDI   R16, ' '
-0003b1 d44c                      	RCALL podatki          
-0003b2 e200                          RCALL delay_ms
-0003b3 d42f                      	LDI   R16, ' '
-0003b4 d449                      	RCALL podatki          
-0003b5 e505                          RCALL delay_ms
-0003b6 d42c                      	LDI   R16, 'U'
-0003b7 d446                      	RCALL podatki          
-0003b8 e200                          RCALL delay_ms
-0003b9 d429                      	LDI   R16, ' '
-0003ba d443                      	RCALL podatki          
-0003bb e200                          RCALL delay_ms
-0003bc d426                      	LDI   R16, ' '
-0003bd d440                      	RCALL podatki          
-0003be e200                          RCALL delay_ms
-0003bf d423                      	LDI   R16, ' '
-0003c0 d43d                      	RCALL podatki          
-0003c1 e200                          RCALL delay_ms
-0003c2 d420                      	LDI   R16, ' '
-0003c3 d43a                      	RCALL podatki          
-0003c4 2f06                          RCALL delay_ms
-0003c5 d41d                      	mov   R16, tocke_to_ascii_desetice
-0003c6 d437                      	RCALL podatki          
-0003c7 2f05                          RCALL delay_ms
-0003c8 d41a                      	mov   R16, tocke_to_ascii_enice
-0003c9 d434                      	RCALL podatki          
-0003ca 9508                          RCALL delay_ms
+00039b e505                      	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+00039c d447                      	LDI   R16, 'U'
+00039d d461                      	RCALL podatki          
+00039e e200                          RCALL delay_ms
+00039f d444                      	LDI   R16, ' '
+0003a0 d45e                      	RCALL podatki          
+0003a1 e200                          RCALL delay_ms
+0003a2 d441                      	LDI   R16, ' '
+0003a3 d45b                      	RCALL podatki          
+0003a4 e505                          RCALL delay_ms
+0003a5 d43e                      	LDI   R16, 'U'
+0003a6 d458                      	RCALL podatki          
+0003a7 e200                          RCALL delay_ms
+0003a8 d43b                      	LDI   R16, ' '
+0003a9 d455                      	RCALL podatki          
+0003aa e200                          RCALL delay_ms
+0003ab d438                      	LDI   R16, ' '
+0003ac d452                      	RCALL podatki          
+0003ad e505                          RCALL delay_ms
+0003ae d435                      	LDI   R16, 'U'
+0003af d44f                      	RCALL podatki          
+0003b0 e200                          RCALL delay_ms
+0003b1 d432                      	LDI   R16, ' '
+0003b2 d44c                      	RCALL podatki          
+0003b3 e200                          RCALL delay_ms
+0003b4 d42f                      	LDI   R16, ' '
+0003b5 d449                      	RCALL podatki          
+0003b6 e505                          RCALL delay_ms
+0003b7 d42c                      	LDI   R16, 'U'
+0003b8 d446                      	RCALL podatki          
+0003b9 e200                          RCALL delay_ms
+0003ba d429                      	LDI   R16, ' '
+0003bb d443                      	RCALL podatki          
+0003bc e200                          RCALL delay_ms
+0003bd d426                      	LDI   R16, ' '
+0003be d440                      	RCALL podatki          
+0003bf e200                          RCALL delay_ms
+0003c0 d423                      	LDI   R16, ' '
+0003c1 d43d                      	RCALL podatki          
+0003c2 e200                          RCALL delay_ms
+0003c3 d420                      	LDI   R16, ' '
+0003c4 d43a                      	RCALL podatki          
+0003c5 2f06                          RCALL delay_ms
+0003c6 d41d                      	mov   R16, tocke_to_ascii_desetice
+0003c7 d437                      	RCALL podatki          
+0003c8 2f05                          RCALL delay_ms
+0003c9 d41a                      	mov   R16, tocke_to_ascii_enice
+0003ca d434                      	RCALL podatki          
+0003cb 9508                          RCALL delay_ms
                                  	ret
                                  
-0003cb e40f                      krt1_ven:
-0003cc d416                      	LDI   R16, 'O'
-0003cd d430                      	RCALL podatki          
-0003ce e200                          RCALL delay_ms
-0003cf d413                      	LDI   R16, ' '
-0003d0 d42d                      	RCALL podatki          
-0003d1 e200                          RCALL delay_ms
-0003d2 d410                      	LDI   R16, ' '
-0003d3 d42a                      	RCALL podatki          
-0003d4 e200                          RCALL delay_ms
-0003d5 d40d                      	LDI   R16, ' '
-0003d6 d427                      	RCALL podatki          
-0003d7 e200                          RCALL delay_ms
-0003d8 d40a                      	LDI   R16, ' '
-0003d9 d424                      	RCALL podatki          
-0003da e200                          RCALL delay_ms
-0003db d407                      	LDI   R16, ' '
-0003dc d421                      	RCALL podatki          
-0003dd e200                          RCALL delay_ms
-0003de d404                      	LDI   R16, ' '
-0003df d41e                      	RCALL podatki          
-0003e0 e200                          RCALL delay_ms
-0003e1 d401                      	LDI   R16, ' '
-0003e2 d41b                      	RCALL podatki          
-0003e3 e200                          RCALL delay_ms
-0003e4 d3fe                      	LDI   R16, ' '
-0003e5 d418                      	RCALL podatki          
-0003e6 e200                          RCALL delay_ms
-0003e7 d3fb                      	LDI   R16, ' '
-0003e8 d415                      	RCALL podatki          
-0003e9 e200                          RCALL delay_ms
-0003ea d3f8                      	LDI   R16, ' '
-0003eb d412                      	RCALL podatki          
-0003ec e200                          RCALL delay_ms
-0003ed d3f5                      	LDI   R16, ' '
-0003ee d40f                      	RCALL podatki          
-0003ef e200                          RCALL delay_ms
-0003f0 d3f2                      	LDI   R16, ' '
-0003f1 d40c                      	RCALL podatki          
-0003f2 e200                          RCALL delay_ms
-0003f3 d3ef                      	LDI   R16, ' '
-0003f4 d409                      	RCALL podatki          
-0003f5 e200                          RCALL delay_ms
-0003f6 d3ec                      	LDI   R16, ' '
-0003f7 d406                      	RCALL podatki          
-0003f8 e200                          RCALL delay_ms
-0003f9 d3e9                      	LDI   R16, ' '
-0003fa d403                      	RCALL podatki          
+0003cc e40f                      krt1_ven:
+0003cd d416                      	LDI   R16, 'O'
+0003ce d430                      	RCALL podatki          
+0003cf e200                          RCALL delay_ms
+0003d0 d413                      	LDI   R16, ' '
+0003d1 d42d                      	RCALL podatki          
+0003d2 e200                          RCALL delay_ms
+0003d3 d410                      	LDI   R16, ' '
+0003d4 d42a                      	RCALL podatki          
+0003d5 e200                          RCALL delay_ms
+0003d6 d40d                      	LDI   R16, ' '
+0003d7 d427                      	RCALL podatki          
+0003d8 e200                          RCALL delay_ms
+0003d9 d40a                      	LDI   R16, ' '
+0003da d424                      	RCALL podatki          
+0003db e200                          RCALL delay_ms
+0003dc d407                      	LDI   R16, ' '
+0003dd d421                      	RCALL podatki          
+0003de e200                          RCALL delay_ms
+0003df d404                      	LDI   R16, ' '
+0003e0 d41e                      	RCALL podatki          
+0003e1 e200                          RCALL delay_ms
+0003e2 d401                      	LDI   R16, ' '
+0003e3 d41b                      	RCALL podatki          
+0003e4 e200                          RCALL delay_ms
+0003e5 d3fe                      	LDI   R16, ' '
+0003e6 d418                      	RCALL podatki          
+0003e7 e200                          RCALL delay_ms
+0003e8 d3fb                      	LDI   R16, ' '
+0003e9 d415                      	RCALL podatki          
+0003ea e200                          RCALL delay_ms
+0003eb d3f8                      	LDI   R16, ' '
+0003ec d412                      	RCALL podatki          
+0003ed e200                          RCALL delay_ms
+0003ee d3f5                      	LDI   R16, ' '
+0003ef d40f                      	RCALL podatki          
+0003f0 e200                          RCALL delay_ms
+0003f1 d3f2                      	LDI   R16, ' '
+0003f2 d40c                      	RCALL podatki          
+0003f3 e200                          RCALL delay_ms
+0003f4 d3ef                      	LDI   R16, ' '
+0003f5 d409                      	RCALL podatki          
+0003f6 e200                          RCALL delay_ms
+0003f7 d3ec                      	LDI   R16, ' '
+0003f8 d406                      	RCALL podatki          
+0003f9 e200                          RCALL delay_ms
+0003fa d3e9                      	LDI   R16, ' '
+0003fb d403                      	RCALL podatki          
                                      RCALL delay_ms
-0003fb ec00                      	////////////////////////////////////
-0003fc d3d5                      	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
-0003fd d400                          RCALL komanda
+0003fc ec00                      	////////////////////////////////////
+0003fd d3d5                      	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
+0003fe d400                          RCALL komanda
                                      RCALL delay_ms
-0003fe e505                      	///////////////////////////////////
-0003ff d3e3                      	LDI   R16, 'U'
-000400 d3fd                      	RCALL podatki          
-000401 e200                          RCALL delay_ms
-000402 d3e0                      	LDI   R16, ' '
-000403 d3fa                      	RCALL podatki          
-000404 e200                          RCALL delay_ms
-000405 d3dd                      	LDI   R16, ' '
-000406 d3f7                      	RCALL podatki          
-000407 e505                          RCALL delay_ms
-000408 d3da                      	LDI   R16, 'U'
-000409 d3f4                      	RCALL podatki          
-00040a e200                          RCALL delay_ms
-00040b d3d7                      	LDI   R16, ' '
-00040c d3f1                      	RCALL podatki          
-00040d e200                          RCALL delay_ms
-00040e d3d4                      	LDI   R16, ' '
-00040f d3ee                      	RCALL podatki          
-000410 e505                          RCALL delay_ms
-000411 d3d1                      	LDI   R16, 'U'
-000412 d3eb                      	RCALL podatki          
-000413 e200                          RCALL delay_ms
-000414 d3ce                      	LDI   R16, ' '
-000415 d3e8                      	RCALL podatki          
-000416 e200                          RCALL delay_ms
-000417 d3cb                      	LDI   R16, ' '
-000418 d3e5                      	RCALL podatki          
-000419 e505                          RCALL delay_ms
-00041a d3c8                      	LDI   R16, 'U'
-00041b d3e2                      	RCALL podatki          
-00041c e200                          RCALL delay_ms
-00041d d3c5                      	LDI   R16, ' '
-00041e d3df                      	RCALL podatki          
-00041f e200                          RCALL delay_ms
-000420 d3c2                      	LDI   R16, ' '
-000421 d3dc                      	RCALL podatki          
-000422 e200                          RCALL delay_ms
-000423 d3bf                      	LDI   R16, ' '
-000424 d3d9                      	RCALL podatki          
-000425 e200                          RCALL delay_ms
-000426 d3bc                      	LDI   R16, ' '
-000427 d3d6                      	RCALL podatki          
-000428 2f06                          RCALL delay_ms
-000429 d3b9                      	mov   R16, tocke_to_ascii_desetice
-00042a d3d3                      	RCALL podatki          
-00042b 2f05                          RCALL delay_ms
-00042c d3b6                      	mov   R16, tocke_to_ascii_enice
-00042d d3d0                      	RCALL podatki          
-00042e 9508                          RCALL delay_ms
+0003ff e505                      	///////////////////////////////////
+000400 d3e3                      	LDI   R16, 'U'
+000401 d3fd                      	RCALL podatki          
+000402 e200                          RCALL delay_ms
+000403 d3e0                      	LDI   R16, ' '
+000404 d3fa                      	RCALL podatki          
+000405 e200                          RCALL delay_ms
+000406 d3dd                      	LDI   R16, ' '
+000407 d3f7                      	RCALL podatki          
+000408 e505                          RCALL delay_ms
+000409 d3da                      	LDI   R16, 'U'
+00040a d3f4                      	RCALL podatki          
+00040b e200                          RCALL delay_ms
+00040c d3d7                      	LDI   R16, ' '
+00040d d3f1                      	RCALL podatki          
+00040e e200                          RCALL delay_ms
+00040f d3d4                      	LDI   R16, ' '
+000410 d3ee                      	RCALL podatki          
+000411 e505                          RCALL delay_ms
+000412 d3d1                      	LDI   R16, 'U'
+000413 d3eb                      	RCALL podatki          
+000414 e200                          RCALL delay_ms
+000415 d3ce                      	LDI   R16, ' '
+000416 d3e8                      	RCALL podatki          
+000417 e200                          RCALL delay_ms
+000418 d3cb                      	LDI   R16, ' '
+000419 d3e5                      	RCALL podatki          
+00041a e505                          RCALL delay_ms
+00041b d3c8                      	LDI   R16, 'U'
+00041c d3e2                      	RCALL podatki          
+00041d e200                          RCALL delay_ms
+00041e d3c5                      	LDI   R16, ' '
+00041f d3df                      	RCALL podatki          
+000420 e200                          RCALL delay_ms
+000421 d3c2                      	LDI   R16, ' '
+000422 d3dc                      	RCALL podatki          
+000423 e200                          RCALL delay_ms
+000424 d3bf                      	LDI   R16, ' '
+000425 d3d9                      	RCALL podatki          
+000426 e200                          RCALL delay_ms
+000427 d3bc                      	LDI   R16, ' '
+000428 d3d6                      	RCALL podatki          
+000429 2f06                          RCALL delay_ms
+00042a d3b9                      	mov   R16, tocke_to_ascii_desetice
+00042b d3d3                      	RCALL podatki          
+00042c 2f05                          RCALL delay_ms
+00042d d3b6                      	mov   R16, tocke_to_ascii_enice
+00042e d3d0                      	RCALL podatki          
+00042f 9508                          RCALL delay_ms
                                  	ret
                                  
-00042f e200                      krt2_ven:
-000430 d3b2                      	LDI   R16, ' '
-000431 d3cc                      	RCALL podatki          
-000432 e200                          RCALL delay_ms
-000433 d3af                      	LDI   R16, ' '
-000434 d3c9                      	RCALL podatki          
-000435 e200                          RCALL delay_ms
-000436 d3ac                      	LDI   R16, ' '
-000437 d3c6                      	RCALL podatki          
-000438 e40f                          RCALL delay_ms
-000439 d3a9                      	LDI   R16, 'O'
-00043a d3c3                      	RCALL podatki          
-00043b e200                          RCALL delay_ms
-00043c d3a6                      	LDI   R16, ' '
-00043d d3c0                      	RCALL podatki          
-00043e e200                          RCALL delay_ms
-00043f d3a3                      	LDI   R16, ' '
-000440 d3bd                      	RCALL podatki          
-000441 e200                          RCALL delay_ms
-000442 d3a0                      	LDI   R16, ' '
-000443 d3ba                      	RCALL podatki          
-000444 e200                          RCALL delay_ms
-000445 d39d                      	LDI   R16, ' '
-000446 d3b7                      	RCALL podatki          
-000447 e200                          RCALL delay_ms
-000448 d39a                      	LDI   R16, ' '
-000449 d3b4                      	RCALL podatki          
-00044a e200                          RCALL delay_ms
-00044b d397                      	LDI   R16, ' '
-00044c d3b1                      	RCALL podatki          
-00044d e200                          RCALL delay_ms
-00044e d394                      	LDI   R16, ' '
-00044f d3ae                      	RCALL podatki          
-000450 e200                          RCALL delay_ms
-000451 d391                      	LDI   R16, ' '
-000452 d3ab                      	RCALL podatki          
-000453 e200                          RCALL delay_ms
-000454 d38e                      	LDI   R16, ' '
-000455 d3a8                      	RCALL podatki          
-000456 e200                          RCALL delay_ms
-000457 d38b                      	LDI   R16, ' '
-000458 d3a5                      	RCALL podatki          
-000459 e200                          RCALL delay_ms
-00045a d388                      	LDI   R16, ' '
-00045b d3a2                      	RCALL podatki          
-00045c e200                          RCALL delay_ms
-00045d d385                      	LDI   R16, ' '
-00045e d39f                      	RCALL podatki          
+000430 e200                      krt2_ven:
+000431 d3b2                      	LDI   R16, ' '
+000432 d3cc                      	RCALL podatki          
+000433 e200                          RCALL delay_ms
+000434 d3af                      	LDI   R16, ' '
+000435 d3c9                      	RCALL podatki          
+000436 e200                          RCALL delay_ms
+000437 d3ac                      	LDI   R16, ' '
+000438 d3c6                      	RCALL podatki          
+000439 e40f                          RCALL delay_ms
+00043a d3a9                      	LDI   R16, 'O'
+00043b d3c3                      	RCALL podatki          
+00043c e200                          RCALL delay_ms
+00043d d3a6                      	LDI   R16, ' '
+00043e d3c0                      	RCALL podatki          
+00043f e200                          RCALL delay_ms
+000440 d3a3                      	LDI   R16, ' '
+000441 d3bd                      	RCALL podatki          
+000442 e200                          RCALL delay_ms
+000443 d3a0                      	LDI   R16, ' '
+000444 d3ba                      	RCALL podatki          
+000445 e200                          RCALL delay_ms
+000446 d39d                      	LDI   R16, ' '
+000447 d3b7                      	RCALL podatki          
+000448 e200                          RCALL delay_ms
+000449 d39a                      	LDI   R16, ' '
+00044a d3b4                      	RCALL podatki          
+00044b e200                          RCALL delay_ms
+00044c d397                      	LDI   R16, ' '
+00044d d3b1                      	RCALL podatki          
+00044e e200                          RCALL delay_ms
+00044f d394                      	LDI   R16, ' '
+000450 d3ae                      	RCALL podatki          
+000451 e200                          RCALL delay_ms
+000452 d391                      	LDI   R16, ' '
+000453 d3ab                      	RCALL podatki          
+000454 e200                          RCALL delay_ms
+000455 d38e                      	LDI   R16, ' '
+000456 d3a8                      	RCALL podatki          
+000457 e200                          RCALL delay_ms
+000458 d38b                      	LDI   R16, ' '
+000459 d3a5                      	RCALL podatki          
+00045a e200                          RCALL delay_ms
+00045b d388                      	LDI   R16, ' '
+00045c d3a2                      	RCALL podatki          
+00045d e200                          RCALL delay_ms
+00045e d385                      	LDI   R16, ' '
+00045f d39f                      	RCALL podatki          
                                      RCALL delay_ms
-00045f ec00                      	////////////////////////////////////
-000460 d371                      	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
-000461 d39c                          RCALL komanda
+000460 ec00                      	////////////////////////////////////
+000461 d371                      	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
+000462 d39c                          RCALL komanda
                                      RCALL delay_ms
-000462 e505                      	///////////////////////////////////
-000463 d37f                      	LDI   R16, 'U'
-000464 d399                      	RCALL podatki          
-000465 e200                          RCALL delay_ms
-000466 d37c                      	LDI   R16, ' '
-000467 d396                      	RCALL podatki          
-000468 e200                          RCALL delay_ms
-000469 d379                      	LDI   R16, ' '
-00046a d393                      	RCALL podatki          
-00046b e505                          RCALL delay_ms
-00046c d376                      	LDI   R16, 'U'
-00046d d390                      	RCALL podatki          
-00046e e200                          RCALL delay_ms
-00046f d373                      	LDI   R16, ' '
-000470 d38d                      	RCALL podatki          
-000471 e200                          RCALL delay_ms
-000472 d370                      	LDI   R16, ' '
-000473 d38a                      	RCALL podatki          
-000474 e505                          RCALL delay_ms
-000475 d36d                      	LDI   R16, 'U'
-000476 d387                      	RCALL podatki          
-000477 e200                          RCALL delay_ms
-000478 d36a                      	LDI   R16, ' '
-000479 d384                      	RCALL podatki          
-00047a e200                          RCALL delay_ms
-00047b d367                      	LDI   R16, ' '
-00047c d381                      	RCALL podatki          
-00047d e505                          RCALL delay_ms
-00047e d364                      	LDI   R16, 'U'
-00047f d37e                      	RCALL podatki          
-000480 e200                          RCALL delay_ms
-000481 d361                      	LDI   R16, ' '
-000482 d37b                      	RCALL podatki          
-000483 e200                          RCALL delay_ms
-000484 d35e                      	LDI   R16, ' '
-000485 d378                      	RCALL podatki          
-000486 e200                          RCALL delay_ms
-000487 d35b                      	LDI   R16, ' '
-000488 d375                      	RCALL podatki          
-000489 e200                          RCALL delay_ms
-00048a d358                      	LDI   R16, ' '
-00048b d372                      	RCALL podatki          
-00048c 2f06                          RCALL delay_ms
-00048d d355                      	mov   R16, tocke_to_ascii_desetice
-00048e d36f                      	RCALL podatki          
-00048f 2f05                          RCALL delay_ms
-000490 d352                      	mov   R16, tocke_to_ascii_enice
-000491 d36c                      	RCALL podatki          
-000492 9508                          RCALL delay_ms
+000463 e505                      	///////////////////////////////////
+000464 d37f                      	LDI   R16, 'U'
+000465 d399                      	RCALL podatki          
+000466 e200                          RCALL delay_ms
+000467 d37c                      	LDI   R16, ' '
+000468 d396                      	RCALL podatki          
+000469 e200                          RCALL delay_ms
+00046a d379                      	LDI   R16, ' '
+00046b d393                      	RCALL podatki          
+00046c e505                          RCALL delay_ms
+00046d d376                      	LDI   R16, 'U'
+00046e d390                      	RCALL podatki          
+00046f e200                          RCALL delay_ms
+000470 d373                      	LDI   R16, ' '
+000471 d38d                      	RCALL podatki          
+000472 e200                          RCALL delay_ms
+000473 d370                      	LDI   R16, ' '
+000474 d38a                      	RCALL podatki          
+000475 e505                          RCALL delay_ms
+000476 d36d                      	LDI   R16, 'U'
+000477 d387                      	RCALL podatki          
+000478 e200                          RCALL delay_ms
+000479 d36a                      	LDI   R16, ' '
+00047a d384                      	RCALL podatki          
+00047b e200                          RCALL delay_ms
+00047c d367                      	LDI   R16, ' '
+00047d d381                      	RCALL podatki          
+00047e e505                          RCALL delay_ms
+00047f d364                      	LDI   R16, 'U'
+000480 d37e                      	RCALL podatki          
+000481 e200                          RCALL delay_ms
+000482 d361                      	LDI   R16, ' '
+000483 d37b                      	RCALL podatki          
+000484 e200                          RCALL delay_ms
+000485 d35e                      	LDI   R16, ' '
+000486 d378                      	RCALL podatki          
+000487 e200                          RCALL delay_ms
+000488 d35b                      	LDI   R16, ' '
+000489 d375                      	RCALL podatki          
+00048a e200                          RCALL delay_ms
+00048b d358                      	LDI   R16, ' '
+00048c d372                      	RCALL podatki          
+00048d 2f06                          RCALL delay_ms
+00048e d355                      	mov   R16, tocke_to_ascii_desetice
+00048f d36f                      	RCALL podatki          
+000490 2f05                          RCALL delay_ms
+000491 d352                      	mov   R16, tocke_to_ascii_enice
+000492 d36c                      	RCALL podatki          
+000493 9508                          RCALL delay_ms
                                  	ret
                                  
-000493 e200                      krt3_ven:
-000494 d34e                      	LDI   R16, ' '
-000495 d368                      	RCALL podatki          
-000496 e200                          RCALL delay_ms
-000497 d34b                      	LDI   R16, ' '
-000498 d365                      	RCALL podatki          
-000499 e200                          RCALL delay_ms
-00049a d348                      	LDI   R16, ' '
-00049b d362                      	RCALL podatki          
-00049c e200                          RCALL delay_ms
-00049d d345                      	LDI   R16, ' '
-00049e d35f                      	RCALL podatki          
-00049f e200                          RCALL delay_ms
-0004a0 d342                      	LDI   R16, ' '
-0004a1 d35c                      	RCALL podatki          
-0004a2 e200                          RCALL delay_ms
-0004a3 d33f                      	LDI   R16, ' '
-0004a4 d359                      	RCALL podatki          
-0004a5 e40f                          RCALL delay_ms
-0004a6 d33c                      	LDI   R16, 'O'
-0004a7 d356                      	RCALL podatki          
-0004a8 e200                          RCALL delay_ms
-0004a9 d339                      	LDI   R16, ' '
-0004aa d353                      	RCALL podatki          
-0004ab e200                          RCALL delay_ms
-0004ac d336                      	LDI   R16, ' '
-0004ad d350                      	RCALL podatki          
-0004ae e200                          RCALL delay_ms
-0004af d333                      	LDI   R16, ' '
-0004b0 d34d                      	RCALL podatki          
-0004b1 e200                          RCALL delay_ms
-0004b2 d330                      	LDI   R16, ' '
-0004b3 d34a                      	RCALL podatki          
-0004b4 e200                          RCALL delay_ms
-0004b5 d32d                      	LDI   R16, ' '
-0004b6 d347                      	RCALL podatki          
-0004b7 e200                          RCALL delay_ms
-0004b8 d32a                      	LDI   R16, ' '
-0004b9 d344                      	RCALL podatki          
-0004ba e200                          RCALL delay_ms
-0004bb d327                      	LDI   R16, ' '
-0004bc d341                      	RCALL podatki          
-0004bd e200                          RCALL delay_ms
-0004be d324                      	LDI   R16, ' '
-0004bf d33e                      	RCALL podatki          
-0004c0 e200                          RCALL delay_ms
-0004c1 d321                      	LDI   R16, ' '
-0004c2 d33b                      	RCALL podatki          
+000494 e200                      krt3_ven:
+000495 d34e                      	LDI   R16, ' '
+000496 d368                      	RCALL podatki          
+000497 e200                          RCALL delay_ms
+000498 d34b                      	LDI   R16, ' '
+000499 d365                      	RCALL podatki          
+00049a e200                          RCALL delay_ms
+00049b d348                      	LDI   R16, ' '
+00049c d362                      	RCALL podatki          
+00049d e200                          RCALL delay_ms
+00049e d345                      	LDI   R16, ' '
+00049f d35f                      	RCALL podatki          
+0004a0 e200                          RCALL delay_ms
+0004a1 d342                      	LDI   R16, ' '
+0004a2 d35c                      	RCALL podatki          
+0004a3 e200                          RCALL delay_ms
+0004a4 d33f                      	LDI   R16, ' '
+0004a5 d359                      	RCALL podatki          
+0004a6 e40f                          RCALL delay_ms
+0004a7 d33c                      	LDI   R16, 'O'
+0004a8 d356                      	RCALL podatki          
+0004a9 e200                          RCALL delay_ms
+0004aa d339                      	LDI   R16, ' '
+0004ab d353                      	RCALL podatki          
+0004ac e200                          RCALL delay_ms
+0004ad d336                      	LDI   R16, ' '
+0004ae d350                      	RCALL podatki          
+0004af e200                          RCALL delay_ms
+0004b0 d333                      	LDI   R16, ' '
+0004b1 d34d                      	RCALL podatki          
+0004b2 e200                          RCALL delay_ms
+0004b3 d330                      	LDI   R16, ' '
+0004b4 d34a                      	RCALL podatki          
+0004b5 e200                          RCALL delay_ms
+0004b6 d32d                      	LDI   R16, ' '
+0004b7 d347                      	RCALL podatki          
+0004b8 e200                          RCALL delay_ms
+0004b9 d32a                      	LDI   R16, ' '
+0004ba d344                      	RCALL podatki          
+0004bb e200                          RCALL delay_ms
+0004bc d327                      	LDI   R16, ' '
+0004bd d341                      	RCALL podatki          
+0004be e200                          RCALL delay_ms
+0004bf d324                      	LDI   R16, ' '
+0004c0 d33e                      	RCALL podatki          
+0004c1 e200                          RCALL delay_ms
+0004c2 d321                      	LDI   R16, ' '
+0004c3 d33b                      	RCALL podatki          
                                      RCALL delay_ms
-0004c3 ec00                      	////////////////////////////////////
-0004c4 d30d                      	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
-0004c5 d338                          RCALL komanda
+0004c4 ec00                      	////////////////////////////////////
+0004c5 d30d                      	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
+0004c6 d338                          RCALL komanda
                                      RCALL delay_ms
-0004c6 e505                      	///////////////////////////////////
-0004c7 d31b                      	LDI   R16, 'U'
-0004c8 d335                      	RCALL podatki          
-0004c9 e200                          RCALL delay_ms
-0004ca d318                      	LDI   R16, ' '
-0004cb d332                      	RCALL podatki          
-0004cc e200                          RCALL delay_ms
-0004cd d315                      	LDI   R16, ' '
-0004ce d32f                      	RCALL podatki          
-0004cf e505                          RCALL delay_ms
-0004d0 d312                      	LDI   R16, 'U'
-0004d1 d32c                      	RCALL podatki          
-0004d2 e200                          RCALL delay_ms
-0004d3 d30f                      	LDI   R16, ' '
-0004d4 d329                      	RCALL podatki          
-0004d5 e200                          RCALL delay_ms
-0004d6 d30c                      	LDI   R16, ' '
-0004d7 d326                      	RCALL podatki          
-0004d8 e505                          RCALL delay_ms
-0004d9 d309                      	LDI   R16, 'U'
-0004da d323                      	RCALL podatki          
-0004db e200                          RCALL delay_ms
-0004dc d306                      	LDI   R16, ' '
-0004dd d320                      	RCALL podatki          
-0004de e200                          RCALL delay_ms
-0004df d303                      	LDI   R16, ' '
-0004e0 d31d                      	RCALL podatki          
-0004e1 e505                          RCALL delay_ms
-0004e2 e200                      	LDI   R16, 'U'
-0004e3 d2ff                      	LDI   R16, ' '
-0004e4 d319                      	RCALL podatki          
-0004e5 e200                          RCALL delay_ms
-0004e6 d2fc                      	LDI   R16, ' '
-0004e7 d316                      	RCALL podatki          
-0004e8 e200                          RCALL delay_ms
-0004e9 d2f9                      	LDI   R16, ' '
-0004ea d313                      	RCALL podatki          
-0004eb e200                          RCALL delay_ms
-0004ec d2f6                      	LDI   R16, ' '
-0004ed d310                      	RCALL podatki          
-0004ee 2f06                          RCALL delay_ms
-0004ef d2f3                      	mov   R16, tocke_to_ascii_desetice
-0004f0 d30d                      	RCALL podatki          
-0004f1 2f05                          RCALL delay_ms
-0004f2 d2f0                      	mov   R16, tocke_to_ascii_enice
-0004f3 d30a                      	RCALL podatki          
-0004f4 9508                          RCALL delay_ms
+0004c7 e505                      	///////////////////////////////////
+0004c8 d31b                      	LDI   R16, 'U'
+0004c9 d335                      	RCALL podatki          
+0004ca e200                          RCALL delay_ms
+0004cb d318                      	LDI   R16, ' '
+0004cc d332                      	RCALL podatki          
+0004cd e200                          RCALL delay_ms
+0004ce d315                      	LDI   R16, ' '
+0004cf d32f                      	RCALL podatki          
+0004d0 e505                          RCALL delay_ms
+0004d1 d312                      	LDI   R16, 'U'
+0004d2 d32c                      	RCALL podatki          
+0004d3 e200                          RCALL delay_ms
+0004d4 d30f                      	LDI   R16, ' '
+0004d5 d329                      	RCALL podatki          
+0004d6 e200                          RCALL delay_ms
+0004d7 d30c                      	LDI   R16, ' '
+0004d8 d326                      	RCALL podatki          
+0004d9 e505                          RCALL delay_ms
+0004da d309                      	LDI   R16, 'U'
+0004db d323                      	RCALL podatki          
+0004dc e200                          RCALL delay_ms
+0004dd d306                      	LDI   R16, ' '
+0004de d320                      	RCALL podatki          
+0004df e200                          RCALL delay_ms
+0004e0 d303                      	LDI   R16, ' '
+0004e1 d31d                      	RCALL podatki          
+0004e2 e505                          RCALL delay_ms
+0004e3 e200                      	LDI   R16, 'U'
+0004e4 d2ff                      	LDI   R16, ' '
+0004e5 d319                      	RCALL podatki          
+0004e6 e200                          RCALL delay_ms
+0004e7 d2fc                      	LDI   R16, ' '
+0004e8 d316                      	RCALL podatki          
+0004e9 e200                          RCALL delay_ms
+0004ea d2f9                      	LDI   R16, ' '
+0004eb d313                      	RCALL podatki          
+0004ec e200                          RCALL delay_ms
+0004ed d2f6                      	LDI   R16, ' '
+0004ee d310                      	RCALL podatki          
+0004ef 2f06                          RCALL delay_ms
+0004f0 d2f3                      	mov   R16, tocke_to_ascii_desetice
+0004f1 d30d                      	RCALL podatki          
+0004f2 2f05                          RCALL delay_ms
+0004f3 d2f0                      	mov   R16, tocke_to_ascii_enice
+0004f4 d30a                      	RCALL podatki          
+0004f5 9508                          RCALL delay_ms
                                  	ret
                                  
-0004f5 e200                      krt4_ven:
-0004f6 d2ec                      	LDI   R16, ' '
-0004f7 d306                      	RCALL podatki          
-0004f8 e200                          RCALL delay_ms
-0004f9 d2e9                      	LDI   R16, ' '
-0004fa d303                      	RCALL podatki          
-0004fb e200                          RCALL delay_ms
-0004fc d2e6                      	LDI   R16, ' '
-0004fd d300                      	RCALL podatki          
-0004fe e200                          RCALL delay_ms
-0004ff d2e3                      	LDI   R16, ' '
-000500 d2fd                      	RCALL podatki          
-000501 e200                          RCALL delay_ms
-000502 d2e0                      	LDI   R16, ' '
-000503 d2fa                      	RCALL podatki          
-000504 e200                          RCALL delay_ms
-000505 d2dd                      	LDI   R16, ' '
-000506 d2f7                      	RCALL podatki          
-000507 e200                          RCALL delay_ms
-000508 d2da                      	LDI   R16, ' '
-000509 d2f4                      	RCALL podatki          
-00050a e200                          RCALL delay_ms
-00050b d2d7                      	LDI   R16, ' '
-00050c d2f1                      	RCALL podatki          
-00050d e200                          RCALL delay_ms
-00050e d2d4                      	LDI   R16, ' '
-00050f d2ee                      	RCALL podatki          
-000510 e40f                          RCALL delay_ms
-000511 d2d1                      	LDI   R16, 'O'
-000512 d2eb                      	RCALL podatki          
-000513 e200                          RCALL delay_ms
-000514 d2ce                      	LDI   R16, ' '
-000515 d2e8                      	RCALL podatki          
-000516 e200                          RCALL delay_ms
-000517 d2cb                      	LDI   R16, ' '
-000518 d2e5                      	RCALL podatki          
-000519 e200                          RCALL delay_ms
-00051a d2c8                      	LDI   R16, ' '
-00051b d2e2                      	RCALL podatki          
-00051c e200                          RCALL delay_ms
-00051d d2c5                      	LDI   R16, ' '
-00051e d2df                      	RCALL podatki          
-00051f e200                          RCALL delay_ms
-000520 d2c2                      	LDI   R16, ' '
-000521 d2dc                      	RCALL podatki          
-000522 e200                          RCALL delay_ms
-000523 d2bf                      	LDI   R16, ' '
-000524 d2d9                      	RCALL podatki          
+0004f6 e200                      krt4_ven:
+0004f7 d2ec                      	LDI   R16, ' '
+0004f8 d306                      	RCALL podatki          
+0004f9 e200                          RCALL delay_ms
+0004fa d2e9                      	LDI   R16, ' '
+0004fb d303                      	RCALL podatki          
+0004fc e200                          RCALL delay_ms
+0004fd d2e6                      	LDI   R16, ' '
+0004fe d300                      	RCALL podatki          
+0004ff e200                          RCALL delay_ms
+000500 d2e3                      	LDI   R16, ' '
+000501 d2fd                      	RCALL podatki          
+000502 e200                          RCALL delay_ms
+000503 d2e0                      	LDI   R16, ' '
+000504 d2fa                      	RCALL podatki          
+000505 e200                          RCALL delay_ms
+000506 d2dd                      	LDI   R16, ' '
+000507 d2f7                      	RCALL podatki          
+000508 e200                          RCALL delay_ms
+000509 d2da                      	LDI   R16, ' '
+00050a d2f4                      	RCALL podatki          
+00050b e200                          RCALL delay_ms
+00050c d2d7                      	LDI   R16, ' '
+00050d d2f1                      	RCALL podatki          
+00050e e200                          RCALL delay_ms
+00050f d2d4                      	LDI   R16, ' '
+000510 d2ee                      	RCALL podatki          
+000511 e40f                          RCALL delay_ms
+000512 d2d1                      	LDI   R16, 'O'
+000513 d2eb                      	RCALL podatki          
+000514 e200                          RCALL delay_ms
+000515 d2ce                      	LDI   R16, ' '
+000516 d2e8                      	RCALL podatki          
+000517 e200                          RCALL delay_ms
+000518 d2cb                      	LDI   R16, ' '
+000519 d2e5                      	RCALL podatki          
+00051a e200                          RCALL delay_ms
+00051b d2c8                      	LDI   R16, ' '
+00051c d2e2                      	RCALL podatki          
+00051d e200                          RCALL delay_ms
+00051e d2c5                      	LDI   R16, ' '
+00051f d2df                      	RCALL podatki          
+000520 e200                          RCALL delay_ms
+000521 d2c2                      	LDI   R16, ' '
+000522 d2dc                      	RCALL podatki          
+000523 e200                          RCALL delay_ms
+000524 d2bf                      	LDI   R16, ' '
+000525 d2d9                      	RCALL podatki          
                                      RCALL delay_ms
-000525 ec00                      	////////////////////////////////////
-000526 d2ab                      	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
-000527 d2d6                          RCALL komanda
+000526 ec00                      	////////////////////////////////////
+000527 d2ab                      	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
+000528 d2d6                          RCALL komanda
                                      RCALL delay_ms
-000528 e505                      	///////////////////////////////////
-000529 d2b9                      	LDI   R16, 'U'
-00052a d2d3                      	RCALL podatki          
-00052b e200                          RCALL delay_ms
-00052c d2b6                      	LDI   R16, ' '
-00052d d2d0                      	RCALL podatki          
-00052e e200                          RCALL delay_ms
-00052f d2b3                      	LDI   R16, ' '
-000530 d2cd                      	RCALL podatki          
-000531 e505                          RCALL delay_ms
-000532 d2b0                      	LDI   R16, 'U'
-000533 d2ca                      	RCALL podatki          
-000534 e200                          RCALL delay_ms
-000535 d2ad                      	LDI   R16, ' '
-000536 d2c7                      	RCALL podatki          
-000537 e200                          RCALL delay_ms
-000538 d2aa                      	LDI   R16, ' '
-000539 d2c4                      	RCALL podatki          
-00053a e505                          RCALL delay_ms
-00053b d2a7                      	LDI   R16, 'U'
-00053c d2c1                      	RCALL podatki          
-00053d e200                          RCALL delay_ms
-00053e d2a4                      	LDI   R16, ' '
-00053f d2be                      	RCALL podatki          
-000540 e200                          RCALL delay_ms
-000541 d2a1                      	LDI   R16, ' '
-000542 d2bb                      	RCALL podatki          
-000543 e505                          RCALL delay_ms
-000544 d29e                      	LDI   R16, 'U'
-000545 d2b8                      	RCALL podatki          
-000546 e200                          RCALL delay_ms
-000547 d29b                      	LDI   R16, ' '
-000548 d2b5                      	RCALL podatki          
-000549 e200                          RCALL delay_ms
-00054a d298                      	LDI   R16, ' '
-00054b d2b2                      	RCALL podatki          
-00054c e200                          RCALL delay_ms
-00054d d295                      	LDI   R16, ' '
-00054e d2af                      	RCALL podatki          
-00054f e200                          RCALL delay_ms
-000550 d292                      	LDI   R16, ' '
-000551 d2ac                      	RCALL podatki          
-000552 2f06                          RCALL delay_ms
-000553 d28f                      	mov   R16, tocke_to_ascii_desetice
-000554 d2a9                      	RCALL podatki          
-000555 2f05                          RCALL delay_ms
-000556 d28c                      	mov   R16, tocke_to_ascii_enice
-000557 d2a6                      	RCALL podatki          
-000558 9508                          RCALL delay_ms
+000529 e505                      	///////////////////////////////////
+00052a d2b9                      	LDI   R16, 'U'
+00052b d2d3                      	RCALL podatki          
+00052c e200                          RCALL delay_ms
+00052d d2b6                      	LDI   R16, ' '
+00052e d2d0                      	RCALL podatki          
+00052f e200                          RCALL delay_ms
+000530 d2b3                      	LDI   R16, ' '
+000531 d2cd                      	RCALL podatki          
+000532 e505                          RCALL delay_ms
+000533 d2b0                      	LDI   R16, 'U'
+000534 d2ca                      	RCALL podatki          
+000535 e200                          RCALL delay_ms
+000536 d2ad                      	LDI   R16, ' '
+000537 d2c7                      	RCALL podatki          
+000538 e200                          RCALL delay_ms
+000539 d2aa                      	LDI   R16, ' '
+00053a d2c4                      	RCALL podatki          
+00053b e505                          RCALL delay_ms
+00053c d2a7                      	LDI   R16, 'U'
+00053d d2c1                      	RCALL podatki          
+00053e e200                          RCALL delay_ms
+00053f d2a4                      	LDI   R16, ' '
+000540 d2be                      	RCALL podatki          
+000541 e200                          RCALL delay_ms
+000542 d2a1                      	LDI   R16, ' '
+000543 d2bb                      	RCALL podatki          
+000544 e505                          RCALL delay_ms
+000545 d29e                      	LDI   R16, 'U'
+000546 d2b8                      	RCALL podatki          
+000547 e200                          RCALL delay_ms
+000548 d29b                      	LDI   R16, ' '
+000549 d2b5                      	RCALL podatki          
+00054a e200                          RCALL delay_ms
+00054b d298                      	LDI   R16, ' '
+00054c d2b2                      	RCALL podatki          
+00054d e200                          RCALL delay_ms
+00054e d295                      	LDI   R16, ' '
+00054f d2af                      	RCALL podatki          
+000550 e200                          RCALL delay_ms
+000551 d292                      	LDI   R16, ' '
+000552 d2ac                      	RCALL podatki          
+000553 2f06                          RCALL delay_ms
+000554 d28f                      	mov   R16, tocke_to_ascii_desetice
+000555 d2a9                      	RCALL podatki          
+000556 2f05                          RCALL delay_ms
+000557 d28c                      	mov   R16, tocke_to_ascii_enice
+000558 d2a6                      	RCALL podatki          
+000559 9508                          RCALL delay_ms
                                  	ret
                                  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                  //////////////////////////////////////// TUKAJ SO VSE SLIKE ZA PRAVILNE IN NAPA?NE PRITISKE GUMBOV //////////////////////////////////////////////////////
-000559 e508                      	krt1_ven_narobe:
+00055a e508                      	krt1_ven_narobe:
                                  	LDI   R16, 'X'
-00055a ec00                      	////////////////////////////////////
-00055b d276                      	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
-00055c d2a1                          RCALL komanda
+00055b ec00                      	////////////////////////////////////
+00055c d276                      	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
+00055d d2a1                          RCALL komanda
                                      RCALL delay_ms
-00055d e505                      	///////////////////////////////////
-00055e d284                      	LDI   R16, 'U'
-00055f d29e                      	RCALL podatki          
-000560 e200                          RCALL delay_ms
-000561 d281                      	LDI   R16, ' '
-000562 d29b                      	RCALL podatki          
-000563 e200                          RCALL delay_ms
-000564 d27e                      	LDI   R16, ' '
-000565 d298                      	RCALL podatki          
-000566 e505                          RCALL delay_ms
-000567 d27b                      	LDI   R16, 'U'
-000568 d295                      	RCALL podatki          
-000569 e200                          RCALL delay_ms
-00056a d278                      	LDI   R16, ' '
-00056b d292                      	RCALL podatki          
-00056c e200                          RCALL delay_ms
-00056d d275                      	LDI   R16, ' '
-00056e d28f                      	RCALL podatki          
-00056f e505                          RCALL delay_ms
-000570 d272                      	LDI   R16, 'U'
-000571 d28c                      	RCALL podatki          
-000572 e200                          RCALL delay_ms
-000573 d26f                      	LDI   R16, ' '
-000574 d289                      	RCALL podatki          
-000575 e200                          RCALL delay_ms
-000576 d26c                      	LDI   R16, ' '
-000577 d286                      	RCALL podatki          
-000578 e505                          RCALL delay_ms
-000579 d269                      	LDI   R16, 'U'
-00057a d283                      	RCALL podatki          
-00057b e200                          RCALL delay_ms
-00057c d266                      	LDI   R16, ' '
-00057d d280                      	RCALL podatki          
-00057e e200                          RCALL delay_ms
-00057f d263                      	LDI   R16, ' '
-000580 d27d                      	RCALL podatki          
-000581 e505                          RCALL delay_ms
-000582 d260                      	LDI   R16, 'U'
-000583 d27a                      	RCALL podatki          
-000584 e200                          RCALL delay_ms
-000585 d25d                      	LDI   R16, ' '
-000586 d277                      	RCALL podatki          
-000587 e200                          RCALL delay_ms
-000588 d25a                      	LDI   R16, ' '
-000589 d274                      	RCALL podatki          
-00058a e200                          RCALL delay_ms
-00058b d257                      	LDI   R16, ' '
-00058c d271                      	RCALL podatki          
-00058d e200                          RCALL delay_ms
-00058e d254                      	LDI   R16, ' '
-00058f d26e                      	RCALL podatki          
-000590 2f06                          RCALL delay_ms
-000591 d251                      	mov   R16, tocke_to_ascii_desetice
-000592 d26b                      	RCALL podatki          
-000593 2f05                          RCALL delay_ms
-000594 d24e                      	mov   R16, tocke_to_ascii_enice
-000595 d268                      	RCALL podatki          
-000596 9508                          RCALL delay_ms
+00055e e505                      	///////////////////////////////////
+00055f d284                      	LDI   R16, 'U'
+000560 d29e                      	RCALL podatki          
+000561 e200                          RCALL delay_ms
+000562 d281                      	LDI   R16, ' '
+000563 d29b                      	RCALL podatki          
+000564 e200                          RCALL delay_ms
+000565 d27e                      	LDI   R16, ' '
+000566 d298                      	RCALL podatki          
+000567 e505                          RCALL delay_ms
+000568 d27b                      	LDI   R16, 'U'
+000569 d295                      	RCALL podatki          
+00056a e200                          RCALL delay_ms
+00056b d278                      	LDI   R16, ' '
+00056c d292                      	RCALL podatki          
+00056d e200                          RCALL delay_ms
+00056e d275                      	LDI   R16, ' '
+00056f d28f                      	RCALL podatki          
+000570 e505                          RCALL delay_ms
+000571 d272                      	LDI   R16, 'U'
+000572 d28c                      	RCALL podatki          
+000573 e200                          RCALL delay_ms
+000574 d26f                      	LDI   R16, ' '
+000575 d289                      	RCALL podatki          
+000576 e200                          RCALL delay_ms
+000577 d26c                      	LDI   R16, ' '
+000578 d286                      	RCALL podatki          
+000579 e505                          RCALL delay_ms
+00057a d269                      	LDI   R16, 'U'
+00057b d283                      	RCALL podatki          
+00057c e200                          RCALL delay_ms
+00057d d266                      	LDI   R16, ' '
+00057e d280                      	RCALL podatki          
+00057f e200                          RCALL delay_ms
+000580 d263                      	LDI   R16, ' '
+000581 d27d                      	RCALL podatki          
+000582 e505                          RCALL delay_ms
+000583 d260                      	LDI   R16, 'U'
+000584 d27a                      	RCALL podatki          
+000585 e200                          RCALL delay_ms
+000586 d25d                      	LDI   R16, ' '
+000587 d277                      	RCALL podatki          
+000588 e200                          RCALL delay_ms
+000589 d25a                      	LDI   R16, ' '
+00058a d274                      	RCALL podatki          
+00058b e200                          RCALL delay_ms
+00058c d257                      	LDI   R16, ' '
+00058d d271                      	RCALL podatki          
+00058e e200                          RCALL delay_ms
+00058f d254                      	LDI   R16, ' '
+000590 d26e                      	RCALL podatki          
+000591 2f06                          RCALL delay_ms
+000592 d251                      	mov   R16, tocke_to_ascii_desetice
+000593 d26b                      	RCALL podatki          
+000594 2f05                          RCALL delay_ms
+000595 d24e                      	mov   R16, tocke_to_ascii_enice
+000596 d268                      	RCALL podatki          
+000597 9508                          RCALL delay_ms
                                  	ret
                                  
-000597 e200                      krt2_ven_narobe:
-000598 d24a                      	LDI   R16, ' '
-000599 d264                      	RCALL podatki          
-00059a e200                          RCALL delay_ms
-00059b d247                      	LDI   R16, ' '
-00059c d261                      	RCALL podatki          
-00059d e200                          RCALL delay_ms
-00059e d244                      	LDI   R16, ' '
-00059f d25e                      	RCALL podatki          
-0005a0 e508                          RCALL delay_ms
-0005a1 d241                      	LDI   R16, 'X'
-0005a2 d25b                      	RCALL podatki          
+000598 e200                      krt2_ven_narobe:
+000599 d24a                      	LDI   R16, ' '
+00059a d264                      	RCALL podatki          
+00059b e200                          RCALL delay_ms
+00059c d247                      	LDI   R16, ' '
+00059d d261                      	RCALL podatki          
+00059e e200                          RCALL delay_ms
+00059f d244                      	LDI   R16, ' '
+0005a0 d25e                      	RCALL podatki          
+0005a1 e508                          RCALL delay_ms
+0005a2 d241                      	LDI   R16, 'X'
+0005a3 d25b                      	RCALL podatki          
                                      RCALL delay_ms
-0005a3 ec00                      	////////////////////////////////////
-0005a4 d22d                      	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
-0005a5 d258                          RCALL komanda
+0005a4 ec00                      	////////////////////////////////////
+0005a5 d22d                      	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
+0005a6 d258                          RCALL komanda
                                      RCALL delay_ms
-0005a6 e505                      	///////////////////////////////////
-0005a7 d23b                      	LDI   R16, 'U'
-0005a8 d255                      	RCALL podatki          
-0005a9 e200                          RCALL delay_ms
-0005aa d238                      	LDI   R16, ' '
-0005ab d252                      	RCALL podatki          
-0005ac e200                          RCALL delay_ms
-0005ad d235                      	LDI   R16, ' '
-0005ae d24f                      	RCALL podatki          
-0005af e505                          RCALL delay_ms
-0005b0 d232                      	LDI   R16, 'U'
-0005b1 d24c                      	RCALL podatki          
-0005b2 e200                          RCALL delay_ms
-0005b3 d22f                      	LDI   R16, ' '
-0005b4 d249                      	RCALL podatki          
-0005b5 e200                          RCALL delay_ms
-0005b6 d22c                      	LDI   R16, ' '
-0005b7 d246                      	RCALL podatki          
-0005b8 e505                          RCALL delay_ms
-0005b9 d229                      	LDI   R16, 'U'
-0005ba d243                      	RCALL podatki          
-0005bb e200                          RCALL delay_ms
-0005bc d226                      	LDI   R16, ' '
-0005bd d240                      	RCALL podatki          
-0005be e200                          RCALL delay_ms
-0005bf d223                      	LDI   R16, ' '
-0005c0 d23d                      	RCALL podatki          
-0005c1 e505                          RCALL delay_ms
-0005c2 d220                      	LDI   R16, 'U'
-0005c3 d23a                      	RCALL podatki          
-0005c4 e200                          RCALL delay_ms
-0005c5 d21d                      	LDI   R16, ' '
-0005c6 d237                      	RCALL podatki          
-0005c7 e200                          RCALL delay_ms
-0005c8 d21a                      	LDI   R16, ' '
-0005c9 d234                      	RCALL podatki          
-0005ca e505                          RCALL delay_ms
-0005cb d217                      	LDI   R16, 'U'
-0005cc d231                      	RCALL podatki          
-0005cd e200                          RCALL delay_ms
-0005ce d214                      	LDI   R16, ' '
-0005cf d22e                      	RCALL podatki          
-0005d0 e200                          RCALL delay_ms
-0005d1 d211                      	LDI   R16, ' '
-0005d2 d22b                      	RCALL podatki          
-0005d3 e200                          RCALL delay_ms
-0005d4 d20e                      	LDI   R16, ' '
-0005d5 d228                      	RCALL podatki          
-0005d6 e200                          RCALL delay_ms
-0005d7 d20b                      	LDI   R16, ' '
-0005d8 d225                      	RCALL podatki          
-0005d9 2f06                          RCALL delay_ms
-0005da d208                      	mov   R16, tocke_to_ascii_desetice
-0005db d222                      	RCALL podatki          
-0005dc 2f05                          RCALL delay_ms
-0005dd d205                      	mov   R16, tocke_to_ascii_enice
-0005de d21f                      	RCALL podatki          
-0005df 9508                          RCALL delay_ms
+0005a7 e505                      	///////////////////////////////////
+0005a8 d23b                      	LDI   R16, 'U'
+0005a9 d255                      	RCALL podatki          
+0005aa e200                          RCALL delay_ms
+0005ab d238                      	LDI   R16, ' '
+0005ac d252                      	RCALL podatki          
+0005ad e200                          RCALL delay_ms
+0005ae d235                      	LDI   R16, ' '
+0005af d24f                      	RCALL podatki          
+0005b0 e505                          RCALL delay_ms
+0005b1 d232                      	LDI   R16, 'U'
+0005b2 d24c                      	RCALL podatki          
+0005b3 e200                          RCALL delay_ms
+0005b4 d22f                      	LDI   R16, ' '
+0005b5 d249                      	RCALL podatki          
+0005b6 e200                          RCALL delay_ms
+0005b7 d22c                      	LDI   R16, ' '
+0005b8 d246                      	RCALL podatki          
+0005b9 e505                          RCALL delay_ms
+0005ba d229                      	LDI   R16, 'U'
+0005bb d243                      	RCALL podatki          
+0005bc e200                          RCALL delay_ms
+0005bd d226                      	LDI   R16, ' '
+0005be d240                      	RCALL podatki          
+0005bf e200                          RCALL delay_ms
+0005c0 d223                      	LDI   R16, ' '
+0005c1 d23d                      	RCALL podatki          
+0005c2 e505                          RCALL delay_ms
+0005c3 d220                      	LDI   R16, 'U'
+0005c4 d23a                      	RCALL podatki          
+0005c5 e200                          RCALL delay_ms
+0005c6 d21d                      	LDI   R16, ' '
+0005c7 d237                      	RCALL podatki          
+0005c8 e200                          RCALL delay_ms
+0005c9 d21a                      	LDI   R16, ' '
+0005ca d234                      	RCALL podatki          
+0005cb e505                          RCALL delay_ms
+0005cc d217                      	LDI   R16, 'U'
+0005cd d231                      	RCALL podatki          
+0005ce e200                          RCALL delay_ms
+0005cf d214                      	LDI   R16, ' '
+0005d0 d22e                      	RCALL podatki          
+0005d1 e200                          RCALL delay_ms
+0005d2 d211                      	LDI   R16, ' '
+0005d3 d22b                      	RCALL podatki          
+0005d4 e200                          RCALL delay_ms
+0005d5 d20e                      	LDI   R16, ' '
+0005d6 d228                      	RCALL podatki          
+0005d7 e200                          RCALL delay_ms
+0005d8 d20b                      	LDI   R16, ' '
+0005d9 d225                      	RCALL podatki          
+0005da 2f06                          RCALL delay_ms
+0005db d208                      	mov   R16, tocke_to_ascii_desetice
+0005dc d222                      	RCALL podatki          
+0005dd 2f05                          RCALL delay_ms
+0005de d205                      	mov   R16, tocke_to_ascii_enice
+0005df d21f                      	RCALL podatki          
+0005e0 9508                          RCALL delay_ms
                                  	ret
                                  
-0005e0 e200                      krt3_ven_narobe:
-0005e1 d201                      	LDI   R16, ' '
-0005e2 d21b                      	RCALL podatki          
-0005e3 e200                          RCALL delay_ms
-0005e4 d1fe                      	LDI   R16, ' '
-0005e5 d218                      	RCALL podatki          
-0005e6 e200                          RCALL delay_ms
-0005e7 d1fb                      	LDI   R16, ' '
-0005e8 d215                      	RCALL podatki          
-0005e9 e200                          RCALL delay_ms
-0005ea d1f8                      	LDI   R16, ' '
-0005eb d212                      	RCALL podatki          
-0005ec e200                          RCALL delay_ms
-0005ed d1f5                      	LDI   R16, ' '
-0005ee d20f                      	RCALL podatki          
-0005ef e200                          RCALL delay_ms
-0005f0 d1f2                      	LDI   R16, ' '
-0005f1 d20c                      	RCALL podatki          
-0005f2 e508                          RCALL delay_ms
-0005f3 d1ef                      	LDI   R16, 'X'
-0005f4 d209                      	RCALL podatki          
+0005e1 e200                      krt3_ven_narobe:
+0005e2 d201                      	LDI   R16, ' '
+0005e3 d21b                      	RCALL podatki          
+0005e4 e200                          RCALL delay_ms
+0005e5 d1fe                      	LDI   R16, ' '
+0005e6 d218                      	RCALL podatki          
+0005e7 e200                          RCALL delay_ms
+0005e8 d1fb                      	LDI   R16, ' '
+0005e9 d215                      	RCALL podatki          
+0005ea e200                          RCALL delay_ms
+0005eb d1f8                      	LDI   R16, ' '
+0005ec d212                      	RCALL podatki          
+0005ed e200                          RCALL delay_ms
+0005ee d1f5                      	LDI   R16, ' '
+0005ef d20f                      	RCALL podatki          
+0005f0 e200                          RCALL delay_ms
+0005f1 d1f2                      	LDI   R16, ' '
+0005f2 d20c                      	RCALL podatki          
+0005f3 e508                          RCALL delay_ms
+0005f4 d1ef                      	LDI   R16, 'X'
+0005f5 d209                      	RCALL podatki          
                                      RCALL delay_ms
-0005f5 ec00                      	////////////////////////////////////
-0005f6 d1db                      	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
-0005f7 d206                          RCALL komanda
+0005f6 ec00                      	////////////////////////////////////
+0005f7 d1db                      	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
+0005f8 d206                          RCALL komanda
                                      RCALL delay_ms
-0005f8 e505                      	///////////////////////////////////
-0005f9 d1e9                      	LDI   R16, 'U'
-0005fa d203                      	RCALL podatki          
-0005fb e200                          RCALL delay_ms
-0005fc d1e6                      	LDI   R16, ' '
-0005fd d200                      	RCALL podatki          
-0005fe e200                          RCALL delay_ms
-0005ff d1e3                      	LDI   R16, ' '
-000600 d1fd                      	RCALL podatki          
-000601 e505                          RCALL delay_ms
-000602 d1e0                      	LDI   R16, 'U'
-000603 d1fa                      	RCALL podatki          
-000604 e200                          RCALL delay_ms
-000605 d1dd                      	LDI   R16, ' '
-000606 d1f7                      	RCALL podatki          
-000607 e200                          RCALL delay_ms
-000608 d1da                      	LDI   R16, ' '
-000609 d1f4                      	RCALL podatki          
-00060a e505                          RCALL delay_ms
-00060b d1d7                      	LDI   R16, 'U'
-00060c d1f1                      	RCALL podatki          
-00060d e200                          RCALL delay_ms
-00060e d1d4                      	LDI   R16, ' '
-00060f d1ee                      	RCALL podatki          
-000610 e200                          RCALL delay_ms
-000611 d1d1                      	LDI   R16, ' '
-000612 d1eb                      	RCALL podatki          
-000613 e505                          RCALL delay_ms
-000614 d1ce                      	LDI   R16, 'U'
-000615 d1e8                      	RCALL podatki          
-000616 e200                          RCALL delay_ms
-000617 d1cb                      	LDI   R16, ' '
-000618 d1e5                      	RCALL podatki          
-000619 e200                          RCALL delay_ms
-00061a d1c8                      	LDI   R16, ' '
-00061b d1e2                      	RCALL podatki          
-00061c e505                          RCALL delay_ms
-00061d d1c5                      	LDI   R16, 'U'
-00061e d1df                      	RCALL podatki          
-00061f e200                          RCALL delay_ms
-000620 d1c2                      	LDI   R16, ' '
-000621 d1dc                      	RCALL podatki          
-000622 e200                          RCALL delay_ms
-000623 d1bf                      	LDI   R16, ' '
-000624 d1d9                      	RCALL podatki          
-000625 e200                          RCALL delay_ms
-000626 d1bc                      	LDI   R16, ' '
-000627 d1d6                      	RCALL podatki          
-000628 e200                          RCALL delay_ms
-000629 d1b9                      	LDI   R16, ' '
-00062a d1d3                      	RCALL podatki          
-00062b 2f06                          RCALL delay_ms
-00062c d1b6                      	mov   R16, tocke_to_ascii_desetice
-00062d d1d0                      	RCALL podatki          
-00062e 2f05                          RCALL delay_ms
-00062f d1b3                      	mov   R16, tocke_to_ascii_enice
-000630 d1cd                      	RCALL podatki          
-000631 9508                          RCALL delay_ms
+0005f9 e505                      	///////////////////////////////////
+0005fa d1e9                      	LDI   R16, 'U'
+0005fb d203                      	RCALL podatki          
+0005fc e200                          RCALL delay_ms
+0005fd d1e6                      	LDI   R16, ' '
+0005fe d200                      	RCALL podatki          
+0005ff e200                          RCALL delay_ms
+000600 d1e3                      	LDI   R16, ' '
+000601 d1fd                      	RCALL podatki          
+000602 e505                          RCALL delay_ms
+000603 d1e0                      	LDI   R16, 'U'
+000604 d1fa                      	RCALL podatki          
+000605 e200                          RCALL delay_ms
+000606 d1dd                      	LDI   R16, ' '
+000607 d1f7                      	RCALL podatki          
+000608 e200                          RCALL delay_ms
+000609 d1da                      	LDI   R16, ' '
+00060a d1f4                      	RCALL podatki          
+00060b e505                          RCALL delay_ms
+00060c d1d7                      	LDI   R16, 'U'
+00060d d1f1                      	RCALL podatki          
+00060e e200                          RCALL delay_ms
+00060f d1d4                      	LDI   R16, ' '
+000610 d1ee                      	RCALL podatki          
+000611 e200                          RCALL delay_ms
+000612 d1d1                      	LDI   R16, ' '
+000613 d1eb                      	RCALL podatki          
+000614 e505                          RCALL delay_ms
+000615 d1ce                      	LDI   R16, 'U'
+000616 d1e8                      	RCALL podatki          
+000617 e200                          RCALL delay_ms
+000618 d1cb                      	LDI   R16, ' '
+000619 d1e5                      	RCALL podatki          
+00061a e200                          RCALL delay_ms
+00061b d1c8                      	LDI   R16, ' '
+00061c d1e2                      	RCALL podatki          
+00061d e505                          RCALL delay_ms
+00061e d1c5                      	LDI   R16, 'U'
+00061f d1df                      	RCALL podatki          
+000620 e200                          RCALL delay_ms
+000621 d1c2                      	LDI   R16, ' '
+000622 d1dc                      	RCALL podatki          
+000623 e200                          RCALL delay_ms
+000624 d1bf                      	LDI   R16, ' '
+000625 d1d9                      	RCALL podatki          
+000626 e200                          RCALL delay_ms
+000627 d1bc                      	LDI   R16, ' '
+000628 d1d6                      	RCALL podatki          
+000629 e200                          RCALL delay_ms
+00062a d1b9                      	LDI   R16, ' '
+00062b d1d3                      	RCALL podatki          
+00062c 2f06                          RCALL delay_ms
+00062d d1b6                      	mov   R16, tocke_to_ascii_desetice
+00062e d1d0                      	RCALL podatki          
+00062f 2f05                          RCALL delay_ms
+000630 d1b3                      	mov   R16, tocke_to_ascii_enice
+000631 d1cd                      	RCALL podatki          
+000632 9508                          RCALL delay_ms
                                  	ret
                                  
-000632 e200                      krt4_ven_narobe:
-000633 d1af                      	LDI   R16, ' '
-000634 d1c9                      	RCALL podatki          
-000635 e200                          RCALL delay_ms
-000636 d1ac                      	LDI   R16, ' '
-000637 d1c6                      	RCALL podatki          
-000638 e200                          RCALL delay_ms
-000639 d1a9                      	LDI   R16, ' '
-00063a d1c3                      	RCALL podatki          
-00063b e200                          RCALL delay_ms
-00063c d1a6                      	LDI   R16, ' '
-00063d d1c0                      	RCALL podatki          
-00063e e200                          RCALL delay_ms
-00063f d1a3                      	LDI   R16, ' '
-000640 d1bd                      	RCALL podatki          
-000641 e200                          RCALL delay_ms
-000642 d1a0                      	LDI   R16, ' '
-000643 d1ba                      	RCALL podatki          
-000644 e200                          RCALL delay_ms
-000645 d19d                      	LDI   R16, ' '
-000646 d1b7                      	RCALL podatki          
-000647 e200                          RCALL delay_ms
-000648 d19a                      	LDI   R16, ' '
-000649 d1b4                      	RCALL podatki          
-00064a e200                          RCALL delay_ms
-00064b d197                      	LDI   R16, ' '
-00064c d1b1                      	RCALL podatki          
-00064d e508                          RCALL delay_ms
-00064e d194                      	LDI   R16, 'X'
-00064f d1ae                      	RCALL podatki          
+000633 e200                      krt4_ven_narobe:
+000634 d1af                      	LDI   R16, ' '
+000635 d1c9                      	RCALL podatki          
+000636 e200                          RCALL delay_ms
+000637 d1ac                      	LDI   R16, ' '
+000638 d1c6                      	RCALL podatki          
+000639 e200                          RCALL delay_ms
+00063a d1a9                      	LDI   R16, ' '
+00063b d1c3                      	RCALL podatki          
+00063c e200                          RCALL delay_ms
+00063d d1a6                      	LDI   R16, ' '
+00063e d1c0                      	RCALL podatki          
+00063f e200                          RCALL delay_ms
+000640 d1a3                      	LDI   R16, ' '
+000641 d1bd                      	RCALL podatki          
+000642 e200                          RCALL delay_ms
+000643 d1a0                      	LDI   R16, ' '
+000644 d1ba                      	RCALL podatki          
+000645 e200                          RCALL delay_ms
+000646 d19d                      	LDI   R16, ' '
+000647 d1b7                      	RCALL podatki          
+000648 e200                          RCALL delay_ms
+000649 d19a                      	LDI   R16, ' '
+00064a d1b4                      	RCALL podatki          
+00064b e200                          RCALL delay_ms
+00064c d197                      	LDI   R16, ' '
+00064d d1b1                      	RCALL podatki          
+00064e e508                          RCALL delay_ms
+00064f d194                      	LDI   R16, 'X'
+000650 d1ae                      	RCALL podatki          
                                      RCALL delay_ms
-000650 ec00                      	////////////////////////////////////
-000651 d180                      	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
-000652 d1ab                          RCALL komanda
+000651 ec00                      	////////////////////////////////////
+000652 d180                      	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
+000653 d1ab                          RCALL komanda
                                      RCALL delay_ms
-000653 e505                      	///////////////////////////////////
-000654 d18e                      	LDI   R16, 'U'
-000655 d1a8                      	RCALL podatki          
-000656 e200                          RCALL delay_ms
-000657 d18b                      	LDI   R16, ' '
-000658 d1a5                      	RCALL podatki          
-000659 e200                          RCALL delay_ms
-00065a d188                      	LDI   R16, ' '
-00065b d1a2                      	RCALL podatki          
-00065c e505                          RCALL delay_ms
-00065d d185                      	LDI   R16, 'U'
-00065e d19f                      	RCALL podatki          
-00065f e200                          RCALL delay_ms
-000660 d182                      	LDI   R16, ' '
-000661 d19c                      	RCALL podatki          
-000662 e200                          RCALL delay_ms
-000663 d17f                      	LDI   R16, ' '
-000664 d199                      	RCALL podatki          
-000665 e505                          RCALL delay_ms
-000666 d17c                      	LDI   R16, 'U'
-000667 d196                      	RCALL podatki          
-000668 e200                          RCALL delay_ms
-000669 d179                      	LDI   R16, ' '
-00066a d193                      	RCALL podatki          
-00066b e200                          RCALL delay_ms
-00066c d176                      	LDI   R16, ' '
-00066d d190                      	RCALL podatki          
-00066e e505                          RCALL delay_ms
-00066f d173                      	LDI   R16, 'U'
-000670 d18d                      	RCALL podatki          
-000671 e200                          RCALL delay_ms
-000672 d170                      	LDI   R16, ' '
-000673 d18a                      	RCALL podatki          
-000674 e200                          RCALL delay_ms
-000675 d16d                      	LDI   R16, ' '
-000676 d187                      	RCALL podatki          
-000677 e505                          RCALL delay_ms
-000678 d16a                      	LDI   R16, 'U'
-000679 d184                      	RCALL podatki          
-00067a e200                          RCALL delay_ms
-00067b d167                      	LDI   R16, ' '
-00067c d181                      	RCALL podatki          
-00067d e200                          RCALL delay_ms
-00067e d164                      	LDI   R16, ' '
-00067f d17e                      	RCALL podatki          
-000680 e200                          RCALL delay_ms
-000681 d161                      	LDI   R16, ' '
-000682 d17b                      	RCALL podatki          
-000683 e200                          RCALL delay_ms
-000684 d15e                      	LDI   R16, ' '
-000685 d178                      	RCALL podatki          
-000686 2f06                          RCALL delay_ms
-000687 d15b                      	mov   R16, tocke_to_ascii_desetice
-000688 d175                      	RCALL podatki          
-000689 2f05                          RCALL delay_ms
-00068a d158                      	mov   R16, tocke_to_ascii_enice
-00068b d172                      	RCALL podatki          
-00068c 9508                          RCALL delay_ms
+000654 e505                      	///////////////////////////////////
+000655 d18e                      	LDI   R16, 'U'
+000656 d1a8                      	RCALL podatki          
+000657 e200                          RCALL delay_ms
+000658 d18b                      	LDI   R16, ' '
+000659 d1a5                      	RCALL podatki          
+00065a e200                          RCALL delay_ms
+00065b d188                      	LDI   R16, ' '
+00065c d1a2                      	RCALL podatki          
+00065d e505                          RCALL delay_ms
+00065e d185                      	LDI   R16, 'U'
+00065f d19f                      	RCALL podatki          
+000660 e200                          RCALL delay_ms
+000661 d182                      	LDI   R16, ' '
+000662 d19c                      	RCALL podatki          
+000663 e200                          RCALL delay_ms
+000664 d17f                      	LDI   R16, ' '
+000665 d199                      	RCALL podatki          
+000666 e505                          RCALL delay_ms
+000667 d17c                      	LDI   R16, 'U'
+000668 d196                      	RCALL podatki          
+000669 e200                          RCALL delay_ms
+00066a d179                      	LDI   R16, ' '
+00066b d193                      	RCALL podatki          
+00066c e200                          RCALL delay_ms
+00066d d176                      	LDI   R16, ' '
+00066e d190                      	RCALL podatki          
+00066f e505                          RCALL delay_ms
+000670 d173                      	LDI   R16, 'U'
+000671 d18d                      	RCALL podatki          
+000672 e200                          RCALL delay_ms
+000673 d170                      	LDI   R16, ' '
+000674 d18a                      	RCALL podatki          
+000675 e200                          RCALL delay_ms
+000676 d16d                      	LDI   R16, ' '
+000677 d187                      	RCALL podatki          
+000678 e505                          RCALL delay_ms
+000679 d16a                      	LDI   R16, 'U'
+00067a d184                      	RCALL podatki          
+00067b e200                          RCALL delay_ms
+00067c d167                      	LDI   R16, ' '
+00067d d181                      	RCALL podatki          
+00067e e200                          RCALL delay_ms
+00067f d164                      	LDI   R16, ' '
+000680 d17e                      	RCALL podatki          
+000681 e200                          RCALL delay_ms
+000682 d161                      	LDI   R16, ' '
+000683 d17b                      	RCALL podatki          
+000684 e200                          RCALL delay_ms
+000685 d15e                      	LDI   R16, ' '
+000686 d178                      	RCALL podatki          
+000687 2f06                          RCALL delay_ms
+000688 d15b                      	mov   R16, tocke_to_ascii_desetice
+000689 d175                      	RCALL podatki          
+00068a 2f05                          RCALL delay_ms
+00068b d158                      	mov   R16, tocke_to_ascii_enice
+00068c d172                      	RCALL podatki          
+00068d 9508                          RCALL delay_ms
                                  	ret
                                  
-00068d ef0f                      krt1_ven_pravilno:
+00068e ef0f                      krt1_ven_pravilno:
                                  	LDI   R16, 0b1111_1111
-00068e ec00                      	////////////////////////////////////
-00068f d142                      	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
-000690 d16d                          RCALL komanda
+00068f ec00                      	////////////////////////////////////
+000690 d142                      	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
+000691 d16d                          RCALL komanda
                                      RCALL delay_ms
-000691 e505                      	///////////////////////////////////
-000692 d150                      	LDI   R16, 'U'
-000693 d16a                      	RCALL podatki          
-000694 e200                          RCALL delay_ms
-000695 d14d                      	LDI   R16, ' '
-000696 d167                      	RCALL podatki          
-000697 e200                          RCALL delay_ms
-000698 d14a                      	LDI   R16, ' '
-000699 d164                      	RCALL podatki          
-00069a e505                          RCALL delay_ms
-00069b d147                      	LDI   R16, 'U'
-00069c d161                      	RCALL podatki          
-00069d e200                          RCALL delay_ms
-00069e d144                      	LDI   R16, ' '
-00069f d15e                      	RCALL podatki          
-0006a0 e200                          RCALL delay_ms
-0006a1 d141                      	LDI   R16, ' '
-0006a2 d15b                      	RCALL podatki          
-0006a3 e505                          RCALL delay_ms
-0006a4 d13e                      	LDI   R16, 'U'
-0006a5 d158                      	RCALL podatki          
-0006a6 e200                          RCALL delay_ms
-0006a7 d13b                      	LDI   R16, ' '
-0006a8 d155                      	RCALL podatki          
-0006a9 e200                          RCALL delay_ms
-0006aa d138                      	LDI   R16, ' '
-0006ab d152                      	RCALL podatki          
-0006ac e505                          RCALL delay_ms
-0006ad d135                      	LDI   R16, 'U'
-0006ae d14f                      	RCALL podatki          
-0006af e200                          RCALL delay_ms
-0006b0 d132                      	LDI   R16, ' '
-0006b1 d14c                      	RCALL podatki          
-0006b2 e200                          RCALL delay_ms
-0006b3 d12f                      	LDI   R16, ' '
-0006b4 d149                      	RCALL podatki          
-0006b5 e505                          RCALL delay_ms
-0006b6 d12c                      	LDI   R16, 'U'
-0006b7 d146                      	RCALL podatki          
-0006b8 e200                          RCALL delay_ms
-0006b9 d129                      	LDI   R16, ' '
-0006ba d143                      	RCALL podatki          
-0006bb e200                          RCALL delay_ms
-0006bc d126                      	LDI   R16, ' '
-0006bd d140                      	RCALL podatki          
-0006be e200                          RCALL delay_ms
-0006bf d123                      	LDI   R16, ' '
-0006c0 d13d                      	RCALL podatki          
-0006c1 e200                          RCALL delay_ms
-0006c2 d120                      	LDI   R16, ' '
-0006c3 d13a                      	RCALL podatki          
-0006c4 2f06                          RCALL delay_ms
-0006c5 d11d                      	mov   R16, tocke_to_ascii_desetice
-0006c6 d137                      	RCALL podatki          
-0006c7 2f05                          RCALL delay_ms
-0006c8 d11a                      	mov   R16, tocke_to_ascii_enice
-0006c9 d134                      	RCALL podatki          
-0006ca 9508                          RCALL delay_ms
+000692 e505                      	///////////////////////////////////
+000693 d150                      	LDI   R16, 'U'
+000694 d16a                      	RCALL podatki          
+000695 e200                          RCALL delay_ms
+000696 d14d                      	LDI   R16, ' '
+000697 d167                      	RCALL podatki          
+000698 e200                          RCALL delay_ms
+000699 d14a                      	LDI   R16, ' '
+00069a d164                      	RCALL podatki          
+00069b e505                          RCALL delay_ms
+00069c d147                      	LDI   R16, 'U'
+00069d d161                      	RCALL podatki          
+00069e e200                          RCALL delay_ms
+00069f d144                      	LDI   R16, ' '
+0006a0 d15e                      	RCALL podatki          
+0006a1 e200                          RCALL delay_ms
+0006a2 d141                      	LDI   R16, ' '
+0006a3 d15b                      	RCALL podatki          
+0006a4 e505                          RCALL delay_ms
+0006a5 d13e                      	LDI   R16, 'U'
+0006a6 d158                      	RCALL podatki          
+0006a7 e200                          RCALL delay_ms
+0006a8 d13b                      	LDI   R16, ' '
+0006a9 d155                      	RCALL podatki          
+0006aa e200                          RCALL delay_ms
+0006ab d138                      	LDI   R16, ' '
+0006ac d152                      	RCALL podatki          
+0006ad e505                          RCALL delay_ms
+0006ae d135                      	LDI   R16, 'U'
+0006af d14f                      	RCALL podatki          
+0006b0 e200                          RCALL delay_ms
+0006b1 d132                      	LDI   R16, ' '
+0006b2 d14c                      	RCALL podatki          
+0006b3 e200                          RCALL delay_ms
+0006b4 d12f                      	LDI   R16, ' '
+0006b5 d149                      	RCALL podatki          
+0006b6 e505                          RCALL delay_ms
+0006b7 d12c                      	LDI   R16, 'U'
+0006b8 d146                      	RCALL podatki          
+0006b9 e200                          RCALL delay_ms
+0006ba d129                      	LDI   R16, ' '
+0006bb d143                      	RCALL podatki          
+0006bc e200                          RCALL delay_ms
+0006bd d126                      	LDI   R16, ' '
+0006be d140                      	RCALL podatki          
+0006bf e200                          RCALL delay_ms
+0006c0 d123                      	LDI   R16, ' '
+0006c1 d13d                      	RCALL podatki          
+0006c2 e200                          RCALL delay_ms
+0006c3 d120                      	LDI   R16, ' '
+0006c4 d13a                      	RCALL podatki          
+0006c5 2f06                          RCALL delay_ms
+0006c6 d11d                      	mov   R16, tocke_to_ascii_desetice
+0006c7 d137                      	RCALL podatki          
+0006c8 2f05                          RCALL delay_ms
+0006c9 d11a                      	mov   R16, tocke_to_ascii_enice
+0006ca d134                      	RCALL podatki          
+0006cb 9508                          RCALL delay_ms
                                  	ret
                                  
-0006cb e200                      krt2_ven_pravilno:
-0006cc d116                      	LDI   R16, ' '
-0006cd d130                      	RCALL podatki          
-0006ce e200                          RCALL delay_ms
-0006cf d113                      	LDI   R16, ' '
-0006d0 d12d                      	RCALL podatki          
-0006d1 e200                          RCALL delay_ms
-0006d2 d110                      	LDI   R16, ' '
-0006d3 d12a                      	RCALL podatki          
-0006d4 ef0f                          RCALL delay_ms
-0006d5 d10d                      	LDI   R16, 0b1111_1111
-0006d6 d127                      	RCALL podatki          
+0006cc e200                      krt2_ven_pravilno:
+0006cd d116                      	LDI   R16, ' '
+0006ce d130                      	RCALL podatki          
+0006cf e200                          RCALL delay_ms
+0006d0 d113                      	LDI   R16, ' '
+0006d1 d12d                      	RCALL podatki          
+0006d2 e200                          RCALL delay_ms
+0006d3 d110                      	LDI   R16, ' '
+0006d4 d12a                      	RCALL podatki          
+0006d5 ef0f                          RCALL delay_ms
+0006d6 d10d                      	LDI   R16, 0b1111_1111
+0006d7 d127                      	RCALL podatki          
                                      RCALL delay_ms
-0006d7 ec00                      	////////////////////////////////////
-0006d8 d0f9                      	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
-0006d9 d124                          RCALL komanda
+0006d8 ec00                      	////////////////////////////////////
+0006d9 d0f9                      	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
+0006da d124                          RCALL komanda
                                      RCALL delay_ms
-0006da e505                      	///////////////////////////////////
-0006db d107                      	LDI   R16, 'U'
-0006dc d121                      	RCALL podatki          
-0006dd e200                          RCALL delay_ms
-0006de d104                      	LDI   R16, ' '
-0006df d11e                      	RCALL podatki          
-0006e0 e200                          RCALL delay_ms
-0006e1 d101                      	LDI   R16, ' '
-0006e2 d11b                      	RCALL podatki          
-0006e3 e505                          RCALL delay_ms
-0006e4 d0fe                      	LDI   R16, 'U'
-0006e5 d118                      	RCALL podatki          
-0006e6 e200                          RCALL delay_ms
-0006e7 d0fb                      	LDI   R16, ' '
-0006e8 d115                      	RCALL podatki          
-0006e9 e200                          RCALL delay_ms
-0006ea d0f8                      	LDI   R16, ' '
-0006eb d112                      	RCALL podatki          
-0006ec e505                          RCALL delay_ms
-0006ed d0f5                      	LDI   R16, 'U'
-0006ee d10f                      	RCALL podatki          
-0006ef e200                          RCALL delay_ms
-0006f0 d0f2                      	LDI   R16, ' '
-0006f1 d10c                      	RCALL podatki          
-0006f2 e200                          RCALL delay_ms
-0006f3 d0ef                      	LDI   R16, ' '
-0006f4 d109                      	RCALL podatki          
-0006f5 e505                          RCALL delay_ms
-0006f6 d0ec                      	LDI   R16, 'U'
-0006f7 d106                      	RCALL podatki          
-0006f8 e200                          RCALL delay_ms
-0006f9 d0e9                      	LDI   R16, ' '
-0006fa d103                      	RCALL podatki          
-0006fb e200                          RCALL delay_ms
-0006fc d0e6                      	LDI   R16, ' '
-0006fd d100                      	RCALL podatki          
-0006fe e505                          RCALL delay_ms
-0006ff d0e3                      	LDI   R16, 'U'
-000700 d0fd                      	RCALL podatki          
-000701 e200                          RCALL delay_ms
-000702 d0e0                      	LDI   R16, ' '
-000703 d0fa                      	RCALL podatki          
-000704 e200                          RCALL delay_ms
-000705 d0dd                      	LDI   R16, ' '
-000706 d0f7                      	RCALL podatki          
-000707 e200                          RCALL delay_ms
-000708 d0da                      	LDI   R16, ' '
-000709 d0f4                      	RCALL podatki          
-00070a e200                          RCALL delay_ms
-00070b d0d7                      	LDI   R16, ' '
-00070c d0f1                      	RCALL podatki          
-00070d 2f06                          RCALL delay_ms
-00070e d0d4                      	mov   R16, tocke_to_ascii_desetice
-00070f d0ee                      	RCALL podatki          
-000710 2f05                          RCALL delay_ms
-000711 d0d1                      	mov   R16, tocke_to_ascii_enice
-000712 d0eb                      	RCALL podatki          
-000713 9508                          RCALL delay_ms
+0006db e505                      	///////////////////////////////////
+0006dc d107                      	LDI   R16, 'U'
+0006dd d121                      	RCALL podatki          
+0006de e200                          RCALL delay_ms
+0006df d104                      	LDI   R16, ' '
+0006e0 d11e                      	RCALL podatki          
+0006e1 e200                          RCALL delay_ms
+0006e2 d101                      	LDI   R16, ' '
+0006e3 d11b                      	RCALL podatki          
+0006e4 e505                          RCALL delay_ms
+0006e5 d0fe                      	LDI   R16, 'U'
+0006e6 d118                      	RCALL podatki          
+0006e7 e200                          RCALL delay_ms
+0006e8 d0fb                      	LDI   R16, ' '
+0006e9 d115                      	RCALL podatki          
+0006ea e200                          RCALL delay_ms
+0006eb d0f8                      	LDI   R16, ' '
+0006ec d112                      	RCALL podatki          
+0006ed e505                          RCALL delay_ms
+0006ee d0f5                      	LDI   R16, 'U'
+0006ef d10f                      	RCALL podatki          
+0006f0 e200                          RCALL delay_ms
+0006f1 d0f2                      	LDI   R16, ' '
+0006f2 d10c                      	RCALL podatki          
+0006f3 e200                          RCALL delay_ms
+0006f4 d0ef                      	LDI   R16, ' '
+0006f5 d109                      	RCALL podatki          
+0006f6 e505                          RCALL delay_ms
+0006f7 d0ec                      	LDI   R16, 'U'
+0006f8 d106                      	RCALL podatki          
+0006f9 e200                          RCALL delay_ms
+0006fa d0e9                      	LDI   R16, ' '
+0006fb d103                      	RCALL podatki          
+0006fc e200                          RCALL delay_ms
+0006fd d0e6                      	LDI   R16, ' '
+0006fe d100                      	RCALL podatki          
+0006ff e505                          RCALL delay_ms
+000700 d0e3                      	LDI   R16, 'U'
+000701 d0fd                      	RCALL podatki          
+000702 e200                          RCALL delay_ms
+000703 d0e0                      	LDI   R16, ' '
+000704 d0fa                      	RCALL podatki          
+000705 e200                          RCALL delay_ms
+000706 d0dd                      	LDI   R16, ' '
+000707 d0f7                      	RCALL podatki          
+000708 e200                          RCALL delay_ms
+000709 d0da                      	LDI   R16, ' '
+00070a d0f4                      	RCALL podatki          
+00070b e200                          RCALL delay_ms
+00070c d0d7                      	LDI   R16, ' '
+00070d d0f1                      	RCALL podatki          
+00070e 2f06                          RCALL delay_ms
+00070f d0d4                      	mov   R16, tocke_to_ascii_desetice
+000710 d0ee                      	RCALL podatki          
+000711 2f05                          RCALL delay_ms
+000712 d0d1                      	mov   R16, tocke_to_ascii_enice
+000713 d0eb                      	RCALL podatki          
+000714 9508                          RCALL delay_ms
                                  	ret
                                  
-000714 e200                      krt3_ven_pravilno:
-000715 d0cd                      	LDI   R16, ' '
-000716 d0e7                      	RCALL podatki          
-000717 e200                          RCALL delay_ms
-000718 d0ca                      	LDI   R16, ' '
-000719 d0e4                      	RCALL podatki          
-00071a e200                          RCALL delay_ms
-00071b d0c7                      	LDI   R16, ' '
-00071c d0e1                      	RCALL podatki          
-00071d e200                          RCALL delay_ms
-00071e d0c4                      	LDI   R16, ' '
-00071f d0de                      	RCALL podatki          
-000720 e200                          RCALL delay_ms
-000721 d0c1                      	LDI   R16, ' '
-000722 d0db                      	RCALL podatki          
-000723 e200                          RCALL delay_ms
-000724 d0be                      	LDI   R16, ' '
-000725 d0d8                      	RCALL podatki          
-000726 ef0f                          RCALL delay_ms
-000727 d0bb                      	LDI   R16, 0b1111_1111
-000728 d0d5                      	RCALL podatki          
+000715 e200                      krt3_ven_pravilno:
+000716 d0cd                      	LDI   R16, ' '
+000717 d0e7                      	RCALL podatki          
+000718 e200                          RCALL delay_ms
+000719 d0ca                      	LDI   R16, ' '
+00071a d0e4                      	RCALL podatki          
+00071b e200                          RCALL delay_ms
+00071c d0c7                      	LDI   R16, ' '
+00071d d0e1                      	RCALL podatki          
+00071e e200                          RCALL delay_ms
+00071f d0c4                      	LDI   R16, ' '
+000720 d0de                      	RCALL podatki          
+000721 e200                          RCALL delay_ms
+000722 d0c1                      	LDI   R16, ' '
+000723 d0db                      	RCALL podatki          
+000724 e200                          RCALL delay_ms
+000725 d0be                      	LDI   R16, ' '
+000726 d0d8                      	RCALL podatki          
+000727 ef0f                          RCALL delay_ms
+000728 d0bb                      	LDI   R16, 0b1111_1111
+000729 d0d5                      	RCALL podatki          
                                      RCALL delay_ms
-000729 ec00                      	////////////////////////////////////
-00072a d0a7                      	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
-00072b d0d2                          RCALL komanda
+00072a ec00                      	////////////////////////////////////
+00072b d0a7                      	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
+00072c d0d2                          RCALL komanda
                                      RCALL delay_ms
-00072c e505                      	///////////////////////////////////
-00072d d0b5                      	LDI   R16, 'U'
-00072e d0cf                      	RCALL podatki          
-00072f e200                          RCALL delay_ms
-000730 d0b2                      	LDI   R16, ' '
-000731 d0cc                      	RCALL podatki          
-000732 e200                          RCALL delay_ms
-000733 d0af                      	LDI   R16, ' '
-000734 d0c9                      	RCALL podatki          
-000735 e505                          RCALL delay_ms
-000736 d0ac                      	LDI   R16, 'U'
-000737 d0c6                      	RCALL podatki          
-000738 e200                          RCALL delay_ms
-000739 d0a9                      	LDI   R16, ' '
-00073a d0c3                      	RCALL podatki          
-00073b e200                          RCALL delay_ms
-00073c d0a6                      	LDI   R16, ' '
-00073d d0c0                      	RCALL podatki          
-00073e e505                          RCALL delay_ms
-00073f d0a3                      	LDI   R16, 'U'
-000740 d0bd                      	RCALL podatki          
-000741 e200                          RCALL delay_ms
-000742 d0a0                      	LDI   R16, ' '
-000743 d0ba                      	RCALL podatki          
-000744 e200                          RCALL delay_ms
-000745 d09d                      	LDI   R16, ' '
-000746 d0b7                      	RCALL podatki          
-000747 e505                          RCALL delay_ms
-000748 d09a                      	LDI   R16, 'U'
-000749 d0b4                      	RCALL podatki          
-00074a e200                          RCALL delay_ms
-00074b d097                      	LDI   R16, ' '
-00074c d0b1                      	RCALL podatki          
-00074d e200                          RCALL delay_ms
-00074e d094                      	LDI   R16, ' '
-00074f d0ae                      	RCALL podatki          
-000750 e505                          RCALL delay_ms
-000751 d091                      	LDI   R16, 'U'
-000752 d0ab                      	RCALL podatki          
-000753 e200                          RCALL delay_ms
-000754 d08e                      	LDI   R16, ' '
-000755 d0a8                      	RCALL podatki          
-000756 e200                          RCALL delay_ms
-000757 d08b                      	LDI   R16, ' '
-000758 d0a5                      	RCALL podatki          
-000759 e200                          RCALL delay_ms
-00075a d088                      	LDI   R16, ' '
-00075b d0a2                      	RCALL podatki          
-00075c e200                          RCALL delay_ms
-00075d d085                      	LDI   R16, ' '
-00075e d09f                      	RCALL podatki          
-00075f 2f06                          RCALL delay_ms
-000760 d082                      	mov   R16, tocke_to_ascii_desetice
-000761 d09c                      	RCALL podatki          
-000762 2f05                          RCALL delay_ms
-000763 d07f                      	mov   R16, tocke_to_ascii_enice
-000764 d099                      	RCALL podatki          
-000765 9508                          RCALL delay_ms
+00072d e505                      	///////////////////////////////////
+00072e d0b5                      	LDI   R16, 'U'
+00072f d0cf                      	RCALL podatki          
+000730 e200                          RCALL delay_ms
+000731 d0b2                      	LDI   R16, ' '
+000732 d0cc                      	RCALL podatki          
+000733 e200                          RCALL delay_ms
+000734 d0af                      	LDI   R16, ' '
+000735 d0c9                      	RCALL podatki          
+000736 e505                          RCALL delay_ms
+000737 d0ac                      	LDI   R16, 'U'
+000738 d0c6                      	RCALL podatki          
+000739 e200                          RCALL delay_ms
+00073a d0a9                      	LDI   R16, ' '
+00073b d0c3                      	RCALL podatki          
+00073c e200                          RCALL delay_ms
+00073d d0a6                      	LDI   R16, ' '
+00073e d0c0                      	RCALL podatki          
+00073f e505                          RCALL delay_ms
+000740 d0a3                      	LDI   R16, 'U'
+000741 d0bd                      	RCALL podatki          
+000742 e200                          RCALL delay_ms
+000743 d0a0                      	LDI   R16, ' '
+000744 d0ba                      	RCALL podatki          
+000745 e200                          RCALL delay_ms
+000746 d09d                      	LDI   R16, ' '
+000747 d0b7                      	RCALL podatki          
+000748 e505                          RCALL delay_ms
+000749 d09a                      	LDI   R16, 'U'
+00074a d0b4                      	RCALL podatki          
+00074b e200                          RCALL delay_ms
+00074c d097                      	LDI   R16, ' '
+00074d d0b1                      	RCALL podatki          
+00074e e200                          RCALL delay_ms
+00074f d094                      	LDI   R16, ' '
+000750 d0ae                      	RCALL podatki          
+000751 e505                          RCALL delay_ms
+000752 d091                      	LDI   R16, 'U'
+000753 d0ab                      	RCALL podatki          
+000754 e200                          RCALL delay_ms
+000755 d08e                      	LDI   R16, ' '
+000756 d0a8                      	RCALL podatki          
+000757 e200                          RCALL delay_ms
+000758 d08b                      	LDI   R16, ' '
+000759 d0a5                      	RCALL podatki          
+00075a e200                          RCALL delay_ms
+00075b d088                      	LDI   R16, ' '
+00075c d0a2                      	RCALL podatki          
+00075d e200                          RCALL delay_ms
+00075e d085                      	LDI   R16, ' '
+00075f d09f                      	RCALL podatki          
+000760 2f06                          RCALL delay_ms
+000761 d082                      	mov   R16, tocke_to_ascii_desetice
+000762 d09c                      	RCALL podatki          
+000763 2f05                          RCALL delay_ms
+000764 d07f                      	mov   R16, tocke_to_ascii_enice
+000765 d099                      	RCALL podatki          
+000766 9508                          RCALL delay_ms
                                  	ret
                                  
-000766 e200                      krt4_ven_pravilno:
-000767 d07b                      	LDI   R16, ' '
-000768 d095                      	RCALL podatki          
-000769 e200                          RCALL delay_ms
-00076a d078                      	LDI   R16, ' '
-00076b d092                      	RCALL podatki          
-00076c e200                          RCALL delay_ms
-00076d d075                      	LDI   R16, ' '
-00076e d08f                      	RCALL podatki          
-00076f e200                          RCALL delay_ms
-000770 d072                      	LDI   R16, ' '
-000771 d08c                      	RCALL podatki          
-000772 e200                          RCALL delay_ms
-000773 d06f                      	LDI   R16, ' '
-000774 d089                      	RCALL podatki          
-000775 e200                          RCALL delay_ms
-000776 d06c                      	LDI   R16, ' '
-000777 d086                      	RCALL podatki          
-000778 e200                          RCALL delay_ms
-000779 d069                      	LDI   R16, ' '
-00077a d083                      	RCALL podatki          
-00077b e200                          RCALL delay_ms
-00077c d066                      	LDI   R16, ' '
-00077d d080                      	RCALL podatki          
-00077e e200                          RCALL delay_ms
-00077f d063                      	LDI   R16, ' '
-000780 d07d                      	RCALL podatki          
-000781 ef0f                          RCALL delay_ms
-000782 d060                      	LDI   R16, 0b1111_1111
-000783 d07a                      	RCALL podatki          
+000767 e200                      krt4_ven_pravilno:
+000768 d07b                      	LDI   R16, ' '
+000769 d095                      	RCALL podatki          
+00076a e200                          RCALL delay_ms
+00076b d078                      	LDI   R16, ' '
+00076c d092                      	RCALL podatki          
+00076d e200                          RCALL delay_ms
+00076e d075                      	LDI   R16, ' '
+00076f d08f                      	RCALL podatki          
+000770 e200                          RCALL delay_ms
+000771 d072                      	LDI   R16, ' '
+000772 d08c                      	RCALL podatki          
+000773 e200                          RCALL delay_ms
+000774 d06f                      	LDI   R16, ' '
+000775 d089                      	RCALL podatki          
+000776 e200                          RCALL delay_ms
+000777 d06c                      	LDI   R16, ' '
+000778 d086                      	RCALL podatki          
+000779 e200                          RCALL delay_ms
+00077a d069                      	LDI   R16, ' '
+00077b d083                      	RCALL podatki          
+00077c e200                          RCALL delay_ms
+00077d d066                      	LDI   R16, ' '
+00077e d080                      	RCALL podatki          
+00077f e200                          RCALL delay_ms
+000780 d063                      	LDI   R16, ' '
+000781 d07d                      	RCALL podatki          
+000782 ef0f                          RCALL delay_ms
+000783 d060                      	LDI   R16, 0b1111_1111
+000784 d07a                      	RCALL podatki          
                                      RCALL delay_ms
-000784 ec00                      	////////////////////////////////////
-000785 d04c                      	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
-000786 d077                          RCALL komanda
+000785 ec00                      	////////////////////////////////////
+000786 d04c                      	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
+000787 d077                          RCALL komanda
                                      RCALL delay_ms
-000787 e505                      	///////////////////////////////////
-000788 d05a                      	LDI   R16, 'U'
-000789 d074                      	RCALL podatki          
-00078a e200                          RCALL delay_ms
-00078b d057                      	LDI   R16, ' '
-00078c d071                      	RCALL podatki          
-00078d e200                          RCALL delay_ms
-00078e d054                      	LDI   R16, ' '
-00078f d06e                      	RCALL podatki          
-000790 e505                          RCALL delay_ms
-000791 d051                      	LDI   R16, 'U'
-000792 d06b                      	RCALL podatki          
-000793 e200                          RCALL delay_ms
-000794 d04e                      	LDI   R16, ' '
-000795 d068                      	RCALL podatki          
-000796 e200                          RCALL delay_ms
-000797 d04b                      	LDI   R16, ' '
-000798 d065                      	RCALL podatki          
-000799 e505                          RCALL delay_ms
-00079a d048                      	LDI   R16, 'U'
-00079b d062                      	RCALL podatki          
-00079c e200                          RCALL delay_ms
-00079d d045                      	LDI   R16, ' '
-00079e d05f                      	RCALL podatki          
-00079f e200                          RCALL delay_ms
-0007a0 d042                      	LDI   R16, ' '
-0007a1 d05c                      	RCALL podatki          
-0007a2 e505                          RCALL delay_ms
-0007a3 d03f                      	LDI   R16, 'U'
-0007a4 d059                      	RCALL podatki          
-0007a5 e200                          RCALL delay_ms
-0007a6 d03c                      	LDI   R16, ' '
-0007a7 d056                      	RCALL podatki          
-0007a8 e200                          RCALL delay_ms
-0007a9 d039                      	LDI   R16, ' '
-0007aa d053                      	RCALL podatki          
-0007ab e505                          RCALL delay_ms
-0007ac d036                      	LDI   R16, 'U'
-0007ad d050                      	RCALL podatki          
-0007ae e200                          RCALL delay_ms
-0007af d033                      	LDI   R16, ' '
-0007b0 d04d                      	RCALL podatki          
-0007b1 e200                          RCALL delay_ms
-0007b2 d030                      	LDI   R16, ' '
-0007b3 d04a                      	RCALL podatki          
-0007b4 e200                          RCALL delay_ms
-0007b5 d02d                      	LDI   R16, ' '
-0007b6 d047                      	RCALL podatki          
-0007b7 e200                          RCALL delay_ms
-0007b8 d02a                      	LDI   R16, ' '
-0007b9 d044                      	RCALL podatki          
-0007ba 2f06                          RCALL delay_ms
-0007bb d027                      	mov   R16, tocke_to_ascii_desetice
-0007bc d041                      	RCALL podatki          
-0007bd 2f05                          RCALL delay_ms
-0007be d024                      	mov   R16, tocke_to_ascii_enice
-0007bf d03e                      	RCALL podatki          
-0007c0 9508                          RCALL delay_ms
+000788 e505                      	///////////////////////////////////
+000789 d05a                      	LDI   R16, 'U'
+00078a d074                      	RCALL podatki          
+00078b e200                          RCALL delay_ms
+00078c d057                      	LDI   R16, ' '
+00078d d071                      	RCALL podatki          
+00078e e200                          RCALL delay_ms
+00078f d054                      	LDI   R16, ' '
+000790 d06e                      	RCALL podatki          
+000791 e505                          RCALL delay_ms
+000792 d051                      	LDI   R16, 'U'
+000793 d06b                      	RCALL podatki          
+000794 e200                          RCALL delay_ms
+000795 d04e                      	LDI   R16, ' '
+000796 d068                      	RCALL podatki          
+000797 e200                          RCALL delay_ms
+000798 d04b                      	LDI   R16, ' '
+000799 d065                      	RCALL podatki          
+00079a e505                          RCALL delay_ms
+00079b d048                      	LDI   R16, 'U'
+00079c d062                      	RCALL podatki          
+00079d e200                          RCALL delay_ms
+00079e d045                      	LDI   R16, ' '
+00079f d05f                      	RCALL podatki          
+0007a0 e200                          RCALL delay_ms
+0007a1 d042                      	LDI   R16, ' '
+0007a2 d05c                      	RCALL podatki          
+0007a3 e505                          RCALL delay_ms
+0007a4 d03f                      	LDI   R16, 'U'
+0007a5 d059                      	RCALL podatki          
+0007a6 e200                          RCALL delay_ms
+0007a7 d03c                      	LDI   R16, ' '
+0007a8 d056                      	RCALL podatki          
+0007a9 e200                          RCALL delay_ms
+0007aa d039                      	LDI   R16, ' '
+0007ab d053                      	RCALL podatki          
+0007ac e505                          RCALL delay_ms
+0007ad d036                      	LDI   R16, 'U'
+0007ae d050                      	RCALL podatki          
+0007af e200                          RCALL delay_ms
+0007b0 d033                      	LDI   R16, ' '
+0007b1 d04d                      	RCALL podatki          
+0007b2 e200                          RCALL delay_ms
+0007b3 d030                      	LDI   R16, ' '
+0007b4 d04a                      	RCALL podatki          
+0007b5 e200                          RCALL delay_ms
+0007b6 d02d                      	LDI   R16, ' '
+0007b7 d047                      	RCALL podatki          
+0007b8 e200                          RCALL delay_ms
+0007b9 d02a                      	LDI   R16, ' '
+0007ba d044                      	RCALL podatki          
+0007bb 2f06                          RCALL delay_ms
+0007bc d027                      	mov   R16, tocke_to_ascii_desetice
+0007bd d041                      	RCALL podatki          
+0007be 2f05                          RCALL delay_ms
+0007bf d024                      	mov   R16, tocke_to_ascii_enice
+0007c0 d03e                      	RCALL podatki          
+0007c1 9508                          RCALL delay_ms
                                  	ret
                                  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                  /////////////////////////////////////////////// FUNKCIJE PODATEK, INICIALIZACIJA IN KOMANDA /////////////////////////////////////////////////////////////
-0007c1 e303                      inicializacija:
-0007c2 d00f                      	LDI   R16, 0x33         ;inicializiramo lcd za 4bitno pošiljanje podatkov
-0007c3 d03a                          RCALL komanda       ;pošljemo v komandni register
-0007c4 e302                          RCALL delay_ms
-0007c5 d00c                          LDI   R16, 0x32         ;inicializiramo lcd za 4bitno pošiljanje podatkov
-0007c6 d037                          RCALL komanda
-0007c7 e208                          RCALL delay_ms
-0007c8 d009                          LDI   R16, 0x28         ;povemo, da ima zaslon 2 liniji, 5x7 matrix
-0007c9 d034                          RCALL komanda
-0007ca e00c                          RCALL delay_ms
-0007cb d006                          LDI   R16, 0x0C         ;disp ON, cursor OFF
-0007cc e001                          RCALL komanda
-0007cd d004                          LDI   R16, 0x01         ;zbrišemo lcd
-0007ce d02f                          RCALL komanda
-0007cf e006                          RCALL delay_ms
-0007d0 d001                          LDI   R16, 0x06         ;premaknemo kursor desno
-0007d1 9508                          RCALL komanda
+0007c2 e303                      inicializacija:
+0007c3 d00f                      	LDI   R16, 0x33         ;inicializiramo lcd za 4bitno pošiljanje podatkov
+0007c4 d03a                          RCALL komanda       ;pošljemo v komandni register
+0007c5 e302                          RCALL delay_ms
+0007c6 d00c                          LDI   R16, 0x32         ;inicializiramo lcd za 4bitno pošiljanje podatkov
+0007c7 d037                          RCALL komanda
+0007c8 e208                          RCALL delay_ms
+0007c9 d009                          LDI   R16, 0x28         ;povemo, da ima zaslon 2 liniji, 5x7 matrix
+0007ca d034                          RCALL komanda
+0007cb e00c                          RCALL delay_ms
+0007cc d006                          LDI   R16, 0x0C         ;disp ON, cursor OFF
+0007cd e001                          RCALL komanda
+0007ce d004                          LDI   R16, 0x01         ;zbrišemo lcd
+0007cf d02f                          RCALL komanda
+0007d0 e006                          RCALL delay_ms
+0007d1 d001                          LDI   R16, 0x06         ;premaknemo kursor desno
+0007d2 9508                          RCALL komanda
                                      RET  
                                  
-0007d2 2fb0                      komanda:
-0007d3 7fb0                      	MOV   R27, R16
-0007d4 b9bb                          ANDI  R27, 0xF0         ;zbrišemo spodnje 4 bite
-0007d5 9829                          OUT   PORTD, R27        ;pošljemo zgornje 4bite zaslonu
-0007d6 9a28                          CBI   PORTB, 1          ;pin rs=0 za komando
-0007d7 d01c                          SBI   PORTB, 0          ;en = 1
-0007d8 9828                          RCALL delay_short       ;podaljšamo pulz
-0007d9 d01d                          CBI   PORTB, 0          
+0007d3 2fb0                      komanda:
+0007d4 7fb0                      	MOV   R27, R16
+0007d5 b9bb                          ANDI  R27, 0xF0         ;zbrišemo spodnje 4 bite
+0007d6 9829                          OUT   PORTD, R27        ;pošljemo zgornje 4bite zaslonu
+0007d7 9a28                          CBI   PORTB, 1          ;pin rs=0 za komando
+0007d8 d01c                          SBI   PORTB, 0          ;en = 1
+0007d9 9828                          RCALL delay_short       ;podaljšamo pulz
+0007da d01d                          CBI   PORTB, 0          
                                      RCALL delay_us          ;delajamo
-0007da 2fb0                          ;----------------------------------------------------
-0007db 95b2                          MOV   R27, R16
-0007dc 7fb0                          SWAP  R27               ;zamenjamo zgornje 4 bite za spodnje
-0007dd b9bb                          ANDI  R27, 0xF0         ;ponovimo masko
-0007de 9a28                          OUT   PORTD, R27        ;ponovno pošljemo 4 bitne podatke
-0007df d014                          SBI   PORTB, 0          ;EN = 1
-0007e0 9828                          RCALL delay_short       
-0007e1 d015                          CBI   PORTB, 0          
-0007e2 9508                          RCALL delay_us          
+0007db 2fb0                          ;----------------------------------------------------
+0007dc 95b2                          MOV   R27, R16
+0007dd 7fb0                          SWAP  R27               ;zamenjamo zgornje 4 bite za spodnje
+0007de b9bb                          ANDI  R27, 0xF0         ;ponovimo masko
+0007df 9a28                          OUT   PORTD, R27        ;ponovno pošljemo 4 bitne podatke
+0007e0 d014                          SBI   PORTB, 0          ;EN = 1
+0007e1 9828                          RCALL delay_short       
+0007e2 d015                          CBI   PORTB, 0          
+0007e3 9508                          RCALL delay_us          
                                      RET
                                  
-0007e3 2fb0                      podatki:              //isto kot komanda
-0007e4 7fb0                          MOV   R27, R16
-0007e5 b9bb                          ANDI  R27, 0xF0         
-0007e6 9a29                          OUT   PORTD, R27        
-0007e7 9a28                          SBI   PORTB, 1          
-0007e8 d00b                          SBI   PORTB, 0          
-0007e9 9828                          RCALL delay_short      
-0007ea d00c                          CBI   PORTB, 0          
+0007e4 2fb0                      podatki:              //isto kot komanda
+0007e5 7fb0                          MOV   R27, R16
+0007e6 b9bb                          ANDI  R27, 0xF0         
+0007e7 9a29                          OUT   PORTD, R27        
+0007e8 9a28                          SBI   PORTB, 1          
+0007e9 d00b                          SBI   PORTB, 0          
+0007ea 9828                          RCALL delay_short      
+0007eb d00c                          CBI   PORTB, 0          
                                      RCALL delay_us          
-0007eb 2fb0                          ;----------------------------------------------------
-0007ec 95b2                          MOV   R27, R16
-0007ed 7fb0                          SWAP  R27              
-0007ee b9bb                          ANDI  R27, 0xF0        
-0007ef 9a28                          OUT   PORTD, R27       
-0007f0 d003                          SBI   PORTB, 0         
-0007f1 9828                          RCALL delay_short       
-0007f2 d004                          CBI   PORTB, 0          
-0007f3 9508                          RCALL delay_us          
+0007ec 2fb0                          ;----------------------------------------------------
+0007ed 95b2                          MOV   R27, R16
+0007ee 7fb0                          SWAP  R27              
+0007ef b9bb                          ANDI  R27, 0xF0        
+0007f0 9a28                          OUT   PORTD, R27       
+0007f1 d003                          SBI   PORTB, 0         
+0007f2 9828                          RCALL delay_short       
+0007f3 d004                          CBI   PORTB, 0          
+0007f4 9508                          RCALL delay_us          
                                      RET
                                  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                  //////////////////////////////////////////////////////// DELAJI ///////////////////////////////////////////////////////////////////
                                  
-0007f4 0000                      delay_short:
-0007f5 0000                            NOP
-0007f6 9508                            NOP
+0007f5 0000                      delay_short:
+0007f6 0000                            NOP
+0007f7 9508                            NOP
                                        RET
                                  
-0007f7 e5ca                      delay_us:
-0007f8 dffb                            LDI   R28, 90
-0007f9 940e 0246                 l3:   RCALL delay_short
-0007fb 95ca                      	  call pritisk_gumba
-0007fc f7d9                            DEC   R28
-0007fd 9508                            BRNE  l3
+0007f8 e5ca                      delay_us:
+0007f9 dffb                            LDI   R28, 90
+0007fa 940e 0247                 l3:   RCALL delay_short
+0007fc 95ca                      	  call pritisk_gumba
+0007fd f7d9                            DEC   R28
+0007fe 9508                            BRNE  l3
                                        RET
                                  
-0007fe e2c8                      delay_ms:
-0007ff dff7                            LDI   R28, 40
-000800 940e 0246                 l4:   RCALL delay_us
-000802 95ca                      	  call pritisk_gumba
-000803 f7d9                            DEC   R28
-000804 9508                            BRNE  l4
+0007ff e2c8                      delay_ms:
+000800 dff7                            LDI   R28, 40
+000801 940e 0247                 l4:   RCALL delay_us
+000803 95ca                      	  call pritisk_gumba
+000804 f7d9                            DEC   R28
+000805 9508                            BRNE  l4
                                        RET
                                  
-000805 efcf                      delay_seconds:        ;nested loop subroutine (max delay 3.11s)
-000806 efdf                          LDI   R28, 255    ;outer loop counter 
-000807 e124                      l5: LDI   R29, 255    ;mid loop counter
-000808 952a                      l6: LDI   R18, 20     ;inner loop counter to give 0.25s delay
-000809 940e 0246                 l7: DEC   R18 
-00080b f7e1                      	CALL pritisk_gumba        
-00080c 95da                          BRNE  l7          ;loop if not zero
-00080d f7c9                          DEC   R29         ;decrement mid loop
-00080e 95ca                          BRNE  l6          ;loop if not zero
-00080f f7b1                          DEC   R28         ;decrement outer loop
+000806 efcf                      delay_seconds:        ;nested loop subroutine (max delay 3.11s)
+000807 efdf                          LDI   R28, 255    ;outer loop counter 
+000808 e124                      l5: LDI   R29, 255    ;mid loop counter
+000809 952a                      l6: LDI   R18, 20     ;inner loop counter to give 0.25s delay
+00080a 940e 0247                 l7: DEC   R18 
+00080c f7e1                      	CALL pritisk_gumba        
+00080d 95da                          BRNE  l7          ;loop if not zero
+00080e f7c9                          DEC   R29         ;decrement mid loop
+00080f 95ca                          BRNE  l6          ;loop if not zero
+000810 f7b1                          DEC   R28         ;decrement outer loop
 
 
 RESOURCE USE INFORMATION
@@ -2682,8 +2684,8 @@ Instructions used: 27 out of 113 (23.9%)
 "ATmega328P" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000068 0x001022   2996    124   3120   32768   9.5%
+[.cseg] 0x000068 0x001024   2996    126   3122   32768   9.5%
 [.dseg] 0x000100 0x000100      0      0      0    2048   0.0%
 [.eseg] 0x000000 0x000000      0      0      0    1024   0.0%
 
-Assembly complete, 0 errors, 1 warnings
+Assembly complete, 0 errors, 2 warnings
