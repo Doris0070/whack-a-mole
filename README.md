@@ -15,6 +15,9 @@ The objective is to "whack" the moles as they randomly pop up from their holes. 
 
 ## Demo
 
+![image](https://github.com/Doris0070/whack-a-mole/assets/119793367/c9ffd022-0717-4c86-b492-4496efea23e0)
+
+
 ![image](https://github.com/Doris0070/whack-a-mole/assets/119793367/7e5344bb-08f4-4b1e-8d48-74328c4ca4aa)
 
 
