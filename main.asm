@@ -1,23 +1,30 @@
-.def tocke = r20
 .def tocke_to_ascii_enice = r21
 .def tocke_to_ascii_desetice = r22
-.def pinb_stanje = r23
-.def gumb_checker = r24
-.def krt_number = r25
 .def temp_reg = r26
+.def gumb_checker = r23
+.def random = r19
+.def gumb_stanje = r24
 .org 0x0034
 setup:
 	ldi r16, 0xff
 	out ddrb, r16
 	out ddrd, r16
 	cbi portb, 0
-	rcall inicializacija
+	rcall inicializacija_loop
 	ldi zh, high(load * 2)
 	ldi zl, low(load * 2)
+	cbi ddrb, 2
+	cbi ddrb, 3
+	cbi ddrb, 4
+	cbi ddrb, 5
+	cbi portb, 2
+	cbi portb, 3
+	cbi portb, 4
+	cbi portb, 5
 
-	.org 0x0200
+	.org 0x0300
 load:
-	.db 2, 1, 4, 3, 1, 2, 3, 4, 3, 1, 2, 4, 2, 3, 1, 4, 4, 1, 2, 3, 2, 4, 3, 1, 1, 3, 4, 2, 2, 4, 1, 3, 3, 2, 1, 4, 1, 3, 2, 4, 4, 1, 3, 2, 3, 4, 1, 2, 1, 4, 3, 2, 2, 4, 1, 3, 1, 2, 4, 3, 4, 3, 1, 2, 1, 4, 3, 2, 4, 2, 3, 1, 4, 3, 1, 2, 1, 2, 3, 4, 4, 3, 1, 2, 3, 2, 1, 4, 4, 1, 2, 3, 2, 4, 1, 3, 3, 1, 4, 2, 1, 2, 3, 4, 4, 3, 1, 2, 3, 2, 1, 4, 4, 1, 2, 3, 2, 4, 1, 2, 3, 3, 1, 4, 2
+	.db 3,1,4,2,3,4,1,3,2,4,1,3,2,4,1,3,2,1,4,1,3,4,3,1,2,4,3,1,3,2,3,1,2,3,4,1,3,2,1,3,2,4,1,3,2,3,1,3,4,2,3,1,4,0
 	jmp program
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -25,91 +32,16 @@ load:
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 program:
-	call you_lost_screen
-	jmp loop
+	call display1_loop
+	call delay_seconds
+	call read
+	call delay_seconds
 	jmp program
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////// TUKAJ SO FUNKCIJE ZA PRAVILNE PRITISKE GUMBOV ////////////////////////////////////////////
 
-pritisk_gumba:
-	in pinb_stanje, pinb
-	ori pinb_stanje, 0b0011_1100
-	lsr pinb_stanje
-	lsr pinb_stanje
-	cpi pinb_stanje, 0
-	brne krt_to_checker
-	ret
-	krt_to_checker:
-		cpi gumb_checker, 1
-		brne ena_v_ena
-		cpi gumb_checker, 2
-		brne dva_v_tri
-		cpi gumb_checker, 3
-		brne tri_v_stiri
-		cpi gumb_checker, 4
-		brne stiri_v_osem
-		jmp krt_to_checker
-	checker_krt1:
-		cp pinb_stanje, gumb_checker
-		breq krt1_ven_pravilno_loopx
-		jmp krt1_ven_narobe_loopx
-	checker_krt2:
-		cp pinb_stanje, gumb_checker
-		breq krt2_ven_pravilno_loopx
-		jmp krt2_ven_narobe_loopx
-	checker_krt3:
-		cp pinb_stanje, gumb_checker
-		breq krt3_ven_pravilno_loopx
-		jmp krt3_ven_narobe_loopx
-	checker_krt4:
-		cp pinb_stanje, gumb_checker
-		breq krt4_ven_pravilno_loopx
-		jmp krt4_ven_narobe_loopx
-	ena_v_ena:
-		ldi gumb_checker, 1
-		jmp checker_krt1
-	dva_v_tri:
-		ldi gumb_checker, 2
-		jmp checker_krt2
-	tri_v_stiri:
-		ldi gumb_checker, 4
-		jmp checker_krt3
-	stiri_v_osem:
-		ldi gumb_checker, 8
-		jmp checker_krt4
-	tocke_plus:
-		inc tocke
-	tocke_minus:
-		dec r20
-		brcs you_lost_loop
-		dec r20 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-krt1_ven_pravilno_loopx:
-	call krt1_ven_pravilno_loopx 
-	ret
-krt2_ven_pravilno_loopx:
-	call krt2_ven_pravilno_loopx 
-	ret
-krt3_ven_pravilno_loopx:
-	call krt3_ven_pravilno_loopx 
-	ret
-krt4_ven_pravilno_loopx:
-	call krt4_ven_pravilno_loopx 
-	ret
-krt2_ven_narobe_loopx:
-	call krt2_ven_narobe_loop
-	ret
-krt1_ven_narobe_loopx:
-	call krt1_ven_narobe_loop
-	ret
-krt3_ven_narobe_loopx:
-	call krt3_ven_narobe_loop
-	ret
-krt4_ven_narobe_loopx:
-	call krt4_ven_narobe_loop
-	ret
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 you_lost_loop:
 	jmp you_lost_screen
@@ -118,7 +50,6 @@ you_lost_loop:
 		rjmp loop
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 load_tocke:
-	ldi r20, 46
 	call deljenje_r20
 	call ascii_converter
 	ret
@@ -141,6 +72,9 @@ load_tocke:
 		add tocke_to_ascii_desetice, temp_reg
 		ret
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 read:
@@ -149,12 +83,10 @@ read:
 		lpm r19, z+
 		cpi r19, 0
 		brne pick_random_krt
-		jmp set_z_reg
+		jmp end
 		ret
-	set_z_reg:
-		ldi zh, high(load * 2)
-		ldi zl, low(load * 2)
-		jmp read_r19
+	end:
+		jmp you_lost_loop
 	pick_random_krt:
 		cpi r19, 1
 		breq krt1_ven_loop
@@ -167,77 +99,98 @@ read:
 		ret
 		
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+gumb_pritisk:
+	mov gumb_checker, r19
+	cp gumb_checker, gumb_stanje
+	breq dodaj_tocke
+	jmp krt_narobe
+dodaj_tocke:
+	inc r20
+	jmp krt_pravilno
+krt_pravilno:
+	cpi gumb_stanje, 1
+	breq krt1_ven_pravilno_loop
+	cpi gumb_stanje, 2
+	breq krt2_ven_pravilno_loop
+	cpi gumb_stanje, 3
+	breq krt3_ven_pravilno_loop
+	cpi gumb_stanje, 4
+	breq krt4_ven_pravilno_loop	
+	ret
+krt_narobe:
+	cpi gumb_stanje, 1
+	breq krt1_ven_narobe_loop
+	cpi gumb_stanje, 2
+	breq krt2_ven_narobe_loop
+	cpi gumb_stanje, 3
+	breq krt3_ven_pravilno_loop
+	cpi gumb_stanje, 4
+	breq krt4_ven_pravilno_loop	
+	ret
+
 /////////////////////////////////////////////// FUNKCIJE ZA PRIKLIC ZASLONOV /////////////////////////////////////////////////////////	
+display1_loop:
+	call load_tocke
+	call display1
+	ret 
 
 krt1_ven_loop:
-	mov gumb_checker, r19
-	jmp krt1_ven
-	call delay_seconds
-	call delay_seconds
-	call delay_seconds
-	clr gumb_checker
+	call load_tocke
+	call krt1_ven
 	ret 
 krt2_ven_loop:
-	mov gumb_checker, r19
-	jmp krt2_ven
-	call delay_seconds
-	call delay_seconds
-	call delay_seconds
-	clr gumb_checker
+	call load_tocke
+	call krt2_ven
 	ret
 krt3_ven_loop:
-	mov gumb_checker, r19
-	jmp krt3_ven
-	call delay_seconds
-	call delay_seconds
-	call delay_seconds
-	clr gumb_checker
+	call load_tocke
+	call krt3_ven
 	ret
 krt4_ven_loop:
-	mov gumb_checker, r19
-	jmp krt4_ven
-	call delay_seconds
-	call delay_seconds
-	call delay_seconds
-	clr gumb_checker
+	call load_tocke
+	call krt4_ven
 	ret
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 krt1_ven_pravilno_loop:
 	call load_tocke
-	jmp krt1_ven_pravilno
+	call krt1_ven_pravilno
 	call delay_seconds
 	ret
 krt2_ven_pravilno_loop:
 	call load_tocke
-	jmp krt2_ven_pravilno
+	call krt2_ven_pravilno
 	call delay_seconds
 	ret
 krt3_ven_pravilno_loop:
 	call load_tocke
-	jmp krt3_ven_pravilno
+	call krt3_ven_pravilno
 	call delay_seconds
 	ret
 krt4_ven_pravilno_loop:
 	call load_tocke
-	jmp krt4_ven_pravilno
+	call krt4_ven_pravilno
 	call delay_seconds
 	ret
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 krt1_ven_narobe_loop:
-	jmp krt1_ven_narobe
+	call krt1_ven_narobe
 	call load_tocke
 	ret
 krt2_ven_narobe_loop:
-	jmp krt2_ven_narobe
+	call krt2_ven_narobe
 	call load_tocke
 	ret
 krt3_ven_narobe_loop:
-	jmp krt3_ven_narobe
+	call krt3_ven_narobe
 	call load_tocke
 	ret
 krt4_ven_narobe_loop:
-	jmp krt4_ven_narobe
+	call krt4_ven_narobe
 	call load_tocke
+	ret
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+inicializacija_loop:
+	call inicializacija
 	ret
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -846,6 +799,8 @@ krt4_ven:
 //////////////////////////////////////// TUKAJ SO VSE SLIKE ZA PRAVILNE IN NAPA?NE PRITISKE GUMBOV //////////////////////////////////////////////////////
 	krt1_ven_narobe:
 	LDI   R16, 'X'
+	RCALL podatki          
+    RCALL delay_ms
 	////////////////////////////////////
 	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
     RCALL komanda
@@ -1170,6 +1125,8 @@ krt4_ven_narobe:
 
 krt1_ven_pravilno:
 	LDI   R16, 0b1111_1111
+	RCALL podatki          
+    RCALL delay_ms
 	////////////////////////////////////
 	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
     RCALL komanda
@@ -1562,7 +1519,6 @@ delay_short:
 delay_us:
       LDI   R28, 90
 l3:   RCALL delay_short
-	  call pritisk_gumba
       DEC   R28
       BRNE  l3
       RET
@@ -1570,7 +1526,22 @@ l3:   RCALL delay_short
 delay_ms:
       LDI   R28, 40
 l4:   RCALL delay_us
-	  call pritisk_gumba
+	sbic pinb, 2
+	ldi  r24, 1
+	sbic pinb, 2
+	jmp gumb_pritisk_loop
+	sbic pinb, 3
+	ldi r24, 2
+	sbic pinb, 3
+	jmp gumb_pritisk_loop
+	sbic pinb, 4
+	ldi r24, 3
+	sbic pinb, 4
+	jmp   gumb_pritisk_loop
+	sbic pinb, 5
+	ldi r24, 4
+	sbic pinb, 5
+	jmp gumb_pritisk_loop  
       DEC   R28
       BRNE  l4
       RET
@@ -1579,11 +1550,30 @@ delay_seconds:        ;nested loop subroutine (max delay 3.11s)
     LDI   R28, 255    ;outer loop counter 
 l5: LDI   R29, 255    ;mid loop counter
 l6: LDI   R18, 20     ;inner loop counter to give 0.25s delay
-l7: DEC   R18 
-	CALL pritisk_gumba        
+l7: DEC   R18  
+	sbic pinb, 2
+	ldi  r24, 1
+	sbic pinb, 2
+	jmp gumb_pritisk_loop
+	sbic pinb, 3
+	ldi r24, 2
+	sbic pinb, 3
+	jmp gumb_pritisk_loop
+	sbic pinb, 4
+	ldi r24, 3
+	sbic pinb, 4
+	jmp   gumb_pritisk_loop
+	sbic pinb, 5
+	ldi r24, 4
+	sbic pinb, 5
+	jmp gumb_pritisk_loop 
     BRNE  l7          ;loop if not zero
     DEC   R29         ;decrement mid loop
     BRNE  l6          ;loop if not zero
     DEC   R28         ;decrement outer loop
     BRNE  l5          ;loop if not zero
     RET               ;return to calle
+
+gumb_pritisk_loop:
+	call gumb_pritisk
+	ret
