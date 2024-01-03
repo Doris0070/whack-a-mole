@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.8  C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm Wed Jan 03 15:02:44 2024
+AVRASM ver. 2.2.8  C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm Wed Jan 03 15:03:25 2024
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m328Pdef.inc'
 C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\krti in krtine\krti in krtine\main.asm(3): warning: Register r26 already defined by the .DEF directive
