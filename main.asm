@@ -27,6 +27,7 @@ setup:
 	cbi ddrb, 3
 	cbi ddrb, 4
 	cbi ddrb, 5
+	call loading_screen_loop
 
 	.org 0x0050
 load:
@@ -51,6 +52,18 @@ program:
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
+loading_screen_loop:
+	call loading_screen_1
+	call delay_loading
+	call delay_loading
+	call delay_loading
+	call lcd_off
+	call loading_redy
+	call delay_loading
+	call delay_loading
+	call lcd_off
+	ret
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -74,6 +87,11 @@ read:
 		ret
 
 end_screen_loop:
+	mov r21, r10
+	cpi r21, 50
+	breq x_loop
+	cpi r21, 0
+	breq looser_screen_loop
 	call load_tocke
 	call end_screen
 	jmp end_screen_loop
@@ -94,34 +112,43 @@ krt4_ven_loop:
 	call load_tocke
 	call krt4_ven
 	ret
+
+x_loop:
+	call x_screen
+	jmp x_loop
+
+looser_screen_loop:
+	call looser_screen
+	jmp looser_screen_loop
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 krt1_ven_narobe_loop:
 	call lcd_off
 	call load_tocke
 	call krt1_ven_narobe
-	call delay_short
+	call delay_us
 	jmp program
 	ret
 krt2_ven_narobe_loop:
 	call lcd_off
 	call load_tocke
 	call krt2_ven_narobe
-	call delay_short
+	call delay_us
 	jmp program
 	ret
 krt3_ven_narobe_loop:
 	call lcd_off
 	call load_tocke
 	call krt3_ven_narobe
-	call delay_short
+	call delay_us
 	jmp program
 	ret
 krt4_ven_narobe_loop:
 	call lcd_off
 	call load_tocke
 	call krt4_ven_narobe
-	call delay_short
+	call delay_us
 	jmp program
 	ret
 
@@ -158,28 +185,28 @@ krt1_ven_pravilno_loop:
 	call lcd_off
 	call load_tocke
 	call krt1_ven_pravilno
-	call delay_short
+	call delay_us
 	jmp program
 	ret
 krt2_ven_pravilno_loop:
 	call lcd_off
 	call load_tocke
 	call krt2_ven_pravilno
-	call delay_short
+	call delay_us
 	jmp program
 	ret
 krt3_ven_pravilno_loop:
 	call lcd_off
 	call load_tocke
 	call krt3_ven_pravilno
-	call delay_short
+	call delay_us
 	jmp program
 	ret
 krt4_ven_pravilno_loop:
 	call lcd_off
 	call load_tocke
 	call krt4_ven_pravilno
-	call delay_short
+	call delay_us
 	jmp program
 	ret
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -214,6 +241,369 @@ lcd_off:
 	ldi   R16, 0x01         ;zbrišemo LCD
     rcall komanda           ;pošlemo komando
     rcall delay_ms
+	ret
+
+loading_redy:
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
+    RCALL komanda
+    RCALL delay_ms
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'g'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'e'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 't'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'r'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'e'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'a'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'd'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'y'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, '.'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, '.'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, '.'
+	RCALL podatki          
+    RCALL delay_ms
+	ret
+
+
+loading_screen_1:
+	LDI   R16, 0b11111100
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'G'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'A'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'M'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'E'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 0b11111100
+	RCALL podatki          
+    RCALL delay_ms
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
+    RCALL komanda
+    RCALL delay_ms
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	LDI   R16, 'U'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'w'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'h'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'a'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'c'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'k'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'a'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'm'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'o'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'l'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'e'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'U'
+	RCALL podatki          
+    RCALL delay_ms
+	ret
+
+x_screen:
+	LDI   R16, 'P'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'e'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'o'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'p'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'l'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'e'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 's'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'e'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'e'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'w'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'h'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'a'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 't'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
+    RCALL komanda
+    RCALL delay_ms
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	LDI   R16, 't'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'h'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'e'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'y'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'w'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'a'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'n'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 't'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 't'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'o'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 's'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'e'
+	RCALL podatki
+	RCALL delay_ms
+	LDI   R16, 'e'
+	RCALL podatki
+	RCALL delay_ms
+	ret
+
+looser_screen:
+	LDI   R16, 0b11111100
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'Y'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'O'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'U'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'L'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'O'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'S'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'T'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 0b11111100
+	RCALL podatki          
+    RCALL delay_ms
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
+    RCALL komanda
+    RCALL delay_ms
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	LDI   R16, 'U'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'L'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'O'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'O'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'S'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'E'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'R'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki
+	RCALL delay_ms
+	LDI   R16, 'U'
+	RCALL podatki
+	RCALL delay_ms
 	ret
 
 end_screen:
@@ -422,7 +812,7 @@ screen:
 	ret
 
 krt1_ven:
-	LDI   R16, '0'
+	LDI   R16, 0b11111100
 	RCALL podatki          
     RCALL delay_ms
 	LDI   R16, ' '
@@ -517,7 +907,7 @@ krt2_ven:
 	LDI   R16, ' '
 	RCALL podatki          
     RCALL delay_ms
-	LDI   R16, '0'
+	LDI   R16, 0b11111100
 	RCALL podatki          
     RCALL delay_ms
 	LDI   R16, ' '
@@ -612,7 +1002,7 @@ krt3_ven:
 	LDI   R16, ' '
 	RCALL podatki          
     RCALL delay_ms
-	LDI   R16, '0'
+	LDI   R16, 0b11111100
 	RCALL podatki          
     RCALL delay_ms
 	LDI   R16, ' '
@@ -671,10 +1061,10 @@ krt3_ven:
 	LDI   R16, ' '
 	RCALL podatki          
     RCALL delay_ms
-	mov   R16, tocke_to_ascii_desetice
+	mov   R16, r9
 	RCALL podatki          
     RCALL delay_ms
-	mov   R16, tocke_to_ascii_enice 
+	mov   R16, r8 
 	RCALL podatki          
     RCALL delay_ms
 	ret
@@ -707,7 +1097,7 @@ krt4_ven:
 	LDI   R16, ' '
 	RCALL podatki          
     RCALL delay_ms
-	LDI   R16, '0'
+	LDI   R16, 0b11111100
 	RCALL podatki          
     RCALL delay_ms
 	////////////////////////////////////
@@ -1416,7 +1806,7 @@ delay_short:
       RET
 
 delay_us:
-      LDI   R17, 90
+      LDI   R17, 80
 l3:   RCALL delay_short
       DEC   R17
       BRNE  l3
@@ -1468,3 +1858,15 @@ delay_shortener:
 	ldi r25, 20
 	lsr r2
 	jmp delay_seconds
+
+delay_loading:
+	LDI   R28, 255    ;outer loop counter 
+la: LDI   R29, 255    ;mid loop counter
+lb: LDI   R18, 160     ;inner loop counter to give 0.25s delay
+lc: DEC   R18  
+    BRNE  l7          ;loop if not zero
+    DEC   R29         ;decrement mid loop
+    BRNE  l6          ;loop if not zero
+    DEC   R28         ;decrement outer loop
+    BRNE  l5          ;loop if not zero
+    RET
