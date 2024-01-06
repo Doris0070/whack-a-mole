@@ -1,4 +1,4 @@
-# Whack-a-Mole Game
+## Whack-a-Mole Game
 
 A fun Whack-a-Mole game inspired by the classic arcade game.
 
@@ -8,9 +8,9 @@ The objective is to "whack" the moles as they randomly pop up from their holes. 
 ### Features:
 * Whack the moles as they pop up from their holes.
 * Dynamic difficulty level - moles may appear faster as you progress.
-* Random appearance of bonus and penalty items for an added challenge.
+* Every 10 moles time is cut in half.
 * Game can ends after 50 moles and displays score achived.
-* Reset the game with a long press on the button.
+* If you reach 50/50 points you get special screen.
 * Adjust the screen contrast for optimal visibility.
 
 ## Demo
