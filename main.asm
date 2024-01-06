@@ -60,7 +60,6 @@ loading_screen_loop:
 	call lcd_off
 	call loading_redy
 	call delay_loading
-	call delay_loading
 	call lcd_off
 	ret
 
@@ -351,7 +350,7 @@ loading_screen_1:
 	LDI   R16, 'U'
 	RCALL podatki          
     RCALL delay_ms
-	LDI   R16, ' '
+	LDI   R16, '_'
 	RCALL podatki          
     RCALL delay_ms
 	LDI   R16, 'w'
@@ -390,7 +389,7 @@ loading_screen_1:
 	LDI   R16, 'e'
 	RCALL podatki          
     RCALL delay_ms
-	LDI   R16, ' '
+	LDI   R16, '_'
 	RCALL podatki          
     RCALL delay_ms
 	LDI   R16, 'U'
