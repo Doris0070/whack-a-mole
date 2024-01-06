@@ -10,7 +10,7 @@ setup:
 	clr r10
 	clr r9
 	clr r8
-	clr temp_reg
+	clr r26
 	ldi r21, 0
 	ldi r22, 0
 	ldi r16, 200
