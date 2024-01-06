@@ -10,6 +10,7 @@ setup:
 	clr r10
 	clr r9
 	clr r8
+	clr temp_reg
 	ldi r21, 0
 	ldi r22, 0
 	ldi r16, 200
@@ -38,14 +39,12 @@ load:
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 program:
-	call load_tocke
 	call lcd_off
 	call screen
 	call delay_seconds
 	call lcd_off
 	call read
 	call delay_seconds
-	call lcd_off
 	jmp program
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -54,7 +53,6 @@ program:
 
 loading_screen_loop:
 	call loading_screen_1
-	call delay_loading
 	call delay_loading
 	call delay_loading
 	call lcd_off
@@ -126,28 +124,28 @@ krt1_ven_narobe_loop:
 	call lcd_off
 	call load_tocke
 	call krt1_ven_narobe
-	call delay_us
+	call delay_ms
 	jmp program
 	ret
 krt2_ven_narobe_loop:
 	call lcd_off
 	call load_tocke
 	call krt2_ven_narobe
-	call delay_us
+	call delay_ms
 	jmp program
 	ret
 krt3_ven_narobe_loop:
 	call lcd_off
 	call load_tocke
 	call krt3_ven_narobe
-	call delay_us
+	call delay_ms
 	jmp program
 	ret
 krt4_ven_narobe_loop:
 	call lcd_off
 	call load_tocke
 	call krt4_ven_narobe
-	call delay_us
+	call delay_ms
 	jmp program
 	ret
 
@@ -184,49 +182,48 @@ krt1_ven_pravilno_loop:
 	call lcd_off
 	call load_tocke
 	call krt1_ven_pravilno
-	call delay_us
+	call delay_ms
 	jmp program
 	ret
 krt2_ven_pravilno_loop:
 	call lcd_off
 	call load_tocke
 	call krt2_ven_pravilno
-	call delay_us
+	call delay_ms
 	jmp program
 	ret
 krt3_ven_pravilno_loop:
 	call lcd_off
 	call load_tocke
 	call krt3_ven_pravilno
-	call delay_us
+	call delay_ms
 	jmp program
 	ret
 krt4_ven_pravilno_loop:
 	call lcd_off
 	call load_tocke
 	call krt4_ven_pravilno
-	call delay_us
+	call delay_ms
 	jmp program
 	ret
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 load_tocke:
-	call deljenje_r10
+	call deljenje_tock
 	call ascii_converter
 	ret
-	deljenje_r10:
+	deljenje_tock:
+		clr tocke_to_ascii_desetice
 		mov tocke_to_ascii_enice, r10
 		ldi temp_reg, 10
-		rjmp deljenje
 	deljenje:
-		inc tocke_to_ascii_desetice
 		sub tocke_to_ascii_enice, temp_reg
 		brcs rezultat
+		inc tocke_to_ascii_desetice
 		jmp deljenje
 	rezultat:
 		add tocke_to_ascii_enice, temp_reg
-		dec tocke_to_ascii_desetice
 		ret
 	ascii_converter:
 		ldi temp_reg, '0'
@@ -350,7 +347,7 @@ loading_screen_1:
 	LDI   R16, 'U'
 	RCALL podatki          
     RCALL delay_ms
-	LDI   R16, '_'
+	LDI   R16, ' '
 	RCALL podatki          
     RCALL delay_ms
 	LDI   R16, 'w'
@@ -389,7 +386,7 @@ loading_screen_1:
 	LDI   R16, 'e'
 	RCALL podatki          
     RCALL delay_ms
-	LDI   R16, '_'
+	LDI   R16, ' '
 	RCALL podatki          
     RCALL delay_ms
 	LDI   R16, 'U'
@@ -1777,11 +1774,12 @@ komanda:
     RCALL delay_us          
     RET
 
-podatki:              //isto kot komanda
+podatki:  
+	cbi portb, 0            //isto kot komanda
     MOV   R27, R16
     ANDI  R27, 0xF0         
     OUT   PORTD, R27        
-    SBI   PORTB, 1          
+    SBI   PORTB, 1         
     SBI   PORTB, 0          
     RCALL delay_short      
     CBI   PORTB, 0          
