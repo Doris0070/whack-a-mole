@@ -1,16 +1,21 @@
-.def tocke_to_ascii_enice = r21
-.def tocke_to_ascii_desetice = r22
-.def temp_reg = r26
 .def gumb_checker = r23
-.def random = r19
 .def gumb_stanje = r24
+.def random = r19
 .def sprememba_casa = r2
-.def stevilo_krtov = r3
+.def tocke = r10
+.def temp_reg = r26
+.def tocke_to_ascii_enice = r8
+.def tocke_to_ascii_desetice = r9
 setup:
-	ldi r16, 244
+	clr r10
+	clr r9
+	clr r8
+	ldi r21, 0
+	ldi r22, 0
+	ldi r16, 200
 	mov r2, r16
-	ldi r17, 10
-	mov r3, r17
+	ldi r25, 22
+	mov r3, r25
 	ldi r16, 0xff
 	out ddrb, r16
 	out ddrd, r16
@@ -22,10 +27,6 @@ setup:
 	cbi ddrb, 3
 	cbi ddrb, 4
 	cbi ddrb, 5
-	cbi portb, 2
-	cbi portb, 3
-	cbi portb, 4
-	cbi portb, 5
 
 	.org 0x0050
 load:
@@ -36,6 +37,8 @@ load:
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 program:
+	call load_tocke
+	call lcd_off
 	call screen
 	call delay_seconds
 	call lcd_off
@@ -44,7 +47,12 @@ program:
 	call lcd_off
 	jmp program
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 read:
 	jmp read_r19
@@ -65,93 +73,140 @@ read:
 		breq krt4_ven_loop
 		ret
 
-gumb_pritisk:
-	mov gumb_checker, r19
-	cp gumb_checker, gumb_stanje
-	breq dodaj_tocke
-	jmp krt_narobe
-dodaj_tocke:
-	inc r20
-	jmp krt_pravilno
-krt_pravilno:
-	cpi gumb_stanje, 1
-	breq krt1_ven_pravilno_loop
-	cpi gumb_stanje, 2
-	breq krt2_ven_pravilno_loop
-	cpi gumb_stanje, 3
-	breq krt3_ven_pravilno_loop
-	cpi gumb_stanje, 4
-	breq krt4_ven_pravilno_loop	
-	ret
-krt_narobe:
-	cpi gumb_stanje, 1
-	breq krt1_ven_narobe_loop
-	cpi gumb_stanje, 2
-	breq krt2_ven_narobe_loop
-	cpi gumb_stanje, 3
-	breq krt3_ven_pravilno_loop
-	cpi gumb_stanje, 4
-	breq krt4_ven_pravilno_loop	
-	ret
-
 end_screen_loop:
+	call load_tocke
 	call end_screen
 	jmp end_screen_loop
 
 krt1_ven_loop:
+	call load_tocke
 	call krt1_ven
 	ret 
 krt2_ven_loop:
+	call load_tocke
 	call krt2_ven
 	ret
 krt3_ven_loop:
+	call load_tocke
 	call krt3_ven
 	ret
 krt4_ven_loop:
+	call load_tocke
 	call krt4_ven
 	ret
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-krt1_ven_pravilno_loop:
-	call krt1_ven_pravilno
-	call delay_seconds
-	jmp program
-	ret
-krt2_ven_pravilno_loop:
-	call krt2_ven_pravilno
-	call delay_seconds
-	jmp program
-	ret
-krt3_ven_pravilno_loop:
-	call krt3_ven_pravilno
-	call delay_seconds
-	jmp program
-	ret
-krt4_ven_pravilno_loop:
-	call krt4_ven_pravilno
-	call delay_seconds
-	jmp program
-	ret
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////
 krt1_ven_narobe_loop:
+	call lcd_off
+	call load_tocke
 	call krt1_ven_narobe
-	call delay_seconds
+	call delay_short
 	jmp program
 	ret
 krt2_ven_narobe_loop:
+	call lcd_off
+	call load_tocke
 	call krt2_ven_narobe
-	call delay_seconds
+	call delay_short
 	jmp program
 	ret
 krt3_ven_narobe_loop:
+	call lcd_off
+	call load_tocke
 	call krt3_ven_narobe
-	call delay_seconds
+	call delay_short
 	jmp program
 	ret
 krt4_ven_narobe_loop:
+	call lcd_off
+	call load_tocke
 	call krt4_ven_narobe
-	call delay_seconds
+	call delay_short
 	jmp program
 	ret
+
+gumb_pritisk:
+	mov r23, r19
+	cp r23, r24
+	breq dodaj_tocke
+	jmp krt_narobe
+dodaj_tocke:
+	inc r10
+	jmp krt_pravilno
+krt_pravilno:
+	cpi gumb_stanje, 0x01
+	breq krt1_ven_pravilno_loop
+	cpi gumb_stanje, 0x02
+	breq krt2_ven_pravilno_loop
+	cpi gumb_stanje, 0x03
+	breq krt3_ven_pravilno_loop
+	cpi gumb_stanje, 0x04
+	breq krt4_ven_pravilno_loop	
+	ret
+krt_narobe:
+	cpi gumb_stanje, 0x01
+	breq krt1_ven_narobe_loop
+	cpi gumb_stanje, 0x02
+	breq krt2_ven_narobe_loop
+	cpi gumb_stanje, 0x03
+	breq krt3_ven_narobe_loop
+	cpi gumb_stanje, 0x04
+	breq krt4_ven_narobe_loop	
+	ret
+
+krt1_ven_pravilno_loop:
+	call lcd_off
+	call load_tocke
+	call krt1_ven_pravilno
+	call delay_short
+	jmp program
+	ret
+krt2_ven_pravilno_loop:
+	call lcd_off
+	call load_tocke
+	call krt2_ven_pravilno
+	call delay_short
+	jmp program
+	ret
+krt3_ven_pravilno_loop:
+	call lcd_off
+	call load_tocke
+	call krt3_ven_pravilno
+	call delay_short
+	jmp program
+	ret
+krt4_ven_pravilno_loop:
+	call lcd_off
+	call load_tocke
+	call krt4_ven_pravilno
+	call delay_short
+	jmp program
+	ret
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+load_tocke:
+	call deljenje_r10
+	call ascii_converter
+	ret
+	deljenje_r10:
+		mov tocke_to_ascii_enice, r10
+		ldi temp_reg, 10
+		rjmp deljenje
+	deljenje:
+		inc tocke_to_ascii_desetice
+		sub tocke_to_ascii_enice, temp_reg
+		brcs rezultat
+		jmp deljenje
+	rezultat:
+		add tocke_to_ascii_enice, temp_reg
+		dec tocke_to_ascii_desetice
+		ret
+	ascii_converter:
+		ldi temp_reg, '0'
+		add tocke_to_ascii_enice, temp_reg	
+		add tocke_to_ascii_desetice, temp_reg
+		ret
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////// TUKAJ SO SLIKE KRTOV IN NJIHOVE FUNKCIJE ////////////////////////////////////////////////
@@ -254,14 +309,14 @@ end_screen:
 	LDI   R16, ' '
 	RCALL podatki          
     RCALL delay_ms
-	LDI   R16, 'x'
+	mov   R16, tocke_to_ascii_desetice
 	RCALL podatki          
     RCALL delay_ms
-	LDI   R16, 'x'
+	mov   R16, tocke_to_ascii_enice 
 	RCALL podatki          
     RCALL delay_ms
 	ret
-
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 screen:
 	LDI   R16, ' '
 	RCALL podatki          
@@ -346,6 +401,24 @@ screen:
 	LDI   R16, 'U'
 	RCALL podatki          
     RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	mov   R16, tocke_to_ascii_desetice
+	RCALL podatki          
+    RCALL delay_ms
+	mov   R16, tocke_to_ascii_enice 
+	RCALL podatki          
+    RCALL delay_ms
 	ret
 
 krt1_ven:
@@ -421,6 +494,15 @@ krt1_ven:
 	RCALL podatki          
     RCALL delay_ms
 	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	mov   R16, tocke_to_ascii_desetice
+	RCALL podatki          
+    RCALL delay_ms
+	mov   R16, tocke_to_ascii_enice 
 	RCALL podatki          
     RCALL delay_ms
 	ret
@@ -500,6 +582,15 @@ krt2_ven:
 	LDI   R16, ' '
 	RCALL podatki          
     RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	mov   R16, tocke_to_ascii_desetice
+	RCALL podatki          
+    RCALL delay_ms
+	mov   R16, tocke_to_ascii_enice
+	RCALL podatki          
+    RCALL delay_ms
 	ret
 
 krt3_ven:
@@ -575,6 +666,15 @@ krt3_ven:
 	RCALL podatki          
     RCALL delay_ms
 	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	mov   R16, tocke_to_ascii_desetice
+	RCALL podatki          
+    RCALL delay_ms
+	mov   R16, tocke_to_ascii_enice 
 	RCALL podatki          
     RCALL delay_ms
 	ret
@@ -654,7 +754,17 @@ krt4_ven:
 	LDI   R16, ' '
 	RCALL podatki          
     RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	mov   R16, tocke_to_ascii_desetice
+	RCALL podatki          
+    RCALL delay_ms
+	mov   R16, tocke_to_ascii_enice
+	RCALL podatki          
+    RCALL delay_ms
 	ret
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 	krt1_ven_narobe:
 	LDI   R16, 'X'
@@ -702,6 +812,15 @@ krt4_ven:
 	RCALL podatki          
     RCALL delay_ms
 	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	mov   R16, tocke_to_ascii_desetice
+	RCALL podatki          
+    RCALL delay_ms
+	mov   R16, tocke_to_ascii_enice 
 	RCALL podatki          
     RCALL delay_ms
 	ret
@@ -761,6 +880,15 @@ krt2_ven_narobe:
 	RCALL podatki          
     RCALL delay_ms
 	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	mov   R16, tocke_to_ascii_desetice
+	RCALL podatki          
+    RCALL delay_ms
+	mov   R16, tocke_to_ascii_enice 
 	RCALL podatki          
     RCALL delay_ms
 	ret
@@ -829,6 +957,15 @@ krt3_ven_narobe:
 	RCALL podatki          
     RCALL delay_ms
 	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	mov   R16, tocke_to_ascii_desetice
+	RCALL podatki          
+    RCALL delay_ms
+	mov   R16, tocke_to_ascii_enice 
 	RCALL podatki          
     RCALL delay_ms
 	ret
@@ -908,7 +1045,17 @@ krt4_ven_narobe:
 	LDI   R16, ' '
 	RCALL podatki          
     RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	mov   R16, tocke_to_ascii_desetice
+	RCALL podatki          
+    RCALL delay_ms
+	mov   R16, tocke_to_ascii_enice 
+	RCALL podatki          
+    RCALL delay_ms
 	ret
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 krt1_ven_pravilno:
 	LDI   R16, 0b1111_1111
@@ -956,6 +1103,15 @@ krt1_ven_pravilno:
 	RCALL podatki          
     RCALL delay_ms
 	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	mov   R16, tocke_to_ascii_desetice
+	RCALL podatki          
+    RCALL delay_ms
+	mov   R16, tocke_to_ascii_enice 
 	RCALL podatki          
     RCALL delay_ms
 	ret
@@ -1015,6 +1171,15 @@ krt2_ven_pravilno:
 	RCALL podatki          
     RCALL delay_ms
 	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	mov   R16, tocke_to_ascii_desetice
+	RCALL podatki          
+    RCALL delay_ms
+	mov   R16, tocke_to_ascii_enice 
 	RCALL podatki          
     RCALL delay_ms
 	ret
@@ -1083,6 +1248,15 @@ krt3_ven_pravilno:
 	RCALL podatki          
     RCALL delay_ms
 	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	mov   R16, tocke_to_ascii_desetice
+	RCALL podatki          
+    RCALL delay_ms
+	mov   R16, tocke_to_ascii_enice
 	RCALL podatki          
     RCALL delay_ms
 	ret
@@ -1162,9 +1336,19 @@ krt4_ven_pravilno:
 	LDI   R16, ' '
 	RCALL podatki          
     RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	mov   R16, tocke_to_ascii_desetice
+	RCALL podatki          
+    RCALL delay_ms
+	mov   R16, tocke_to_ascii_enice 
+	RCALL podatki          
+    RCALL delay_ms
 	ret
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////// FUNKCIJE PODATEK, INICIALIZACIJA IN KOMANDA /////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 inicializacija:
 	LDI   R16, 0x33         ;inicializiramo lcd za 4bitno pošiljanje podatkov
     RCALL komanda       ;pošljemo v komandni register
@@ -1232,9 +1416,9 @@ delay_short:
       RET
 
 delay_us:
-      LDI   R20, 90
+      LDI   R17, 90
 l3:   RCALL delay_short
-      DEC   R20
+      DEC   R17
       BRNE  l3
       RET
 
@@ -1246,11 +1430,11 @@ l4:   RCALL delay_us
       RET
 
 delay_seconds:    
-	cpi r17, 0
+	cpi r25, 0
 	breq delay_shortener
-	dec r3
+	dec r25
 	mov r28, r2
-l5: LDI   R29, 255    ;mid loop counter
+l5: LDI   R29, 255     
 l6: LDI   R18, 20     ;inner loop counter to give 0.25s delay
 l7: sbic pinb, 2
 	ldi  r24, 1
@@ -1281,6 +1465,6 @@ gumb_pritisk_loop:
 	ret
 
 delay_shortener:
-	ldi r17, 10
+	ldi r25, 20
 	lsr r2
 	jmp delay_seconds
