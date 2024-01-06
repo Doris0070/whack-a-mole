@@ -1,0 +1,78 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.2.8</VERSION>
+ <DEVICE>"ATmega328P"</DEVICE>
+ <WORKING_DIR>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\Debug</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc</DIR>
+  <DIR>C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avrassembler\Include</DIR>
+  <DIR></DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m328Pdef.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\Debug\complete_build.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>complete_build.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>complete_build.map</FILE>
+  <FILE>complete_build.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <setup><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>9</LINE></setup>
+  <inicializacija><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>1168</LINE></inicializacija>
+  <load><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>31</LINE></load>
+  <program><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>38</LINE></program>
+  <screen><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>265</LINE></screen>
+  <delay_seconds><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>1248</LINE></delay_seconds>
+  <lcd_off><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>158</LINE></lcd_off>
+  <read><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>49</LINE></read>
+  <read_r19><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>51</LINE></read_r19>
+  <pick_random_krt><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>57</LINE></pick_random_krt>
+  <end_screen_loop><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>97</LINE></end_screen_loop>
+  <krt1_ven_loop><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>101</LINE></krt1_ven_loop>
+  <krt2_ven_loop><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>104</LINE></krt2_ven_loop>
+  <krt3_ven_loop><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>107</LINE></krt3_ven_loop>
+  <krt4_ven_loop><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>110</LINE></krt4_ven_loop>
+  <gumb_pritisk><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>68</LINE></gumb_pritisk>
+  <dodaj_tocke><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>73</LINE></dodaj_tocke>
+  <krt_narobe><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>86</LINE></krt_narobe>
+  <krt_pravilno><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>76</LINE></krt_pravilno>
+  <krt1_ven_pravilno_loop><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>114</LINE></krt1_ven_pravilno_loop>
+  <krt2_ven_pravilno_loop><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>119</LINE></krt2_ven_pravilno_loop>
+  <krt3_ven_pravilno_loop><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>124</LINE></krt3_ven_pravilno_loop>
+  <krt4_ven_pravilno_loop><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>129</LINE></krt4_ven_pravilno_loop>
+  <krt1_ven_narobe_loop><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>135</LINE></krt1_ven_narobe_loop>
+  <krt2_ven_narobe_loop><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>140</LINE></krt2_ven_narobe_loop>
+  <end_screen><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>164</LINE></end_screen>
+  <krt1_ven><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>351</LINE></krt1_ven>
+  <krt2_ven><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>428</LINE></krt2_ven>
+  <krt3_ven><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>505</LINE></krt3_ven>
+  <krt4_ven><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>582</LINE></krt4_ven>
+  <krt1_ven_pravilno><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>913</LINE></krt1_ven_pravilno>
+  <krt2_ven_pravilno><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>963</LINE></krt2_ven_pravilno>
+  <krt3_ven_pravilno><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>1022</LINE></krt3_ven_pravilno>
+  <krt4_ven_pravilno><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>1090</LINE></krt4_ven_pravilno>
+  <krt1_ven_narobe><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>659</LINE></krt1_ven_narobe>
+  <krt2_ven_narobe><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>709</LINE></krt2_ven_narobe>
+  <krt3_ven_narobe_loop><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>145</LINE></krt3_ven_narobe_loop>
+  <krt3_ven_narobe><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>768</LINE></krt3_ven_narobe>
+  <krt4_ven_narobe_loop><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>150</LINE></krt4_ven_narobe_loop>
+  <krt4_ven_narobe><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>836</LINE></krt4_ven_narobe>
+  <komanda><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>1187</LINE></komanda>
+  <delay_ms><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>1241</LINE></delay_ms>
+  <podatki><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>1207</LINE></podatki>
+  <delay_short><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>1229</LINE></delay_short>
+  <delay_us><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>1234</LINE></delay_us>
+  <l3><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>1236</LINE></l3>
+  <l4><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>1243</LINE></l4>
+  <delay_shortener><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>1283</LINE></delay_shortener>
+  <l5><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>1253</LINE></l5>
+  <l6><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>1254</LINE></l6>
+  <l7><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>1255</LINE></l7>
+  <gumb_pritisk_loop><FILE>C:\Users\doria\OneDrive\Namizje\ASSEMBLY KRT IGRA\complete_build\complete_build\main.asm</FILE><LINE>1279</LINE></gumb_pritisk_loop>
+ </LABELS>
+</ASSEMBLER_INFO>
