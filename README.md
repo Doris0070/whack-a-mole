@@ -24,5 +24,5 @@ The objective is to "whack" the moles as they randomly pop up from their holes. 
 
 
 ## Acknowledgements:
-## - If you cheat, special screen is waiting for you!!!!!!!!!
+## - If you cheat, special message is waiting for you!!!!!!!!!
   
