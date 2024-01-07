@@ -347,7 +347,7 @@ loading_screen_1:
 	LDI   R16, 'U'
 	RCALL podatki          
     RCALL delay_ms
-	LDI   R16, ' '
+	LDI   R16, '_'
 	RCALL podatki          
     RCALL delay_ms
 	LDI   R16, 'w'
@@ -386,7 +386,7 @@ loading_screen_1:
 	LDI   R16, 'e'
 	RCALL podatki          
     RCALL delay_ms
-	LDI   R16, ' '
+	LDI   R16, '_'
 	RCALL podatki          
     RCALL delay_ms
 	LDI   R16, 'U'
@@ -1854,6 +1854,10 @@ gumb_pritisk_loop:
 delay_shortener:
 	ldi r25, 20
 	lsr r2
+	ldi r21, 10
+	mov r22, r2
+	add r22, r21
+	mov r2, r22
 	jmp delay_seconds
 
 delay_loading:
