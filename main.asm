@@ -10,7 +10,7 @@ setup:
 	clr r10
 	clr r9
 	clr r8
-	clr temp_reg
+	clr r26
 	ldi r21, 0
 	ldi r22, 0
 	ldi r16, 200
@@ -87,6 +87,8 @@ end_screen_loop:
 	mov r21, r10
 	cpi r21, 50
 	breq x_loop
+	cpi r21, 50 
+	brsh cheater_loop
 	cpi r21, 0
 	breq looser_screen_loop
 	call load_tocke
@@ -117,6 +119,10 @@ x_loop:
 looser_screen_loop:
 	call looser_screen
 	jmp looser_screen_loop
+
+cheater_loop:
+	call cheater_screen
+	jmp cheater_loop
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -390,6 +396,110 @@ loading_screen_1:
 	RCALL podatki          
     RCALL delay_ms
 	LDI   R16, 'U'
+	RCALL podatki          
+    RCALL delay_ms
+	ret
+
+cheater_screen:
+	LDI   R16, 'y'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'o'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'u'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'c'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'h'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'e'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'a'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 't'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'e'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'r'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'i'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 't'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 0x27
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 's'
+	RCALL podatki          
+    RCALL delay_ms
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	LDI   R16, 0xC0         ;kursor naštimamo na drugo vrstico
+    RCALL komanda
+    RCALL delay_ms
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	LDI   R16, 'o'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'n'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'l'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'y'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, '5'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, '0'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'm'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'o'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'l'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'e'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 's'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ' '
 	RCALL podatki          
     RCALL delay_ms
 	ret
