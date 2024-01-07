@@ -131,28 +131,28 @@ krt1_ven_narobe_loop:
 	call lcd_off
 	call load_tocke
 	call krt1_ven_narobe
-	call delay_ms
+	call delay_msx3
 	jmp program
 	ret
 krt2_ven_narobe_loop:
 	call lcd_off
 	call load_tocke
 	call krt2_ven_narobe
-	call delay_ms
+	call delay_msx3
 	jmp program
 	ret
 krt3_ven_narobe_loop:
 	call lcd_off
 	call load_tocke
 	call krt3_ven_narobe
-	call delay_ms
+	call delay_msx3
 	jmp program
 	ret
 krt4_ven_narobe_loop:
 	call lcd_off
 	call load_tocke
 	call krt4_ven_narobe
-	call delay_ms
+	call delay_msx3
 	jmp program
 	ret
 
@@ -164,16 +164,6 @@ gumb_pritisk:
 dodaj_tocke:
 	inc r10
 	jmp krt_pravilno
-krt_pravilno:
-	cpi gumb_stanje, 0x01
-	breq krt1_ven_pravilno_loop
-	cpi gumb_stanje, 0x02
-	breq krt2_ven_pravilno_loop
-	cpi gumb_stanje, 0x03
-	breq krt3_ven_pravilno_loop
-	cpi gumb_stanje, 0x04
-	breq krt4_ven_pravilno_loop	
-	ret
 krt_narobe:
 	cpi gumb_stanje, 0x01
 	breq krt1_ven_narobe_loop
@@ -184,33 +174,43 @@ krt_narobe:
 	cpi gumb_stanje, 0x04
 	breq krt4_ven_narobe_loop	
 	ret
+krt_pravilno:
+	cpi gumb_stanje, 0x01
+	breq krt1_ven_pravilno_loop
+	cpi gumb_stanje, 0x02
+	breq krt2_ven_pravilno_loop
+	cpi gumb_stanje, 0x03
+	breq krt3_ven_pravilno_loop
+	cpi gumb_stanje, 0x04
+	breq krt4_ven_pravilno_loop	
+	ret
 
 krt1_ven_pravilno_loop:
 	call lcd_off
 	call load_tocke
 	call krt1_ven_pravilno
-	call delay_ms
+	call delay_msx3
 	jmp program
 	ret
 krt2_ven_pravilno_loop:
 	call lcd_off
 	call load_tocke
 	call krt2_ven_pravilno
-	call delay_ms
+	call delay_msx3
 	jmp program
 	ret
 krt3_ven_pravilno_loop:
 	call lcd_off
 	call load_tocke
 	call krt3_ven_pravilno
-	call delay_ms
+	call delay_msx3
 	jmp program
 	ret
 krt4_ven_pravilno_loop:
 	call lcd_off
 	call load_tocke
 	call krt4_ven_pravilno
-	call delay_ms
+	call delay_msx3
 	jmp program
 	ret
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1959,6 +1959,8 @@ l7: sbic pinb, 2
     RET               ;return to calle
 
 gumb_pritisk_loop:
+	call delay_ms
+	call delay_ms
 	call gumb_pritisk
 	ret
 
@@ -1982,3 +1984,28 @@ lc: DEC   R18
     DEC   R28         ;decrement outer loop
     BRNE  l5          ;loop if not zero
     RET
+
+delay_msx3:
+	call delay_msx10
+	call delay_msx10
+	call delay_msx10
+	ret
+
+delay_msx10:
+	call delay_msx6
+	call delay_msx6
+	call delay_msx6
+	ret
+
+delay_msx6:
+	call delay_ms
+	call delay_ms
+	call delay_ms
+	call delay_ms
+	call delay_ms
+	call delay_ms
+	call delay_ms
+	call delay_ms
+	call delay_ms
+	call delay_ms
+	ret
