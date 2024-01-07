@@ -1,4 +1,4 @@
-#### Whack-a-Mole Game
+## Whack-a-Mole Game
 
 A fun Whack-a-Mole game inspired by the classic arcade game.
 
@@ -21,7 +21,6 @@ The objective is to "whack" the moles as they randomly pop up from their holes. 
 ![image](https://github.com/Doris0070/whack-a-mole/assets/119793367/7e5344bb-08f4-4b1e-8d48-74328c4ca4aa)
 
 
-### Acknowledgements
-
+## Acknowledgements:
 ## - If you cheat, special screen is waiting for you!!!!!!!!!
   
