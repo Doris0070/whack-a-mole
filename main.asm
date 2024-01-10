@@ -706,10 +706,13 @@ looser_screen:
     RCALL delay_ms
 	LDI   R16, ' '
 	RCALL podatki
-	RCALL delay_ms
+    RCALL delay_ms
+	LDI   R16, ' '
+    RCALL podatki
+    RCALL delay_ms
 	LDI   R16, 'U'
-	RCALL podatki
-	RCALL delay_ms
+    RCALL podatki
+    RCALL delay_ms
 	ret
 
 end_screen:
