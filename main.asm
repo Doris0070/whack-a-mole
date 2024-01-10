@@ -1974,6 +1974,8 @@ anti_cheat:
 	inc r12
 	lsr r2
 	lsr r2
+	lsr r2
+	lsr r2
 	jmp gumb_pritisk_loop
 
 delay_shortener:
