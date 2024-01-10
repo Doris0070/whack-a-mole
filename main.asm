@@ -5,7 +5,8 @@
 .def tocke = r10
 .def temp_reg = r26
 .def tocke_to_ascii_enice = r8
-.def tocke_to_ascii_desetice = r9
+
+def tocke_to_ascii_desetice = r9
 setup:
 	clr r10
 	clr r9
@@ -66,6 +67,7 @@ loading_screen_loop:
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 read:
+clr r20
 	jmp read_r19
 	read_r19:
 		lpm r19, z+
@@ -85,6 +87,9 @@ read:
 		ret
 
 end_screen_loop:
+	mov r21, r12
+	cpi r21, 1
+	breq cheater_loop
 	mov r21, r10
 	cpi r21, 50
 	breq x_loop
@@ -217,6 +222,9 @@ krt4_ven_pravilno_loop:
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 load_tocke:
+	mov r16, r12
+	sbrc r16, 0
+	clr r10	
 	call deljenje_tock
 	call ascii_converter
 	ret
@@ -402,7 +410,13 @@ loading_screen_1:
 	ret
 
 cheater_screen:
-	LDI   R16, 'y'
+	LDI   R16, 'a'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'c'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'c'
 	RCALL podatki          
     RCALL delay_ms
 	LDI   R16, 'o'
@@ -411,43 +425,31 @@ cheater_screen:
 	LDI   R16, 'u'
 	RCALL podatki          
     RCALL delay_ms
+	LDI   R16, 'n'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 't'
+	RCALL podatki          
+    RCALL delay_ms
 	LDI   R16, ' '
 	RCALL podatki          
     RCALL delay_ms
-	LDI   R16, 'c'
-	RCALL podatki          
-    RCALL delay_ms
-	LDI   R16, 'h'
-	RCALL podatki          
-    RCALL delay_ms
-	LDI   R16, 'e'
+	LDI   R16, 'b'
 	RCALL podatki          
     RCALL delay_ms
 	LDI   R16, 'a'
 	RCALL podatki          
     RCALL delay_ms
-	LDI   R16, 't'
+	LDI   R16, 'n'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'n'
 	RCALL podatki          
     RCALL delay_ms
 	LDI   R16, 'e'
 	RCALL podatki          
     RCALL delay_ms
-	LDI   R16, 'r'
-	RCALL podatki          
-    RCALL delay_ms
-	LDI   R16, ' '
-	RCALL podatki          
-    RCALL delay_ms
-	LDI   R16, 'i'
-	RCALL podatki          
-    RCALL delay_ms
-	LDI   R16, 't'
-	RCALL podatki          
-    RCALL delay_ms
-	LDI   R16, 0x27
-	RCALL podatki          
-    RCALL delay_ms
-	LDI   R16, 's'
+	LDI   R16, 'd'
 	RCALL podatki          
     RCALL delay_ms
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -455,28 +457,10 @@ cheater_screen:
     RCALL komanda
     RCALL delay_ms
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	LDI   R16, 'o'
+	LDI   R16, 'r'
 	RCALL podatki          
     RCALL delay_ms
-	LDI   R16, 'n'
-	RCALL podatki          
-    RCALL delay_ms
-	LDI   R16, 'l'
-	RCALL podatki          
-    RCALL delay_ms
-	LDI   R16, 'y'
-	RCALL podatki          
-    RCALL delay_ms
-	LDI   R16, ' '
-	RCALL podatki          
-    RCALL delay_ms
-	LDI   R16, '5'
-	RCALL podatki          
-    RCALL delay_ms
-	LDI   R16, '0'
-	RCALL podatki          
-    RCALL delay_ms
-	LDI   R16, ' '
+	LDI   R16, 'e'
 	RCALL podatki          
     RCALL delay_ms
 	LDI   R16, 'm'
@@ -485,22 +469,40 @@ cheater_screen:
 	LDI   R16, 'o'
 	RCALL podatki          
     RCALL delay_ms
-	LDI   R16, 'l'
+	LDI   R16, 'v'
 	RCALL podatki          
     RCALL delay_ms
 	LDI   R16, 'e'
 	RCALL podatki          
     RCALL delay_ms
-	LDI   R16, 's'
-	RCALL podatki          
-    RCALL delay_ms
 	LDI   R16, ' '
 	RCALL podatki          
     RCALL delay_ms
-	LDI   R16, ' '
+	LDI   R16, 'b'
 	RCALL podatki          
     RCALL delay_ms
-	LDI   R16, ' '
+	LDI   R16, 'a'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 'n'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, ':'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, '9'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, '.'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, '9'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, '9'
+	RCALL podatki          
+    RCALL delay_ms
+	LDI   R16, 0b00100100
 	RCALL podatki          
     RCALL delay_ms
 	ret
@@ -679,9 +681,6 @@ looser_screen:
 	RCALL podatki          
     RCALL delay_ms
 	LDI   R16, 'L'
-	RCALL podatki          
-    RCALL delay_ms
-	LDI   R16, 'O'
 	RCALL podatki          
     RCALL delay_ms
 	LDI   R16, 'O'
@@ -1959,10 +1958,23 @@ l7: sbic pinb, 2
     RET               ;return to calle
 
 gumb_pritisk_loop:
+	inc r20
+	cpi r20, 3
+	brsh anti_cheat
 	call delay_ms
 	call delay_ms
 	call gumb_pritisk
 	ret
+
+anti_cheat:
+	clr r20
+	mov r16, r12
+	cpi r16, 1
+	breq gumb_pritisk_loop
+	inc r12
+	lsr r2
+	lsr r2
+	jmp gumb_pritisk_loop
 
 delay_shortener:
 	ldi r25, 20
@@ -1978,11 +1990,11 @@ delay_loading:
 la: LDI   R29, 255    ;mid loop counter
 lb: LDI   R18, 160     ;inner loop counter to give 0.25s delay
 lc: DEC   R18  
-    BRNE  l7          ;loop if not zero
+    BRNE  lc          ;loop if not zero
     DEC   R29         ;decrement mid loop
-    BRNE  l6          ;loop if not zero
+    BRNE  lb        ;loop if not zero
     DEC   R28         ;decrement outer loop
-    BRNE  l5          ;loop if not zero
+    BRNE  la        ;loop if not zero
     RET
 
 delay_msx3:
